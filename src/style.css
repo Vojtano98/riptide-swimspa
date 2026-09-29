@@ -2161,6 +2161,13 @@ p {
   padding-bottom: 8px;
   background: var(--bg-white);
 }
+/* The hub sections (models grid, savings, showroom…) use the generic .section
+   padding, which is generous by design for mid-page breathing room — but right
+   after the breadcrumb it reads as a large dead gap under the header. Tighten
+   just that first section's top padding; its own bottom padding is untouched. */
+.breadcrumb + .section {
+  padding-top: clamp(24px, 3vw, 40px);
+}
 .breadcrumb-inner {
   display: flex;
   flex-wrap: wrap;

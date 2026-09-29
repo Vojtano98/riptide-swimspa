@@ -2,20 +2,20 @@ export function renderHeader({ transparent = false } = {}) {
   return `
     <header class="site-header${transparent ? ' site-header--transparent' : ''}" id="site-header">
       <div class="container">
-        <div class="brand-lockup">
-          <a href="/" class="site-logo" aria-label="Riptide Swim Spa">
+        <a href="/" class="brand-lockup" aria-label="Riptide Swim Spa — domů">
+          <span class="site-logo">
             <img src="/assets/brand/riptide-logo-dark.png" alt="Riptide" class="site-logo-img site-logo-img--color" />
             <img src="/assets/brand/riptide-logo-white.png" alt="Riptide" class="site-logo-img site-logo-img--white" />
-          </a>
+          </span>
           <span class="brand-lockup-divider" aria-hidden="true"></span>
-          <a href="https://vojtano98.github.io/Swimspa-web/" class="brand-partner" aria-label="Exkluzivní partner SwimSpa.cz">
+          <span class="brand-partner">
             <span class="brand-partner-label">Exkluzivní partner</span>
             <span class="brand-partner-imgs">
               <img src="/assets/brand/swimspa-logo-color.png" alt="SwimSpa.cz" class="brand-partner-img brand-partner-img--color" />
               <img src="/assets/brand/swimspa-logo-white.png" alt="SwimSpa.cz" class="brand-partner-img brand-partner-img--white" />
             </span>
-          </a>
-        </div>
+          </span>
+        </a>
         <nav>
           <ul class="site-nav" id="site-nav">
             <li><a href="/atlas/" data-nav-link>Atlas</a></li>
