@@ -23,6 +23,10 @@ export function renderHeader({ transparent = false } = {}) {
             <li><a href="/aqua-life/" data-nav-link>Aqua Life</a></li>
             <li><a href="/easy-life/" data-nav-link>Easy Life</a></li>
             <li><a href="/#showroom" data-nav-link>Kontakt</a></li>
+            <li class="site-nav-mobile-actions">
+              <a href="tel:+420777605789" class="site-nav-mobile-phone" data-nav-link>+420 777 605 789</a>
+              <button class="btn btn-primary site-nav-mobile-cta" data-open-inquiry data-nav-link>Spočítat cenu</button>
+            </li>
           </ul>
         </nav>
         <div class="header-actions">
@@ -48,12 +52,14 @@ export function bindHeader() {
 
   toggle.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('is-open')
+    header.classList.toggle('nav-is-open', isOpen)
     toggle.setAttribute('aria-expanded', String(isOpen))
   })
 
   nav.querySelectorAll('[data-nav-link]').forEach((link) => {
     link.addEventListener('click', () => {
       nav.classList.remove('is-open')
+      header.classList.remove('nav-is-open')
       toggle.setAttribute('aria-expanded', 'false')
     })
   })
