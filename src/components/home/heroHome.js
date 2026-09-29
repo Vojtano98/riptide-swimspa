@@ -3,7 +3,7 @@ import { icon } from '../../utils/icons.js'
 export function renderHeroHome(home) {
   const h = home.hero
   return `
-    <section class="hero" id="hero">
+    <section class="hero hero--home" id="hero">
       <div class="hero-media">
         <img src="${h.image}" alt="${h.imageAlt}" fetchpriority="high" />
       </div>

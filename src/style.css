@@ -530,6 +530,22 @@ p {
   transform: translateY(24px);
   transition: opacity 1s var(--ease) 0.3s, transform 1s var(--ease) 0.3s;
 }
+/* Homepage hero: the photo is the point — keep the text light-footprint (smaller
+   title, tighter overlay) so it reads as a caption over the image, not a block
+   that competes with it. Product-page heroes keep the original, larger treatment. */
+.hero--home .hero-media::after {
+  background: linear-gradient(180deg, rgba(10, 10, 8, 0.4) 0%, rgba(10, 10, 8, 0) 26%, rgba(10, 10, 8, 0) 62%, rgba(10, 10, 8, 0.5) 100%);
+}
+.hero--home .hero-title {
+  font-size: clamp(40px, 5vw, 72px);
+  margin-bottom: 14px;
+}
+.hero--home .hero-tagline {
+  margin-bottom: 0;
+}
+.hero--home .hero-content {
+  padding-bottom: clamp(32px, 5vw, 56px);
+}
 .hero.is-loaded .hero-tagline {
   opacity: 1;
   transform: translateY(0);
