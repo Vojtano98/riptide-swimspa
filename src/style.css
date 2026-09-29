@@ -294,6 +294,17 @@ p {
 .site-header--transparent:not(.is-scrolled) .nav-toggle span::after {
   background: #fff;
 }
+/* .btn-primary's dark-navy fill (var(--text)) matches the transparent header's own
+   dark scrim almost exactly, so the CTA nearly disappears until the header scrolls
+   to its opaque white state — swap it to a white pill for the same contrast the
+   hero buttons already get. */
+.site-header--transparent:not(.is-scrolled) .header-cta {
+  background: #fff;
+  color: var(--dark);
+}
+.site-header--transparent:not(.is-scrolled) .header-cta:hover {
+  background: var(--dark-text-secondary);
+}
 .site-header .container {
   display: flex;
   align-items: center;
