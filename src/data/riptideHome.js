@@ -3,11 +3,17 @@ import { showroom } from './shared/showroom.js'
 
 export const home = {
   hero: {
-    eyebrow: 'RIPTIDE · FOR FITNESS, RELAXATION AND FUN',
-    title: 'Plavání, relaxace a zábava. Ve vaší zahradě.',
-    tagline: 'Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz. Čtyři řady, osmnáct velikostí, jedno patentované plavecké jádro.',
+    eyebrow: 'FOR FITNESS, RELAXATION AND FUN',
+    title: 'Plavání, relaxace, zábava.',
+    tagline: 'Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz.',
     image: '/assets/photos/hero-aerial-swimmer.jpg',
     imageAlt: 'Riptide swim spa — pohled shora na plavce v zahradním bazénu',
+  },
+
+  categoriesIntro: {
+    eyebrow: 'ŘADY RIPTIDE',
+    headline: 'Čtyři řady. Jedno plavecké jádro.',
+    text: 'Standardní i extra hloubka, čistě plavecké bazény i swim spa s hydromasáží — vyberte řadu podle toho, jak budete plavat, relaxovat, nebo obojí.',
   },
 
   categories: [

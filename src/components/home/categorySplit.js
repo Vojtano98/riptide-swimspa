@@ -15,9 +15,20 @@ export function renderCategorySplit(home) {
     )
     .join('')
 
+  const intro = home.categoriesIntro
+    ? `
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">${home.categoriesIntro.eyebrow}</span>
+        <h2 class="h-section">${home.categoriesIntro.headline}</h2>
+        <p class="body-l">${home.categoriesIntro.text}</p>
+      </div>
+    `
+    : ''
+
   return `
     <section class="section section--white" id="kategorie">
       <div class="container">
+        ${intro}
         <div class="category-split">${cards}</div>
       </div>
     </section>
