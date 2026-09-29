@@ -41,10 +41,18 @@ function depthPrefix(path) {
   return '../'.repeat(depth)
 }
 
+// Shared social-share thumbnail (the homepage hero photo, branded) — every page
+// falls back to it unless it defines its own og:image one day.
+const SITE_URL = 'https://vojtano98.github.io/riptide-swimspa'
+const SHARE_IMAGE = `${SITE_URL}/assets/photos/og-home.jpg`
+const DEFAULT_DESC = 'Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz. Čtyři řady, osmnáct velikostí, jedno patentované plavecké jádro.'
+
 function writePage({ path, dataFile, exportName, title, desc }, renderFn, renderFile) {
   const dir = join(srcDir, path)
   mkdirSync(dir, { recursive: true })
   const prefix = depthPrefix(path)
+  const description = desc || DEFAULT_DESC
+  const pageUrl = `${SITE_URL}/${path}/`
 
   const html = `<!doctype html>
 <html lang="cs">
@@ -53,7 +61,20 @@ function writePage({ path, dataFile, exportName, title, desc }, renderFn, render
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>${title}</title>
-  ${desc ? `<meta name="description" content="${desc}" />\n  ` : ''}<link rel="preconnect" href="https://fonts.googleapis.com" />
+  <meta name="description" content="${description}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Riptide Swim Spa" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${description}" />
+  <meta property="og:image" content="${SHARE_IMAGE}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${title}" />
+  <meta name="twitter:description" content="${description}" />
+  <meta name="twitter:image" content="${SHARE_IMAGE}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="${prefix}style.css" />
 </head>
