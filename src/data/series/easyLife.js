@@ -1,5 +1,7 @@
 import { savings } from '../shared/savings.js'
 import { showroom } from '../shared/showroom.js'
+import { hydrotherapy } from '../shared/hydrotherapy.js'
+import { accessories } from '../shared/accessories.js'
 
 export const easyLife = {
   breadcrumb: [{ label: 'Domů', href: '/' }, { label: 'Easy Life' }],
@@ -8,7 +10,7 @@ export const easyLife = {
     eyebrow: 'RIPTIDE · EASY LIFE',
     headline: 'Easy Life — nejširší nabídka, extra hloubka.',
     text: 'Extra hloubka 154 cm ve všech osmi velikostech — od kompaktní 4.4 po nejdelší swim spa v nabídce Riptide, Easy Life 8.0. Dostupné jako jednozónové i dvouzónové (Duo) provedení pro plavání a relaxaci současně.',
-    note: 'Všechny modely nabízí dvě úrovně výbavy — Pro Premium a Pro Luxury.',
+    note: 'Všechny modely nabízí dvě úrovně výbavy — Pro Premium a Pro Luxury. Všechny velikosti lze na přání provést i jako semi-inground (částečně zapuštěné do terénu) — rychlejší a levnější instalace než klasická zapuštěná bazénová vana.',
   },
 
   models: [
@@ -86,6 +88,8 @@ export const easyLife = {
     },
   ],
 
+  hydrotherapy,
+  accessories,
   savings,
   showroom,
 

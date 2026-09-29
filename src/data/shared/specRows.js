@@ -13,6 +13,7 @@ export const poolSpecRows = [
   { key: 'tenSpeed', label: '10-stupňové plavání' },
   { key: 'swimPumps', label: 'Plavecká čerpadla' },
   { key: 'swimPipe', label: 'Průměr plaveckého potrubí' },
+  { key: 'swimPole', label: 'Plavecká tyč a madlo' },
   { key: 'control', label: 'Řídicí systém' },
   { key: 'panel', label: 'Ovládací panel' },
 ]
@@ -29,6 +30,7 @@ export const singleZoneSpecRows = [
   { key: 'tenSpeed', label: '10-stupňové plavání' },
   { key: 'swimPumps', label: 'Plavecká čerpadla' },
   { key: 'swimPipe', label: 'Průměr plaveckého potrubí' },
+  { key: 'swimPole', label: 'Plavecká tyč a madlo' },
   { key: 'control', label: 'Řídicí systém' },
   { key: 'panel', label: 'Ovládací panel' },
 ]
@@ -45,6 +47,7 @@ export const duoSpecRows = [
   { key: 'tenSpeed', label: '10-stupňové plavání' },
   { key: 'swimPumps', label: 'Plavecká čerpadla' },
   { key: 'swimPipe', label: 'Průměr plaveckého potrubí' },
+  { key: 'swimPole', label: 'Plavecká tyč a madlo' },
   { key: 'spaControl', label: 'Řídicí systém — spa zóna' },
   { key: 'spaPanel', label: 'Ovládací panel — spa zóna' },
   { key: 'swimControl', label: 'Řídicí systém — swim zóna' },

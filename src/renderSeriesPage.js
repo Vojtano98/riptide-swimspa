@@ -1,6 +1,7 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderBreadcrumb } from './components/breadcrumb.js'
 import { renderModelsGrid } from './components/hub/modelsGrid.js'
+import { renderTextBenefitsGrid } from './components/textBenefitsGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
 import { renderShowroomSection } from './components/home/showroomSection.js'
 import { renderFinalCtaHome } from './components/home/finalCtaHome.js'
@@ -17,6 +18,8 @@ export function renderSeriesPage(series) {
     renderHeader(),
     renderBreadcrumb(series.breadcrumb),
     renderModelsGrid(series),
+    renderTextBenefitsGrid(series.hydrotherapy, { tone: 'tint' }),
+    renderTextBenefitsGrid(series.accessories, { tone: 'white' }),
     renderSavingsSection(series),
     renderShowroomSection(series),
     renderFinalCtaHome(series),

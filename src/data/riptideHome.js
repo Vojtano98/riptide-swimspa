@@ -111,6 +111,17 @@ export const home = {
     ],
   },
 
+  trust: {
+    eyebrow: 'PROČ DŮVĚŘOVAT RIPTIDE',
+    headline: 'Výroba a servisní zázemí, na které se dá spolehnout.',
+    text: 'Riptide vyrábí Oasis Spas ve vlastním výrobním závodě Crystal Island — jedné z největších výrobních hal na spa a swim spa na světě — s vybudovanou servisní sítí napříč Evropou i Austrálií.',
+    stats: [
+      { value: '150 000 m²', label: 'výrobní závod Crystal Island' },
+      { value: '300 000+', label: 'vyrobených spa a swim spa ročně' },
+      { value: '46 zemí', label: 'kam se značka Oasis/Riptide dodává' },
+    ],
+  },
+
   savings,
   showroom,
 

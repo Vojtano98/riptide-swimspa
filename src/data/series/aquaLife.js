@@ -1,5 +1,7 @@
 import { savings } from '../shared/savings.js'
 import { showroom } from '../shared/showroom.js'
+import { hydrotherapy } from '../shared/hydrotherapy.js'
+import { accessories } from '../shared/accessories.js'
 
 export const aquaLife = {
   breadcrumb: [{ label: 'Domů', href: '/' }, { label: 'Aqua Life' }],
@@ -8,7 +10,7 @@ export const aquaLife = {
     eyebrow: 'RIPTIDE · AQUA LIFE',
     headline: 'Aqua Life — swim spa pro plavání i hydromasáž.',
     text: 'Standardní hloubka 129 cm doplněná o hydromasážní posezení s lehátkem — Aqua Life spojuje plavecký trénink s každodenní relaxací. K dispozici od kompaktní 4.0 po dvouzónovou 6.0 Duo se dvěma nezávislými teplotami.',
-    note: 'Modely 4.4 až 6.0 Duo nabízí až tři úrovně výbavy — Pro Premium, Pro Luxury a Hydro.',
+    note: 'Modely 4.4 až 6.0 Duo nabízí až tři úrovně výbavy — Pro Premium, Pro Luxury a Hydro. Modely 4.4 až 6.0 Duo lze na přání provést i jako semi-inground (částečně zapuštěné do terénu) — rychlejší a levnější instalace než klasická zapuštěná bazénová vana.',
   },
 
   models: [
@@ -59,6 +61,8 @@ export const aquaLife = {
     },
   ],
 
+  hydrotherapy,
+  accessories,
   savings,
   showroom,
 

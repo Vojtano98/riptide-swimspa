@@ -2,6 +2,7 @@ import { renderHeader, bindHeader } from './components/header.js'
 import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
 import { renderCategorySplit } from './components/home/categorySplit.js'
 import { renderAdvantagesSplit } from './components/home/advantagesSplit.js'
+import { renderTrustSection } from './components/home/trustSection.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
 import { renderWhyStatements } from './components/home/whyStatements.js'
 import { renderShowroomSection } from './components/home/showroomSection.js'
@@ -20,6 +21,7 @@ export function renderHomePage(home) {
     renderHeroHome(home),
     renderCategorySplit(home),
     renderAdvantagesSplit(home),
+    renderTrustSection(home),
     renderWhyStatements(home),
     renderSavingsSection(home),
     renderShowroomSection(home),

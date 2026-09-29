@@ -24,14 +24,19 @@ export function renderTrimComparison(model) {
     .join('')
 
   const rows = specRows
-    .map(
-      (row) => `
-      <tr>
-        <th scope="row">${row.label}</th>
-        ${variants.map((v) => `<td>${v.specs[row.key] ?? '—'}</td>`).join('')}
+    .map((row) => {
+      const values = variants.map((v) => v.specs[row.key] ?? '—')
+      const differs = values.some((val) => val !== values[0])
+      return `
+      <tr class="${differs ? 'trim-row-differs' : 'trim-row-same'}">
+        <th scope="row">
+          ${row.label}
+          ${differs ? '<span class="trim-row-flag">liší se</span>' : ''}
+        </th>
+        ${values.map((val) => `<td>${val}</td>`).join('')}
       </tr>
     `
-    )
+    })
     .join('')
 
   return `
@@ -43,6 +48,10 @@ export function renderTrimComparison(model) {
           <p class="body-l">Tři úrovně výbavy se liší výkonem plaveckých čerpadel, počtem trysek i ovládacím panelem — srovnání níže vychází přímo z technického listu výrobce.</p>
         </div>
         <div class="trim-cols" data-reveal>${cols}</div>
+        <div class="trim-table-legend" data-reveal>
+          <span class="trim-legend-item"><span class="trim-legend-swatch trim-legend-swatch--differs"></span> parametr se mezi provedeními liší</span>
+          <span class="trim-legend-item"><span class="trim-legend-swatch trim-legend-swatch--same"></span> stejné ve všech provedeních</span>
+        </div>
         <div class="trim-table-wrap" data-reveal>
           <table class="trim-table">
             <caption class="sr-only">Technické srovnání provedení ${model.name}</caption>

@@ -2,6 +2,7 @@ import { renderHeader, bindHeader } from './components/header.js'
 import { renderProductHero, bindProductHero } from './components/productHero.js'
 import { renderQuickSpecs } from './components/quickSpecs.js'
 import { renderTrimComparison } from './components/trimComparison.js'
+import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
 import { renderShowroomSection } from './components/home/showroomSection.js'
@@ -21,6 +22,7 @@ export function renderModelPage(model) {
     renderProductHero(model),
     renderQuickSpecs(model),
     renderTrimComparison(model),
+    renderMaterialsSwatches(model),
     renderFeatureGrid(model),
     renderSavingsSection(model),
     renderShowroomSection(model),
