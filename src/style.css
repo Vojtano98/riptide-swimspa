@@ -94,8 +94,14 @@ button {
 }
 
 .section-head {
-  max-width: 640px;
   margin-bottom: clamp(40px, 5vw, 72px);
+}
+/* The heading itself spans the full container on desktop (an Apple-style section
+   intro shouldn't stop at 640px on a 1400px-wide page) — only the supporting
+   paragraph keeps a readable line length. Both already scale down via clamp()
+   and the container's own responsive gutter, so this needs no breakpoint. */
+.section-head .body-l {
+  max-width: 640px;
 }
 
 h1, h2, h3 {
@@ -393,6 +399,7 @@ p {
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
+  white-space: nowrap;
   transition: color 0.2s var(--ease);
 }
 .site-nav a:hover {
@@ -445,13 +452,17 @@ p {
   top: 6px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
   .header-contact {
     display: block;
   }
 }
 
-@media (max-width: 899px) {
+/* Raised from the original 900px breakpoint: the brand lockup now carries the
+   SwimSpa.cz partner badge alongside the Riptide logo, which needs more room
+   before the full nav + phone + CTA row still fits without "Aqua Life" /
+   "Easy Life" wrapping mid-phrase. Below 1200px, fall back to the hamburger nav. */
+@media (max-width: 1199px) {
   .site-nav {
     position: fixed;
     inset: 0;
