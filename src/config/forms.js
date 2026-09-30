@@ -7,6 +7,6 @@
 //
 // To switch which inbox receives submissions later, generate a new key for that
 // address the same way and swap it in below.
-export const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY'
+export const WEB3FORMS_ACCESS_KEY = 'c2a79cac-5fdd-413f-8a8f-22459752f3b9'
 
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
