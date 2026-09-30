@@ -1,20 +1,6 @@
 import { icon } from '../utils/icons.js'
 import { openModal } from '../utils/modal.js'
-import { INQUIRY_ENDPOINT } from '../config/forms.js'
-
-// Submitted as a native form POST into a hidden iframe (not fetch) because FormSubmit's
-// AJAX endpoint rejects cross-origin requests from origins it hasn't seen before —
-// a plain form submission has no such restriction, so this works everywhere immediately.
-const RELAY_FRAME_NAME = 'inquiry-relay'
-
-function ensureRelayFrame() {
-  if (document.querySelector(`iframe[name="${RELAY_FRAME_NAME}"]`)) return
-  const frame = document.createElement('iframe')
-  frame.name = RELAY_FRAME_NAME
-  frame.style.display = 'none'
-  frame.setAttribute('aria-hidden', 'true')
-  document.body.appendChild(frame)
-}
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from '../config/forms.js'
 
 function subtitleFor(context) {
   return context.variantName ? `${context.name} — ${context.variantName} · odpovídáme do 24 hodin.` : `${context.name} — odpovídáme do 24 hodin.`
@@ -30,14 +16,8 @@ function formHTML(context) {
   return `
     <h3 class="modal-title" id="inquiry-modal-title">Nezávazná poptávka</h3>
     <p class="modal-subtitle">${subtitleFor(context)}</p>
-    <form data-inquiry-form novalidate action="${INQUIRY_ENDPOINT}" method="POST" target="${RELAY_FRAME_NAME}">
-      <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <input type="hidden" name="_subject" value="${buildSubject(context)}" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="Swim spa" value="${context.name}" />
-      <input type="hidden" name="Vybraná výbava" value="${context.variantName || 'nevybráno (obecná poptávka)'}" />
-      <input type="hidden" name="Stránka" value="${window.location.href}" />
+    <form data-inquiry-form novalidate>
+      <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="form-grid">
         <div class="form-field">
           <label for="f-name">Jméno</label>
@@ -85,52 +65,57 @@ function successHTML() {
   `
 }
 
-function bindForm(form, overlay) {
+function bindForm(form, overlay, context) {
   const submitBtn = form.querySelector('[data-submit-btn]')
   const errorEl = form.querySelector('[data-inquiry-error]')
-  const honey = form.querySelector('[name="_honey"]')
-  const frame = document.querySelector(`iframe[name="${RELAY_FRAME_NAME}"]`)
 
-  form.addEventListener('submit', (ev) => {
-    if (honey.value) {
-      ev.preventDefault() // bot filled the hidden field — drop silently
-      return
-    }
-    if (!form.reportValidity()) {
-      ev.preventDefault()
-      return
-    }
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault()
+    if (!form.reportValidity()) return
+
+    const data = new FormData(form)
+    if (data.get('botcheck')) return // honeypot tripped — silently drop, no request sent
 
     errorEl.hidden = true
     submitBtn.disabled = true
     submitBtn.textContent = 'Odesílám…'
 
-    let settled = false
-    const finishSuccess = () => {
-      if (settled) return
-      settled = true
-      frame.removeEventListener('load', finishSuccess)
-      overlay.querySelector('.modal-body').innerHTML = successHTML()
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: buildSubject(context),
+      from_name: 'Riptide swim spa — web',
+      replyto: data.get('email'),
+      Jméno: data.get('name'),
+      Telefon: data.get('phone'),
+      'E-mail': data.get('email'),
+      Lokalita: data.get('location') || '—',
+      Umístění: data.get('placement'),
+      Poznámka: data.get('note') || '—',
+      'Swim spa': context.name,
+      'Vybraná výbava': context.variantName || 'nevybráno (obecná poptávka)',
+      Stránka: window.location.href,
     }
-    frame.addEventListener('load', finishSuccess)
 
-    setTimeout(() => {
-      if (settled) return
-      settled = true
-      frame.removeEventListener('load', finishSuccess)
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const result = await res.json()
+      if (!res.ok || !result.success) throw new Error(result.message || 'Odeslání se nezdařilo.')
+
+      overlay.querySelector('.modal-body').innerHTML = successHTML()
+    } catch (err) {
       errorEl.textContent = 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 777 605 789.'
       errorEl.hidden = false
       submitBtn.disabled = false
       submitBtn.textContent = 'Odeslat poptávku'
-    }, 10000)
-
-    // no preventDefault here — the browser submits the form natively into the hidden iframe
+    }
   })
 }
 
 export function bindInquiryModal(product) {
-  ensureRelayFrame()
-
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('[data-open-inquiry]')
     if (!trigger) return
@@ -142,6 +127,6 @@ export function bindInquiryModal(product) {
 
     const overlay = openModal(formHTML(context), { labelledBy: 'inquiry-modal-title' })
     const form = overlay.querySelector('[data-inquiry-form]')
-    bindForm(form, overlay)
+    bindForm(form, overlay, context)
   })
 }
