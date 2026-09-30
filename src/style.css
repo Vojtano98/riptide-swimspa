@@ -2189,6 +2189,27 @@ p {
   width: 100%;
   margin-top: 6px;
 }
+.modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.form-error {
+  font-size: 13px;
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: var(--radius-s);
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 .modal-success {
   text-align: center;
   padding: 20px 0;

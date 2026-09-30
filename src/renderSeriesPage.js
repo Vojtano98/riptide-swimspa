@@ -33,7 +33,7 @@ export function renderSeriesPage(series) {
 
   bindHeader()
   bindSavingsSection()
-  bindInquiryModal({ name: series.intro.headline })
+  bindInquiryModal({ name: series.breadcrumb[series.breadcrumb.length - 1].label })
 
   initScrollReveal()
 }

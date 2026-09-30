@@ -63,7 +63,7 @@ export function renderTrimComparison(model) {
           </div>
           <p class="trim-panel-desc">${v.description}</p>
           ${delta}
-          <button class="btn btn-primary trim-panel-cta" data-open-inquiry>Poptat ${v.name}</button>
+          <button class="btn btn-primary trim-panel-cta" data-open-inquiry data-variant-name="${v.name}">Poptat ${v.name}</button>
         </div>
       `
     })
