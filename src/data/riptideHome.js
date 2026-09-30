@@ -103,7 +103,7 @@ export const home = {
       },
       {
         layout: 'image-left',
-        image: '/assets/photos/product-duo-terrace.jpg',
+        image: '/assets/photos/spatech-app.jpg',
         eyebrow: 'OVLÁDÁNÍ SPATECH',
         claim: 'Dotykový panel i aplikace — vše pod kontrolou.',
         text: '6 režimů tepelného čerpadla, 4 přednastavené profily a Wi-Fi/Bluetooth připojení. Devatenáct let vývoje, 5 let záruky na řídicí systém.',

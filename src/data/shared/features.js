@@ -11,7 +11,7 @@ export const featureImages = {
   swimJets: photo('action-swimmer-underwater.jpg'),
   quickwater: photo('hero-aerial-swimmer.jpg'),
   insulation: photo('lifestyle-winter-spa.jpg'),
-  control: photo('product-duo-terrace.jpg'),
+  control: photo('spatech-panel.jpg'),
   filtration: photo('shell-jets-detail.jpg'),
   lighting: photo('lifestyle-collage-family.jpg'),
 }
@@ -32,7 +32,7 @@ export const featureBenefits = {
     },
     {
       label: 'Quickwater 10-Speed systém',
-      text: 'Desetirychlostní plavecké čerpadlo a inteligentní ovládání proudu — každý si najde svoje tempo, od rodinného plavání po profesionální trénink.',
+      text: 'Jediné swim spa na trhu s plynule řízeným frekvenčním měničem plaveckého čerpadla — místo pouhého zapnuto/vypnuto nabízí 10 zřetelně odlišných výkonových úrovní, od klidného rodinného plavání až po tempo olympijského plavce.',
       image: 'quickwater',
     },
   ],

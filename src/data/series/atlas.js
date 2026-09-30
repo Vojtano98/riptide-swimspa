@@ -1,5 +1,6 @@
 import { savings } from '../shared/savings.js'
 import { showroom } from '../shared/showroom.js'
+import { swimJetPrecision as jetPrecision } from '../shared/poolPrecision.js'
 
 export const atlas = {
   breadcrumb: [{ label: 'Domů', href: '/' }, { label: 'Atlas' }],
@@ -32,6 +33,7 @@ export const atlas = {
     },
   ],
 
+  jetPrecision,
   savings,
   showroom,
 
