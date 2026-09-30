@@ -2,6 +2,7 @@ import { savings } from '../shared/savings.js'
 import { showroom } from '../shared/showroom.js'
 import { hydrotherapy } from '../shared/hydrotherapy.js'
 import { accessories } from '../shared/accessories.js'
+import { jetPrecision } from '../shared/jetPrecision.js'
 
 export const easyLife = {
   breadcrumb: [{ label: 'Domů', href: '/' }, { label: 'Easy Life' }],
@@ -89,6 +90,7 @@ export const easyLife = {
   ],
 
   hydrotherapy,
+  jetPrecision,
   accessories,
   savings,
   showroom,
