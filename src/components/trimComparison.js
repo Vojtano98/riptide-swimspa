@@ -12,14 +12,22 @@ export function renderTrimComparison(model) {
   const initialId = (variants.find((v) => v.featured) || base).id
 
   const tabs = variants
-    .map(
-      (v) => `
-      <button class="trim-tab${v.id === initialId ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" type="button">
-        <span class="trim-tab-name">${v.name}</span>
-        <span class="trim-tab-price">${formatPrice(v.price, model.currency)}</span>
+    .map((v) => {
+      const isActive = v.id === initialId
+      return `
+      <button class="trim-tab${isActive ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" type="button">
+        ${v.featured ? '<span class="trim-tab-badge">Doporučeno</span>' : ''}
+        <div class="trim-tab-head">
+          <span class="trim-tab-name">${v.name}</span>
+          <span class="trim-tab-price">${formatPrice(v.price, model.currency)}</span>
+        </div>
+        <ul class="trim-tab-highlights">
+          ${v.highlights.map((h) => `<li>${icon('check', 13)}${h}</li>`).join('')}
+        </ul>
+        <span class="trim-tab-action">${isActive ? icon('check', 14) + ' Vybraná výbava' : 'Zobrazit rozdíly proti ostatním →'}</span>
       </button>
     `
-    )
+    })
     .join('')
 
   const panels = variants
@@ -54,9 +62,6 @@ export function renderTrimComparison(model) {
             <span class="trim-panel-price">${formatPrice(v.price, model.currency)}</span>
           </div>
           <p class="trim-panel-desc">${v.description}</p>
-          <ul class="trim-col-highlights">
-            ${v.highlights.map((h) => `<li>${icon('check', 14)}${h}</li>`).join('')}
-          </ul>
           ${delta}
           <button class="btn btn-primary trim-panel-cta" data-open-inquiry>Poptat ${v.name}</button>
         </div>
@@ -116,10 +121,20 @@ export function bindTrimComparison() {
   const panels = document.querySelectorAll('[data-trim-panel]')
   if (!tabs.length) return
 
+  const setActionText = (tab, isActive) => {
+    const action = tab.querySelector('.trim-tab-action')
+    if (!action) return
+    action.innerHTML = isActive ? `${icon('check', 14)} Vybraná výbava` : 'Zobrazit rozdíly proti ostatním →'
+  }
+
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const id = tab.dataset.trimId
-      tabs.forEach((t) => t.classList.toggle('is-active', t === tab))
+      tabs.forEach((t) => {
+        const isActive = t === tab
+        t.classList.toggle('is-active', isActive)
+        setActionText(t, isActive)
+      })
       panels.forEach((p) => p.classList.toggle('is-active', p.dataset.trimId === id))
     })
   })

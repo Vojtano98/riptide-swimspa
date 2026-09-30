@@ -788,47 +788,120 @@ p {
   white-space: nowrap;
   border: 0;
 }
-/* Trim tabs — click a tier to switch the panel below (see bindTrimComparison). */
+/* Trim tabs — big clickable cards (not just a thin pill) so the "click to compare"
+   affordance is obvious at a glance, each showing its own highlights so scanning
+   across tiers already answers "what's better here" before a single click happens.
+   See bindTrimComparison() for the click-to-switch behaviour. */
 .trim-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
   margin-bottom: 20px;
 }
 .trim-tab {
-  flex: 1 1 160px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 14px 20px;
-  border-radius: var(--radius-m);
-  border: 1px solid var(--border);
+  align-items: stretch;
+  gap: 14px;
+  text-align: left;
+  padding: clamp(20px, 2.2vw, 26px);
+  border-radius: var(--radius-l);
+  border: 2px solid var(--border);
   background: var(--bg-white);
   cursor: pointer;
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
   font-family: inherit;
 }
 .trim-tab:hover {
   border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(18, 24, 27, 0.08);
 }
 .trim-tab.is-active {
   background: var(--dark);
   border-color: var(--dark);
+  box-shadow: 0 12px 28px rgba(10, 20, 24, 0.18);
+}
+.trim-tab-badge {
+  position: absolute;
+  top: clamp(16px, 2vw, 22px);
+  right: clamp(16px, 2vw, 22px);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.trim-tab.is-active .trim-tab-badge {
+  color: #fff;
+}
+.trim-tab-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-right: 70px;
 }
 .trim-tab-name {
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 700;
 }
 .trim-tab.is-active .trim-tab-name {
   color: #fff;
 }
 .trim-tab-price {
-  font-size: 13px;
-  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
 }
 .trim-tab.is-active .trim-tab-price {
+  color: #fff;
+}
+.trim-tab-highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.trim-tab-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.trim-tab-highlights svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.trim-tab.is-active .trim-tab-highlights li {
   color: var(--dark-text-secondary);
+}
+.trim-tab.is-active .trim-tab-highlights svg {
+  color: #fff;
+}
+.trim-tab-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.trim-tab.is-active .trim-tab-action {
+  border-top-color: var(--border-dark);
+  color: #fff;
+}
+.trim-tab-action svg {
+  color: inherit;
 }
 
 /* Trim panel — only the active tier's panel is displayed. */
@@ -867,25 +940,6 @@ p {
   color: var(--text-secondary);
   margin-bottom: 20px;
   max-width: 60ch;
-}
-.trim-col-highlights {
-  list-style: none;
-  margin: 0 0 24px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.trim-col-highlights li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.trim-col-highlights svg {
-  flex-shrink: 0;
-  color: var(--accent);
 }
 .trim-delta {
   background: var(--accent-soft);
@@ -931,9 +985,6 @@ p {
 .trim-panel-cta {
   width: 100%;
   height: 48px;
-}
-@media (max-width: 560px) {
-  .trim-tab { flex-basis: 100%; }
 }
 .trim-table-wrap {
   overflow-x: auto;
