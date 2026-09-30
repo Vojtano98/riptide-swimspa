@@ -3,7 +3,7 @@ export function renderCategorySplit(home) {
     .map(
       (c) => `
       <a class="category-tile" href="${c.href}" data-reveal="scale">
-        <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" />
+        <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" decoding="async" />
         <div class="category-tile-content">
           <span class="eyebrow">${c.eyebrow}</span>
           <h3 class="category-tile-title">${c.title}</h3>

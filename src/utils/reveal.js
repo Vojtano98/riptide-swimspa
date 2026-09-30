@@ -19,6 +19,10 @@ export function initScrollReveal(root = document) {
     })
   })
 
+  // Positive bottom margin starts the animation before the element is actually on
+  // screen (while it's still ~15% of a viewport below the fold), so the fade/scale
+  // has time to finish before the user's eye gets there — instead of visibly racing
+  // to catch up mid-scroll, which is what reads as stutter.
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -28,7 +32,7 @@ export function initScrollReveal(root = document) {
         }
       })
     },
-    { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    { threshold: 0, rootMargin: '0px 0px 15% 0px' }
   )
   targets.forEach((el) => observer.observe(el))
 }

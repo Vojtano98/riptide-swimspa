@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+/* Manrope is loaded via a <link rel="stylesheet"> in each page's <head>, not @import here —
+   an @import inside this file forces the browser to fetch, parse and parse-block on it only
+   after this whole stylesheet has downloaded, serially delaying first text paint. A <link>
+   in the HTML is discovered by the preload scanner immediately and fetched in parallel. */
 
 /* Tokens */
 :root {
@@ -216,6 +219,13 @@ p {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+/* Promote the element to its own compositor layer before the transition starts, not
+   during its first frame — creating a layer mid-animation is what reads as a stutter
+   on the very first tick. Dropped again once revealed (via :not) so idle sections
+   don't sit on GPU layers for the rest of the page's life. */
+[data-reveal]:not(.is-visible) {
+  will-change: opacity, transform;
 }
 [data-reveal].is-visible {
   opacity: 1;

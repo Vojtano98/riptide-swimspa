@@ -44,10 +44,16 @@ export function bindHeader() {
   const toggle = document.getElementById('nav-toggle')
   const nav = document.getElementById('site-nav')
 
+  let ticking = false
   const onScroll = () => {
-    header.classList.toggle('is-scrolled', window.scrollY > 24)
+    if (ticking) return
+    ticking = true
+    requestAnimationFrame(() => {
+      header.classList.toggle('is-scrolled', window.scrollY > 24)
+      ticking = false
+    })
   }
-  onScroll()
+  header.classList.toggle('is-scrolled', window.scrollY > 24)
   window.addEventListener('scroll', onScroll, { passive: true })
 
   toggle.addEventListener('click', () => {

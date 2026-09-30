@@ -76,6 +76,7 @@ function writePage({ path, dataFile, exportName, title, desc }, renderFn, render
   <meta name="twitter:image" content="${SHARE_IMAGE}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" />
   <link rel="stylesheet" href="${prefix}style.css" />
 </head>
 <body>
