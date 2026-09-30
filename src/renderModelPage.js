@@ -1,7 +1,7 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderProductHero, bindProductHero } from './components/productHero.js'
 import { renderQuickSpecs } from './components/quickSpecs.js'
-import { renderTrimComparison } from './components/trimComparison.js'
+import { renderTrimComparison, bindTrimComparison } from './components/trimComparison.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
@@ -35,6 +35,7 @@ export function renderModelPage(model) {
 
   bindHeader()
   bindProductHero()
+  bindTrimComparison()
   bindSavingsSection()
   bindMobileStickyCTA()
   bindInquiryModal(model)

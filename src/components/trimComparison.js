@@ -1,26 +1,67 @@
 import { formatPrice } from '../utils/format.js'
 import { icon } from '../utils/icons.js'
 
-// Side-by-side trim comparison table (Pro Premium / Pro Luxury / Hydro) — mirrors how
-// the real Riptide spec sheets present each model, since the trims genuinely differ in
-// pump power, jet count and control panel, not just price.
+// Interactive trim picker: click a tab to switch tiers and see exactly what changes
+// versus the base (cheapest) tier — instead of forcing a read of every row in the
+// full table just to answer "what do I get for the extra money". The full table
+// below still has the complete spec sheet for anyone who wants it.
 export function renderTrimComparison(model) {
-  const { variants, specRows } = model
+  const { specRows } = model
+  const variants = [...model.variants].sort((a, b) => a.price - b.price)
+  const base = variants[0]
+  const initialId = (variants.find((v) => v.featured) || base).id
 
-  const cols = variants
+  const tabs = variants
     .map(
-      (v, i) => `
-      <div class="trim-col${i === 0 ? ' is-featured' : ''}">
-        ${v.featured ? '<span class="variant-badge">Doporučeno</span>' : ''}
-        <div class="trim-col-name">${v.name}</div>
-        <div class="trim-col-price">${formatPrice(v.price, model.currency)}</div>
-        <ul class="trim-col-highlights">
-          ${v.highlights.map((h) => `<li>${icon('check', 14)}${h}</li>`).join('')}
-        </ul>
-        <button class="btn btn-primary trim-col-cta" data-open-inquiry>Poptat ${v.name}</button>
-      </div>
+      (v) => `
+      <button class="trim-tab${v.id === initialId ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" type="button">
+        <span class="trim-tab-name">${v.name}</span>
+        <span class="trim-tab-price">${formatPrice(v.price, model.currency)}</span>
+      </button>
     `
     )
+    .join('')
+
+  const panels = variants
+    .map((v) => {
+      const diffRows = specRows.filter((row) => base.specs[row.key] !== v.specs[row.key])
+      const delta =
+        v.id === base.id
+          ? `<p class="trim-delta-note">Toto je základní výbava ${model.name} — ostatní úrovně na ní staví.</p>`
+          : `
+            <div class="trim-delta">
+              <span class="trim-delta-eyebrow">Co navíc oproti ${base.name}</span>
+              <ul class="trim-delta-list">
+                ${diffRows
+                  .map(
+                    (row) => `
+                    <li>
+                      <span class="trim-delta-label">${row.label}</span>
+                      <span class="trim-delta-value">${base.specs[row.key]} → <strong>${v.specs[row.key]}</strong></span>
+                    </li>
+                  `
+                  )
+                  .join('')}
+              </ul>
+            </div>
+          `
+
+      return `
+        <div class="trim-panel${v.id === initialId ? ' is-active' : ''}" data-trim-panel data-trim-id="${v.id}">
+          ${v.featured ? '<span class="variant-badge">Doporučeno</span>' : ''}
+          <div class="trim-panel-head">
+            <span class="trim-panel-name">${v.name}</span>
+            <span class="trim-panel-price">${formatPrice(v.price, model.currency)}</span>
+          </div>
+          <p class="trim-panel-desc">${v.description}</p>
+          <ul class="trim-col-highlights">
+            ${v.highlights.map((h) => `<li>${icon('check', 14)}${h}</li>`).join('')}
+          </ul>
+          ${delta}
+          <button class="btn btn-primary trim-panel-cta" data-open-inquiry>Poptat ${v.name}</button>
+        </div>
+      `
+    })
     .join('')
 
   const rows = specRows
@@ -45,9 +86,10 @@ export function renderTrimComparison(model) {
         <div class="section-head" data-reveal>
           <span class="eyebrow">Provedení</span>
           <h2 class="h-section">Vyberte si výbavu ${model.name}.</h2>
-          <p class="body-l">Tři úrovně výbavy se liší výkonem plaveckých čerpadel, počtem trysek i ovládacím panelem — srovnání níže vychází přímo z technického listu výrobce.</p>
+          <p class="body-l">Proklikejte si jednotlivé úrovně výbavy a hned uvidíte, co konkrétně za vyšší cenu navíc dostanete — srovnání vychází přímo z technického listu výrobce.</p>
         </div>
-        <div class="trim-cols" data-reveal>${cols}</div>
+        <div class="trim-tabs" data-reveal role="tablist">${tabs}</div>
+        <div class="trim-panels" data-reveal>${panels}</div>
         <div class="trim-table-legend" data-reveal>
           <span class="trim-legend-item"><span class="trim-legend-swatch trim-legend-swatch--differs"></span> parametr se mezi provedeními liší</span>
           <span class="trim-legend-item"><span class="trim-legend-swatch trim-legend-swatch--same"></span> stejné ve všech provedeních</span>
@@ -67,4 +109,18 @@ export function renderTrimComparison(model) {
       </div>
     </section>
   `
+}
+
+export function bindTrimComparison() {
+  const tabs = document.querySelectorAll('[data-trim-tab]')
+  const panels = document.querySelectorAll('[data-trim-panel]')
+  if (!tabs.length) return
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.trimId
+      tabs.forEach((t) => t.classList.toggle('is-active', t === tab))
+      panels.forEach((p) => p.classList.toggle('is-active', p.dataset.trimId === id))
+    })
+  })
 }
