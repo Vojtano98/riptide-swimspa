@@ -1,6 +1,14 @@
 import { icon } from '../utils/icons.js'
 import { openModal } from '../utils/modal.js'
 import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from '../config/forms.js'
+import { showroom } from '../data/shared/showroom.js'
+
+const PLACEMENT_LABELS = {
+  zahrada: 'Zahrada',
+  terasa: 'Terasa',
+  interier: 'Interiér',
+  nevim: 'Zatím neví',
+}
 
 function subtitleFor(context) {
   return context.variantName ? `${context.name} — ${context.variantName} · odpovídáme do 24 hodin.` : `${context.name} — odpovídáme do 24 hodin.`
@@ -83,17 +91,18 @@ function bindForm(form, overlay, context) {
     const payload = {
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: buildSubject(context),
-      from_name: 'Riptide swim spa — web',
+      from_name: 'Riptide Swim Spa — nová poptávka',
       replyto: data.get('email'),
-      Jméno: data.get('name'),
-      Telefon: data.get('phone'),
-      'E-mail': data.get('email'),
-      Lokalita: data.get('location') || '—',
-      Umístění: data.get('placement'),
-      Poznámka: data.get('note') || '—',
-      'Swim spa': context.name,
-      'Vybraná výbava': context.variantName || 'nevybráno (obecná poptávka)',
-      Stránka: window.location.href,
+      'Jméno zákazníka': data.get('name'),
+      'Telefon zákazníka': data.get('phone'),
+      'E-mail zákazníka': data.get('email'),
+      Lokalita: data.get('location') || 'neuvedeno',
+      'Plánované umístění': PLACEMENT_LABELS[data.get('placement')] || data.get('placement'),
+      'Poznámka zákazníka': data.get('note') || 'bez poznámky',
+      'Poptávaný model': context.name,
+      'Vybraná výbava': context.variantName || 'obecná poptávka (výbava nevybrána)',
+      'Zdrojová stránka': window.location.href,
+      'Odesláno systémem': `${showroom.contact.company} · ${showroom.contact.phone} · ${showroom.contact.email}`,
     }
 
     try {
