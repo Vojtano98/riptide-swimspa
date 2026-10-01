@@ -680,10 +680,11 @@ p {
 /* Hero — cutout variant: same full-bleed photo treatment as the default hero,
    kept as a separate class so a future non-photo product can restyle it. */
 
-/* Jet Moment — scroll-scrubbed video. The outer element is a tall scroll track;
-   .jet-moment-stage pins to the viewport via position: sticky for the whole track,
-   and JS maps scroll progress through that track onto video.currentTime, so the
-   jets kick in exactly as fast as the visitor scrolls instead of playing on a timer. */
+/* Jet Moment — scroll-scrubbed frame sequence. The outer element is a tall scroll
+   track; .jet-moment-stage pins to the viewport via position: sticky for the whole
+   track, and JS maps scroll progress through that track onto which frame <img> is
+   visible, so the jets kick in exactly as fast as the visitor scrolls instead of
+   playing on a timer. */
 .jet-moment {
   position: relative;
   height: 280vh;
@@ -696,12 +697,20 @@ p {
   display: flex;
   align-items: flex-end;
 }
-.jet-moment-video {
+.jet-moment-frames {
+  position: absolute;
+  inset: 0;
+}
+.jet-moment-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+}
+.jet-moment-frame.is-active {
+  opacity: 1;
 }
 .jet-moment-overlay {
   position: absolute;
@@ -725,9 +734,9 @@ p {
   max-width: 460px;
   color: rgba(255, 255, 255, 0.86);
 }
-/* Reduced motion / save-data: no scroll-scrub, no tall scroll track — just the
-   poster frame (the <video> shows its poster until currentTime is touched, and in
-   this branch JS never touches it) as an ordinary full-bleed section. */
+/* Reduced motion / save-data: no scroll-scrub, no tall scroll track — frame 0 stays
+   the only .is-active frame (JS never runs in this branch), so this is just an
+   ordinary full-bleed static section. */
 .jet-moment.is-static {
   height: auto;
 }

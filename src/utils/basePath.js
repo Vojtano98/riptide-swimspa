@@ -7,10 +7,12 @@ export function applyBasePath(root = document) {
 
   const prefix = base.replace(/\/$/, '')
 
-  root.querySelectorAll('a[href^="/"], img[src^="/"]').forEach((el) => {
-    const attr = el.tagName === 'IMG' ? 'src' : 'href'
+  const rewrite = (el, attr) => {
     const value = el.getAttribute(attr)
     if (!value || value.startsWith('//') || value.startsWith(prefix + '/') || value === prefix) return
     el.setAttribute(attr, prefix + value)
-  })
+  }
+
+  root.querySelectorAll('a[href^="/"]').forEach((el) => rewrite(el, 'href'))
+  root.querySelectorAll('img[src^="/"], source[src^="/"]').forEach((el) => rewrite(el, 'src'))
 }
