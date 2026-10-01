@@ -1,5 +1,6 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
+import { renderJetMomentScroll, bindJetMomentScroll } from './components/home/jetMomentScroll.js'
 import { renderCategorySplit } from './components/home/categorySplit.js'
 import { renderAdvantagesSplit } from './components/home/advantagesSplit.js'
 import { renderTrustSection } from './components/home/trustSection.js'
@@ -19,6 +20,7 @@ export function renderHomePage(home) {
   app.innerHTML = [
     renderHeader({ transparent: true }),
     renderHeroHome(home),
+    renderJetMomentScroll(home.jetMoment),
     renderCategorySplit(home),
     renderAdvantagesSplit(home),
     renderTrustSection(home),
@@ -33,6 +35,7 @@ export function renderHomePage(home) {
 
   bindHeader()
   bindHeroHome()
+  bindJetMomentScroll()
   bindSavingsSection()
   bindInquiryModal({ name: 'Riptide swim spa' })
 
