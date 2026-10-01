@@ -139,7 +139,6 @@ export const home = {
         '1800': '/assets/photos/trust-factory-1800.webp',
       },
       alt: 'Showroom a distribuční zázemí swim spa Riptide',
-      caption: 'Showroom a servisní zázemí swim spa Riptide',
     },
   },
 

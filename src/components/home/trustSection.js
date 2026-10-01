@@ -32,7 +32,6 @@ export function renderTrustSection(home) {
             height="1170"
           />
         </picture>
-        ${img.caption ? `<span class="trust-media-caption">${img.caption}</span>` : ''}
       </div>
     `
     : ''

@@ -1,12 +1,23 @@
 export function renderShowroomSection(home) {
   const s = home.showroom
   const c = s.contact
+  const img = s.image
+
+  const media =
+    typeof img === 'string'
+      ? `<img src="${img}" alt="${s.imageAlt}" loading="lazy" decoding="async" />`
+      : `
+        <picture>
+          <source type="image/webp" srcset="${img.webp}" />
+          <img src="${img.src}" alt="${s.imageAlt}" loading="lazy" decoding="async" />
+        </picture>
+      `
 
   return `
     <section class="section section--white" id="showroom">
       <div class="container showroom-layout">
         <div class="showroom-media" data-reveal>
-          <img src="${s.image}" alt="${s.imageAlt}" loading="lazy" decoding="async" />
+          ${media}
         </div>
         <div data-reveal>
           <span class="eyebrow">${s.eyebrow}</span>

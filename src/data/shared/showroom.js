@@ -9,8 +9,11 @@ export const showroom = {
     'Vyzkoušíte si plavecký proud i hydromasáž přímo v provozu',
     'Poradíme s umístěním, technikou i financováním',
   ],
-  image: '/assets/photos/lifestyle-winter-spa.jpg',
-  imageAlt: 'Showroom SwimSpa.cz — exkluzivní partner Riptide',
+  image: {
+    src: '/assets/photos/showroom-interior.jpg',
+    webp: '/assets/photos/showroom-interior.webp',
+  },
+  imageAlt: 'Showroom SwimSpa.cz — vystavené modely Riptide',
   contact: {
     company: 'SwimSpa.cz — NO TRADING s.r.o.',
     address: ['Nad Vršovskou horou 88/4', '101 00 Praha 10 – Michle', 'areál BesTen'],
