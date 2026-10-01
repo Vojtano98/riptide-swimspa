@@ -5,7 +5,7 @@ function renderLifestyleHero(product) {
   return `
     <section class="hero" id="hero">
       <div class="hero-media">
-        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" />
+        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" decoding="async" />
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>
@@ -34,7 +34,7 @@ function renderCutoutHero(product) {
   return `
     <section class="hero hero--cutout" id="hero">
       <div class="hero-media">
-        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" />
+        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" decoding="async" />
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>

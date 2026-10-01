@@ -5,7 +5,7 @@ export function renderFooter() {
       <div class="container">
         <div class="footer-top">
           <div class="footer-brand">
-            <img src="/assets/brand/riptide-logo-white.png" alt="Riptide" class="footer-logo" />
+            <img src="/assets/brand/riptide-logo-white.png" alt="Riptide" class="footer-logo" decoding="async" />
             <p class="footer-tagline">Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz.</p>
           </div>
           <div class="footer-cols">

@@ -62,7 +62,7 @@ export const home = {
     posterAlt: 'Hydromasážní trysky Riptide v provozu — voda vířící v bazénku swim spa',
     frames: Array.from(
       { length: 120 },
-      (_, i) => `/assets/video/jet-frames/frame-${String(i + 1).padStart(3, '0')}.jpg`
+      (_, i) => `/assets/video/jet-frames/frame-${String(i + 1).padStart(3, '0')}.webp`
     ),
   },
 
@@ -131,6 +131,16 @@ export const home = {
       { value: '300 000+', label: 'vyrobených spa a swim spa ročně' },
       { value: '46 zemí', label: 'kam se značka Oasis/Riptide dodává' },
     ],
+    image: {
+      src: '/assets/photos/trust-factory.jpg',
+      webp: {
+        '800': '/assets/photos/trust-factory-800.webp',
+        '1200': '/assets/photos/trust-factory-1200.webp',
+        '1800': '/assets/photos/trust-factory-1800.webp',
+      },
+      alt: 'Showroom a distribuční zázemí swim spa Riptide',
+      caption: 'Showroom a servisní zázemí swim spa Riptide',
+    },
   },
 
   savings,

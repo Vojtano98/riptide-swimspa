@@ -237,6 +237,12 @@ p {
 [data-reveal="scale"].is-visible {
   transform: scale(1);
 }
+[data-reveal="right"] {
+  transform: translate(28px, 0);
+}
+[data-reveal="right"].is-visible {
+  transform: translate(0, 0);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1276,7 +1282,44 @@ p {
   .accessory-grid { grid-template-columns: 1fr; }
 }
 
-/* Trust stats (why Riptide / manufacturing) */
+/* Trust section (why Riptide / manufacturing) — copy + stats beside a photo */
+.trust-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.88fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+}
+.trust-copy .section-head--tight {
+  margin-bottom: clamp(24px, 2.6vw, 36px);
+}
+.trust-media {
+  position: relative;
+  border-radius: var(--radius-l, 24px);
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+  box-shadow: 0 24px 60px -24px rgba(10, 20, 30, 0.35);
+}
+.trust-media picture,
+.trust-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.trust-media-caption {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(10, 16, 22, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
 .trust-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1299,8 +1342,14 @@ p {
   line-height: 1.4;
   color: var(--text-secondary);
 }
+@media (max-width: 980px) {
+  .trust-layout { grid-template-columns: 1fr; gap: 32px; }
+  .trust-media { order: -1; aspect-ratio: 16 / 10; }
+}
 @media (max-width: 640px) {
   .trust-stats { grid-template-columns: 1fr 1fr; }
+  .trust-media { aspect-ratio: 4 / 3; }
+  .trust-media-caption { font-size: 12px; left: 14px; bottom: 14px; padding: 7px 14px; }
 }
 
 /* Quick Specs */

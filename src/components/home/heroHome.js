@@ -5,7 +5,7 @@ export function renderHeroHome(home) {
   return `
     <section class="hero hero--home" id="hero">
       <div class="hero-media">
-        <img src="${h.image}" alt="${h.imageAlt}" fetchpriority="high" />
+        <img src="${h.image}" alt="${h.imageAlt}" fetchpriority="high" decoding="async" />
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${h.eyebrow}</span>

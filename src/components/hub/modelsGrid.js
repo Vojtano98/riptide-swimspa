@@ -8,7 +8,7 @@ export function renderModelsGrid(hub) {
         m.external ? ' target="_blank" rel="noopener"' : ''
       }>
         <div class="model-card-media${m.external ? ' model-card-media--contain' : ''}">
-          <img src="${m.image}" alt="${m.imageAlt}" loading="lazy" />
+          <img src="${m.image}" alt="${m.imageAlt}" loading="lazy" decoding="async" />
           ${m.brand ? `<span class="model-card-brand">${m.brand}</span>` : ''}
         </div>
         <div class="model-card-content">

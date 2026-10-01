@@ -6,7 +6,7 @@ export function renderWhyStatements(home) {
       (s) => `
       <div class="tech-feature layout-${s.layout}" data-reveal>
         <div class="tech-feature-media">
-          <img src="${s.image}" alt="${s.claim}" loading="lazy" />
+          <img src="${s.image}" alt="${s.claim}" loading="lazy" decoding="async" />
         </div>
         <div>
           <span class="eyebrow">${s.eyebrow}</span>

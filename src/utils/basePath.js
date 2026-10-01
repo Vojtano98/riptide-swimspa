@@ -13,6 +13,29 @@ export function applyBasePath(root = document) {
     el.setAttribute(attr, prefix + value)
   }
 
+  const rewriteOne = (value) =>
+    !value || value.startsWith('//') || value.startsWith(prefix + '/') || value === prefix
+      ? value
+      : prefix + value
+
+  const rewriteSrcset = (el) => {
+    const value = el.getAttribute('srcset')
+    if (!value) return
+    const rewritten = value
+      .split(',')
+      .map((part) => {
+        const [url, descriptor] = part.trim().split(/\s+/, 2)
+        if (!url || !url.startsWith('/')) return part.trim()
+        return descriptor ? `${rewriteOne(url)} ${descriptor}` : rewriteOne(url)
+      })
+      .join(', ')
+    el.setAttribute('srcset', rewritten)
+  }
+
   root.querySelectorAll('a[href^="/"]').forEach((el) => rewrite(el, 'href'))
   root.querySelectorAll('img[src^="/"], source[src^="/"]').forEach((el) => rewrite(el, 'src'))
+  root.querySelectorAll('img[srcset], source[srcset]').forEach(rewriteSrcset)
+  // Lazy-loaded frames (see jetMomentScroll.js) carry their URL in data-src
+  // until JS promotes it to src, so it needs the same rewrite up front.
+  root.querySelectorAll('img[data-src^="/"]').forEach((el) => rewrite(el, 'data-src'))
 }

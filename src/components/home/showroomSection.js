@@ -6,7 +6,7 @@ export function renderShowroomSection(home) {
     <section class="section section--white" id="showroom">
       <div class="container showroom-layout">
         <div class="showroom-media" data-reveal>
-          <img src="${s.image}" alt="${s.imageAlt}" loading="lazy" />
+          <img src="${s.image}" alt="${s.imageAlt}" loading="lazy" decoding="async" />
         </div>
         <div data-reveal>
           <span class="eyebrow">${s.eyebrow}</span>

@@ -4,14 +4,22 @@
 // correctly, nothing visible changes. Swapping which frame <img> is visible has none
 // of that risk and reuses the same base-path rewriting every other image on the site
 // already relies on.
+// Frame 0 loads eagerly as a poster so the section never shows blank if the
+// visitor reaches it before the lazy-load observer (below) has fired. Frames
+// 1..n carry their URL in data-src instead of src: with 120 frames in the DOM,
+// setting src on all of them up front means the browser fires 120 requests the
+// instant the homepage parses, competing with the hero image for bandwidth
+// even though this section is well below the fold. bindJetMomentScroll() only
+// promotes data-src -> src once the section is about to enter the viewport.
 function renderFrames(section) {
   return section.frames
     .map(
       (src, i) => `
       <img
         class="jet-moment-frame${i === 0 ? ' is-active' : ''}"
-        src="${src}"
+        ${i === 0 ? `src="${src}"` : `data-src="${src}"`}
         alt="${i === 0 ? section.posterAlt : ''}"
+        decoding="async"
         data-frame
       />
     `
@@ -60,6 +68,27 @@ export function bindJetMomentScroll() {
     section.classList.add('is-static')
     return
   }
+
+  // Promote all deferred frames from data-src to src together, well before the
+  // section reaches the viewport (large rootMargin = long lead time), so the
+  // full sequence is already decoded by the time the visitor starts scrubbing
+  // it — only the *timing* of the request is deferred, not its availability
+  // during the animation itself.
+  const loadObserver = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return
+      frames.forEach((frame) => {
+        const src = frame.dataset.src
+        if (src) {
+          frame.src = src
+          delete frame.dataset.src
+        }
+      })
+      loadObserver.disconnect()
+    },
+    { rootMargin: '400px 0px' }
+  )
+  loadObserver.observe(section)
 
   let activeIndex = 0
   let zCounter = 1

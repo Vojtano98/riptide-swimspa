@@ -6,7 +6,7 @@ export function renderAdvantagesSplit(home) {
       (c) => `
       <div class="advantage-card" data-reveal>
         <div class="advantage-card-media">
-          <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" />
+          <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" decoding="async" />
         </div>
         <div class="advantage-card-body">
           <span class="eyebrow">${c.eyebrow}</span>
