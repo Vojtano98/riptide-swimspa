@@ -57,8 +57,8 @@ export const home = {
 
   jetMoment: {
     eyebrow: 'HYDROMASÁŽNÍ ZÓNA',
-    claim: 'Stovky litrů vody v pohybu. Klid pro vaši zahradu.',
-    text: 'Teplá voda a cílené masážní trysky uvolňují svaly a zmírňují stres — stejná technologie pohání hydromasážní zóny u řad Aqua Life a Easy Life.',
+    claim: 'Stovky litrů vody v pohybu. Klid pro tělo i mysl.',
+    text: 'Teplá voda a cílené masážní trysky uvolňují svaly, zmírňují stres a zlepšují krevní oběh — přesně to nabízí hydromasážní zóny u řad Aqua Life a Easy Life.',
     posterAlt: 'Hydromasážní trysky Riptide v provozu — voda vířící v bazénku swim spa',
     frames: Array.from(
       { length: 120 },
