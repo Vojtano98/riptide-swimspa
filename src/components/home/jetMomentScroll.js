@@ -55,6 +55,8 @@ export function bindJetMomentScroll() {
   }
 
   let activeIndex = 0
+  let zCounter = 1
+  frames[0].style.zIndex = zCounter
   let ticking = false
   const onScroll = () => {
     if (ticking) return
@@ -69,7 +71,13 @@ export function bindJetMomentScroll() {
       const progress = Math.min(1, Math.max(0, -rect.top / scrollable))
       const index = Math.min(frames.length - 1, Math.round(progress * (frames.length - 1)))
       if (index !== activeIndex) {
-        frames[activeIndex].classList.remove('is-active')
+        // Only the incoming frame ever fades (0 -> 1); the outgoing one is left at
+        // opacity 1 and simply covered by the next frame's higher z-index, so there's
+        // never a moment with no fully-opaque frame on top (which is what caused the
+        // white flashes — two frames fading in opposite directions both briefly
+        // translucent, letting the page background show through between them).
+        zCounter += 1
+        frames[index].style.zIndex = zCounter
         frames[index].classList.add('is-active')
         activeIndex = index
       }

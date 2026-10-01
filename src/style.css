@@ -696,11 +696,17 @@ p {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  background: #000;
 }
 .jet-moment-frames {
   position: absolute;
   inset: 0;
 }
+/* Each frame only ever fades IN (opacity 0 -> 1); a frame that loses .is-active stays
+   at opacity 1 and just gets covered by whichever frame is promoted on top of it next
+   (via z-index, set from JS). That way there's always at least one fully-opaque frame
+   filling the stage, so quick scrubbing can never show a translucent gap flashing the
+   page background through — which a two-way crossfade (both frames fading at once) does. */
 .jet-moment-frame {
   position: absolute;
   inset: 0;
@@ -708,11 +714,10 @@ p {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.1s linear;
+  transition: opacity 0.12s linear;
 }
 .jet-moment-frame.is-active {
   opacity: 1;
-  z-index: 1;
 }
 .jet-moment-overlay {
   position: absolute;
