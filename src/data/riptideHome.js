@@ -61,7 +61,7 @@ export const home = {
     text: 'Teplá voda a cílené masážní trysky uvolňují svaly a zmírňují stres — stejná technologie pohání hydromasážní zóny u řad Aqua Life a Easy Life.',
     posterAlt: 'Hydromasážní trysky Riptide v provozu — voda vířící v bazénku swim spa',
     frames: Array.from(
-      { length: 80 },
+      { length: 120 },
       (_, i) => `/assets/video/jet-frames/frame-${String(i + 1).padStart(3, '0')}.jpg`
     ),
   },
