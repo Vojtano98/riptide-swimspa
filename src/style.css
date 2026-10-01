@@ -698,9 +698,13 @@ p {
   align-items: flex-end;
   background: #000;
 }
+/* Its own stacking context (z-index: 0) so the frames' own JS-driven z-index values
+   (which climb into the hundreds as you scroll) stay contained inside it and can
+   never climb above the overlay/text siblings below, no matter how high they go. */
 .jet-moment-frames {
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 /* Each frame only ever fades IN (opacity 0 -> 1); a frame that loses .is-active stays
    at opacity 1 and just gets covered by whichever frame is promoted on top of it next
@@ -722,11 +726,12 @@ p {
 .jet-moment-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(10, 10, 8, 0.5) 0%, rgba(10, 10, 8, 0.05) 30%, rgba(10, 10, 8, 0.1) 58%, rgba(10, 10, 8, 0.8) 100%);
 }
 .jet-moment-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   padding-bottom: clamp(48px, 7vw, 88px);
   color: #fff;
