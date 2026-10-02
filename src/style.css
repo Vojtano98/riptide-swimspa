@@ -3330,9 +3330,19 @@ p {
   font-weight: 700;
   letter-spacing: 0.1em;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .dim-plan .draw { stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) 0.2s; }
-  .dim-plan.is-visible .draw { stroke-dashoffset: 0; }
+/* Slow, staged sequence (see bindModelDimensions): outlines draw themselves over ~3 s,
+   then each dimension line fades in as its figure counts up. Transitions only exist under
+   .is-drawing so the reset after scrolling away is instant, not a reverse animation. */
+.dim-plan.is-armed .draw { stroke-dashoffset: 1; }
+.dim-plan.is-armed .dim-step { opacity: 0; transform: translateY(6px); }
+.dim-plan.is-drawing .draw {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--t, 3s) cubic-bezier(0.45, 0.05, 0.25, 1) var(--d, 0s);
+}
+.dim-plan.is-drawing .dim-step {
+  opacity: 1;
+  transform: none;
+  transition: opacity 1s var(--ease) var(--d, 0s), transform 1s var(--ease) var(--d, 0s);
 }
 @media (max-width: 900px) {
   .dim-layout { grid-template-columns: 1fr; }

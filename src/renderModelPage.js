@@ -4,7 +4,7 @@ import { renderQuickSpecs } from './components/quickSpecs.js'
 import { renderTrimComparison, bindTrimComparison } from './components/trimComparison.js'
 import { renderModelBar, bindModelBar } from './components/modelBar.js'
 import { renderModelHighlights, bindModelHighlights } from './components/modelHighlights.js'
-import { renderModelDimensions } from './components/modelDimensions.js'
+import { renderModelDimensions, bindModelDimensions } from './components/modelDimensions.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
@@ -47,6 +47,7 @@ export function renderModelPage(model) {
   bindTrimComparison()
   bindModelHighlights()
   bindModelBar()
+  bindModelDimensions()
   bindSavingsSection()
   bindMobileStickyCTA()
   bindInquiryModal(model)
