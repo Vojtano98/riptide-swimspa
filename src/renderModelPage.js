@@ -2,6 +2,9 @@ import { renderHeader, bindHeader } from './components/header.js'
 import { renderProductHero, bindProductHero } from './components/productHero.js'
 import { renderQuickSpecs } from './components/quickSpecs.js'
 import { renderTrimComparison, bindTrimComparison } from './components/trimComparison.js'
+import { renderModelBar, bindModelBar } from './components/modelBar.js'
+import { renderModelHighlights, bindModelHighlights } from './components/modelHighlights.js'
+import { renderModelDimensions } from './components/modelDimensions.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
@@ -23,8 +26,11 @@ export function renderModelPage(model) {
     renderHeader({ transparent: true }),
     renderProductHero(model),
     renderQuickSpecs(model),
+    renderModelBar(model),
     renderTrimComparison(model),
+    renderModelHighlights(model),
     renderMaterialsSwatches(model),
+    renderModelDimensions(model),
     renderFeatureGrid(model),
     renderSavingsSection(model),
     renderShowroomSection(model),
@@ -38,6 +44,8 @@ export function renderModelPage(model) {
   bindHeader()
   bindProductHero()
   bindTrimComparison()
+  bindModelHighlights()
+  bindModelBar()
   bindSavingsSection()
   bindMobileStickyCTA()
   bindInquiryModal(model)

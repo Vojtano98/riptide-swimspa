@@ -15,7 +15,7 @@ export function renderTrimComparison(model) {
     .map((v) => {
       const isActive = v.id === initialId
       return `
-      <button class="trim-tab${isActive ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" type="button">
+      <button class="trim-tab${isActive ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" data-trim-name="${v.name}" data-trim-price="${v.price}" type="button">
         ${v.featured ? '<span class="trim-tab-badge">Doporučeno</span>' : ''}
         <div class="trim-tab-head">
           <span class="trim-tab-name">${v.name}</span>
@@ -64,6 +64,7 @@ export function renderTrimComparison(model) {
           <p class="trim-panel-desc">${v.description}</p>
           ${delta}
           <button class="btn btn-primary trim-panel-cta" data-open-inquiry data-variant-name="${v.name}">Poptat ${v.name}</button>
+          <p class="trim-panel-note">Odpovídáme do 24 hodin · Nezávazná kalkulace</p>
         </div>
       `
     })
@@ -136,6 +137,11 @@ export function bindTrimComparison() {
         setActionText(t, isActive)
       })
       panels.forEach((p) => p.classList.toggle('is-active', p.dataset.trimId === id))
+      document.dispatchEvent(
+        new CustomEvent('trim:change', {
+          detail: { id, name: tab.dataset.trimName, price: Number(tab.dataset.trimPrice) },
+        })
+      )
     })
   })
 }

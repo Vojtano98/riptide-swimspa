@@ -22,6 +22,11 @@ function renderLifestyleHero(product) {
             <a href="#specifikace" class="btn btn-outline">Technické parametry</a>
           </div>
         </div>
+        <ul class="hero-proof">
+          <li>Odpovídáme do 24 hodin</li>
+          <li>Nezávazná konzultace</li>
+          <li>Prohlídka showroomu po domluvě</li>
+        </ul>
       </div>
       <div class="hero-scroll-cue">
         Scroll
@@ -51,6 +56,11 @@ function renderCutoutHero(product) {
             <a href="#specifikace" class="btn btn-outline">Technické parametry</a>
           </div>
         </div>
+        <ul class="hero-proof">
+          <li>Odpovídáme do 24 hodin</li>
+          <li>Nezávazná konzultace</li>
+          <li>Prohlídka showroomu po domluvě</li>
+        </ul>
       </div>
       <div class="hero-scroll-cue">
         Scroll
