@@ -2944,7 +2944,12 @@ p {
    the word opacity/offset are written inline from scroll progress, so nothing here
    animates on a timer. Without JS / with reduced motion the section stays plain. */
 .quiet.is-scrub {
-  height: 190vh;
+  height: 165vh;
+}
+/* The white sentence follows a white section that already ends in padding — pull it up
+   so there is no long empty stretch between the two. */
+.quiet--white.is-scrub {
+  margin-top: calc(-1 * clamp(40px, 8vw, 110px));
 }
 .quiet.is-scrub .quiet-stage {
   position: sticky;

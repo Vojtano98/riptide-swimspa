@@ -45,6 +45,8 @@ export function renderQuietStatement(q) {
   `
 }
 
+const LEAD = 0.6
+
 export function bindQuietStatements() {
   const sections = [...document.querySelectorAll('[data-quiet]')]
   if (!sections.length) return
@@ -66,8 +68,8 @@ export function bindQuietStatements() {
   })
 
   const paint = (s) => {
-    // Words finish revealing at 80 % of the pinned range; the rest is time to read it.
-    const x = Math.min(1, s.shown / 0.8) * s.total
+    // Words finish revealing at 70 % of the range; the rest is time to read it.
+    const x = Math.min(1, s.shown / 0.7) * s.total
     s.words.forEach((w) => {
       const t = Math.min(1, Math.max(0, (x - Number(w.style.getPropertyValue('--i'))) / 1.6))
       w.style.opacity = t
@@ -93,8 +95,11 @@ export function bindQuietStatements() {
     states.forEach((s) => {
       const rect = s.section.getBoundingClientRect()
       if (rect.bottom < -innerHeight || rect.top > innerHeight * 2) return
-      const scrollable = rect.height - innerHeight
-      s.target = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 1
+      // Progress starts LEAD of a screen *before* the stage pins, so the first words are
+      // already appearing while the section is still scrolling in (no empty white screen).
+      const lead = innerHeight * LEAD
+      const scrollable = rect.height - innerHeight + lead
+      s.target = scrollable > 0 ? Math.min(1, Math.max(0, (lead - rect.top) / scrollable)) : 1
       if (s.raf === null) s.raf = requestAnimationFrame(() => tick(s))
     })
   }
