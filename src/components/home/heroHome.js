@@ -1,13 +1,12 @@
 import { icon } from '../../utils/icons.js'
 import { splitWords } from '../../utils/splitWords.js'
+import { heroMedia, bindHeroReady } from '../../utils/heroMedia.js'
 
 export function renderHeroHome(home) {
   const h = home.hero
   return `
     <section class="hero hero--home" id="hero">
-      <div class="hero-media">
-        <img src="${h.image}" alt="${h.imageAlt}" fetchpriority="high" decoding="async" />
-      </div>
+      ${heroMedia(h.image, h.imageAlt)}
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${h.eyebrow}</span>
         <h1 class="hero-title has-words">${splitWords(h.title)}</h1>
@@ -22,8 +21,5 @@ export function renderHeroHome(home) {
 }
 
 export function bindHeroHome() {
-  const hero = document.getElementById('hero')
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => hero.classList.add('is-loaded'))
-  })
+  bindHeroReady(document.getElementById('hero'))
 }

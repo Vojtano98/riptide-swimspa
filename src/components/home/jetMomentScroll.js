@@ -17,7 +17,7 @@ function renderFrames(section) {
       (src, i) => `
       <img
         class="jet-moment-frame${i === 0 ? ' is-active' : ''}"
-        ${i === 0 ? `src="${src}"` : `data-src="${src}"`}
+        ${i === 0 ? `src="${src}" loading="lazy" fetchpriority="low"` : `data-src="${src}"`}
         alt="${i === 0 ? section.posterAlt : ''}"
         decoding="async"
         data-frame

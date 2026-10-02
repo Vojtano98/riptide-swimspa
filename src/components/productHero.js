@@ -1,13 +1,12 @@
 import { formatPrice } from '../utils/format.js'
 import { icon } from '../utils/icons.js'
 import { splitWords } from '../utils/splitWords.js'
+import { heroMedia, bindHeroReady } from '../utils/heroMedia.js'
 
 function renderLifestyleHero(product) {
   return `
     <section class="hero" id="hero">
-      <div class="hero-media">
-        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" decoding="async" />
-      </div>
+      ${heroMedia(product.images.hero, product.images.heroAlt)}
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>
         <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
@@ -39,9 +38,7 @@ function renderLifestyleHero(product) {
 function renderCutoutHero(product) {
   return `
     <section class="hero hero--cutout" id="hero">
-      <div class="hero-media">
-        <img src="${product.images.hero}" alt="${product.images.heroAlt}" fetchpriority="high" decoding="async" />
-      </div>
+      ${heroMedia(product.images.hero, product.images.heroAlt)}
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>
         <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
@@ -75,8 +72,5 @@ export function renderProductHero(product) {
 }
 
 export function bindProductHero() {
-  const hero = document.getElementById('hero')
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => hero.classList.add('is-loaded'))
-  })
+  bindHeroReady(document.getElementById('hero'))
 }
