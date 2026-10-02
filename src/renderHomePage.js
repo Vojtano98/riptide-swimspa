@@ -1,7 +1,7 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
 import { renderJetMomentScroll, bindJetMomentScroll } from './components/home/jetMomentScroll.js'
-import { renderQuietStatement } from './components/home/quietStatement.js'
+import { renderQuietStatement, bindQuietStatements } from './components/home/quietStatement.js'
 import { renderCategorySplit } from './components/home/categorySplit.js'
 import { renderAdvantagesSplit } from './components/home/advantagesSplit.js'
 import { renderTrustSection } from './components/home/trustSection.js'
@@ -43,6 +43,7 @@ export function renderHomePage(home) {
   bindHeroHome()
   bindJetMomentScroll()
   bindSavingsSection()
+  bindQuietStatements()
   bindInquiryModal({ name: 'Riptide swim spa' })
 
   initScrollReveal()

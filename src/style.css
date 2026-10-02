@@ -2915,28 +2915,24 @@ p {
   letter-spacing: -0.035em;
   line-height: 1.04;
 }
-.quiet-text[data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition: none;
-  will-change: auto;
-}
-.quiet-text .w {
+/* Slow word-by-word reveal: ~0.3 s between words, a longer pause after each sentence
+   (see --i in quietStatement.js), 1.5 s per word. Armed/played by bindQuietStatements();
+   without JS the sentence is simply visible. Transitions exist only while playing so the
+   reset after scrolling away is instant. */
+.quiet-text.is-armed .w {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.45em);
-  transition:
-    opacity 0.9s var(--ease) calc(var(--i) * 0.06s),
-    transform 0.9s var(--ease) calc(var(--i) * 0.06s);
+  transform: translateY(0.5em);
 }
-.quiet-text.is-visible .w {
+.quiet-text.is-playing .w {
   opacity: 1;
   transform: none;
+  transition:
+    opacity 1.5s var(--ease) calc(0.3s + var(--i) * 0.3s),
+    transform 1.5s var(--ease) calc(0.3s + var(--i) * 0.3s);
 }
-.quiet-text em {
-  font-style: normal;
-  color: var(--accent);
-}
+.quiet-text em .w { font-weight: 800; }
+.quiet-text em { font-style: normal; color: var(--accent); }
 .quiet--dark .quiet-text em { color: #5fd0e8; }
 @media (prefers-reduced-motion: reduce) {
   .quiet-text .w { opacity: 1; transform: none; transition: none; }
