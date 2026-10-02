@@ -2941,3 +2941,127 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .quiet-text .w { opacity: 1; transform: none; transition: none; }
 }
+
+/* ==========================================================================
+   UX upgrade 3 — series pages: spec overlay on model cards, sort/filter chips,
+   side-by-side comparison table
+   ========================================================================== */
+.models-grid .model-card[hidden] { display: none; }
+
+.model-card-specs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 34px 18px 14px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  background: linear-gradient(180deg, rgba(10, 20, 24, 0), rgba(10, 20, 24, 0.78));
+  pointer-events: none;
+}
+.model-card-specs b {
+  color: #fff;
+  font-weight: 700;
+}
+/* Mouse devices: specs slide up on hover/focus. Touch devices have no hover, so the
+   strip simply stays visible there. */
+@media (hover: hover) and (pointer: fine) {
+  .model-card-specs {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
+  }
+  .model-card:hover .model-card-specs,
+  .model-card:focus-visible .model-card-specs {
+    transform: none;
+    opacity: 1;
+  }
+  .model-card-media img { transition: transform 0.8s var(--ease); }
+  .model-card:hover .model-card-media img { transform: scale(1.04); }
+}
+
+.models-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin: -16px 0 clamp(24px, 3vw, 36px);
+}
+.models-tools-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.models-tools-label {
+  margin-right: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.chip {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip.is-active {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--dark-text);
+}
+
+.compare-section { padding-top: 0; }
+.compare-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  -webkit-overflow-scrolling: touch;
+}
+.compare-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
+}
+.compare-table th,
+.compare-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  transition: background 0.2s var(--ease);
+}
+.compare-table thead th {
+  font-size: 15px;
+  font-weight: 700;
+}
+.compare-table thead th a:hover { color: var(--accent); }
+.compare-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg-white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td { border-bottom: 0; }
+.compare-table .is-hot { background: var(--accent-soft); }

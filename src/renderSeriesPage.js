@@ -1,6 +1,7 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderBreadcrumb } from './components/breadcrumb.js'
-import { renderModelsGrid } from './components/hub/modelsGrid.js'
+import { renderModelsGrid, bindModelsGrid } from './components/hub/modelsGrid.js'
+import { renderModelCompare, bindModelCompare } from './components/hub/modelCompare.js'
 import { renderTextBenefitsGrid } from './components/textBenefitsGrid.js'
 import { renderJetPrecisionStory } from './components/jetPrecisionStory.js'
 import { renderAccessoryShowcase } from './components/accessoryShowcase.js'
@@ -22,6 +23,7 @@ export function renderSeriesPage(series) {
     renderHeader(),
     renderBreadcrumb(series.breadcrumb),
     renderModelsGrid(series),
+    renderModelCompare(series),
     renderTextBenefitsGrid(series.hydrotherapy, { tone: 'tint' }),
     renderJetPrecisionStory(series.jetPrecision),
     renderAccessoryShowcase(series.accessories),
@@ -34,6 +36,8 @@ export function renderSeriesPage(series) {
   applyBasePath(app)
 
   bindHeader()
+  bindModelsGrid()
+  bindModelCompare()
   bindSavingsSection()
   bindInquiryModal({ name: series.breadcrumb[series.breadcrumb.length - 1].label })
 
