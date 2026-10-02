@@ -6,7 +6,7 @@ export function renderTrustSection(home) {
     .map(
       (s) => `
       <div class="trust-stat" data-reveal="scale">
-        <span class="trust-stat-value">${s.value}</span>
+        <span class="trust-stat-value" data-countup>${s.value}</span>
         <span class="trust-stat-label">${s.label}</span>
       </div>
     `

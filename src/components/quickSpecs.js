@@ -3,7 +3,7 @@ export function renderQuickSpecs(product) {
     .map(
       (s) => `
       <div class="quick-spec">
-        <div class="quick-spec-value">${s.value}<span class="quick-spec-unit">${s.unit}</span></div>
+        <div class="quick-spec-value" data-countup>${s.value}<span class="quick-spec-unit">${s.unit}</span></div>
         <div class="quick-spec-label">${s.label}</div>
       </div>
     `

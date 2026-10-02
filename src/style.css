@@ -2886,3 +2886,58 @@ p {
     animation-duration: 0.3s;
   }
 }
+
+/* ==========================================================================
+   UX upgrade 2 — count-up numbers + "quiet" one-sentence sections
+   ========================================================================== */
+.trust-stat-value,
+.savings-stat-value,
+.quick-spec-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.quiet {
+  padding: clamp(96px, 16vw, 220px) 0;
+  text-align: center;
+}
+.quiet--white { background: var(--bg-white); color: var(--text); }
+.quiet--dark { background: var(--dark); color: var(--dark-text); }
+.quiet-eyebrow {
+  display: block;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+.quiet-text {
+  max-width: 20ch;
+  margin: 0 auto;
+  text-wrap: balance;
+  font-size: clamp(34px, 6vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+.quiet-text[data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+.quiet-text .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em);
+  transition:
+    opacity 0.9s var(--ease) calc(var(--i) * 0.06s),
+    transform 0.9s var(--ease) calc(var(--i) * 0.06s);
+}
+.quiet-text.is-visible .w {
+  opacity: 1;
+  transform: none;
+}
+.quiet-text em {
+  font-style: normal;
+  color: var(--accent);
+}
+.quiet--dark .quiet-text em { color: #5fd0e8; }
+@media (prefers-reduced-motion: reduce) {
+  .quiet-text .w { opacity: 1; transform: none; transition: none; }
+}

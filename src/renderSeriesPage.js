@@ -12,6 +12,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
 
 export function renderSeriesPage(series) {
@@ -38,4 +39,5 @@ export function renderSeriesPage(series) {
 
   initScrollReveal()
   initMagneticButtons()
+  initCountUp()
 }

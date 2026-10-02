@@ -1,6 +1,7 @@
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
 import { renderJetMomentScroll, bindJetMomentScroll } from './components/home/jetMomentScroll.js'
+import { renderQuietStatement } from './components/home/quietStatement.js'
 import { renderCategorySplit } from './components/home/categorySplit.js'
 import { renderAdvantagesSplit } from './components/home/advantagesSplit.js'
 import { renderTrustSection } from './components/home/trustSection.js'
@@ -13,6 +14,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
 
 export function renderHomePage(home) {
@@ -23,7 +25,9 @@ export function renderHomePage(home) {
     renderHeroHome(home),
     renderJetMomentScroll(home.jetMoment),
     renderCategorySplit(home),
+    renderQuietStatement(home.quiet.afterCategories),
     renderAdvantagesSplit(home),
+    renderQuietStatement(home.quiet.afterAdvantages),
     renderTrustSection(home),
     renderWhyStatements(home),
     renderSavingsSection(home),
@@ -42,4 +46,5 @@ export function renderHomePage(home) {
 
   initScrollReveal()
   initMagneticButtons()
+  initCountUp()
 }

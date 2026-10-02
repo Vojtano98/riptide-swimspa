@@ -28,7 +28,7 @@ export function renderSavingsSection(home) {
     .map(
       (st) => `
       <div class="savings-stat" data-reveal="scale">
-        <span class="savings-stat-value">${st.value}</span>
+        <span class="savings-stat-value" data-countup>${st.value}</span>
         <span class="savings-stat-label">${st.label}</span>
       </div>
     `

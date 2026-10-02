@@ -66,6 +66,19 @@ export const home = {
     ),
   },
 
+  quiet: {
+    afterCategories: {
+      tone: 'white',
+      eyebrow: 'MODELY DUO',
+      text: 'Plavejte ve <em>29 °C</em>. Relaxujte ve <em>37 °C</em>. Ve stejnou chvíli.',
+    },
+    afterAdvantages: {
+      tone: 'dark',
+      eyebrow: 'HLOUBKA',
+      text: '<em>129 cm</em> nebo <em>154 cm</em>. Vyberte hloubku, která sedí vašemu plavání.',
+    },
+  },
+
   advantages: {
     eyebrow: 'PROČ RIPTIDE',
     headline: 'Jedno plavecké jádro. Čtyři řady na míru.',
