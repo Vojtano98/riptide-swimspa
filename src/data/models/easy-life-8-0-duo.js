@@ -1,7 +1,9 @@
+import { shop } from '../shop/easy-life-8-0-duo.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { duoSpecRows } from '../shared/specRows.js'
 
 export const easyLife80Duo = buildModel({
+  shop,
   slug: 'easy-life-8-0-duo',
   series: 'Easy Life',
   category: 'Riptide Easy Life · Dual Zone',

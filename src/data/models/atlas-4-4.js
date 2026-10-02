@@ -1,7 +1,9 @@
+import { shop } from '../shop/atlas-4-4.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { poolSpecRows } from '../shared/specRows.js'
 
 export const atlas44 = buildModel({
+  shop,
   slug: 'atlas-4-4',
   series: 'Atlas',
   category: 'Riptide Atlas · Standard Depth',

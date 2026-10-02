@@ -1,7 +1,9 @@
+import { shop } from '../shop/aqua-life-6-0-duo.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { duoSpecRows } from '../shared/specRows.js'
 
 export const aquaLife60Duo = buildModel({
+  shop,
   slug: 'aqua-life-6-0-duo',
   series: 'Aqua Life',
   category: 'Riptide Aqua Life · Dual Zone',

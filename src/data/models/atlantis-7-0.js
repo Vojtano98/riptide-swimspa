@@ -1,7 +1,9 @@
+import { shop } from '../shop/atlantis-7-0.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { poolSpecRows } from '../shared/specRows.js'
 
 export const atlantis70 = buildModel({
+  shop,
   slug: 'atlantis-7-0',
   series: 'Atlantis',
   category: 'Riptide Atlantis · Extra Depth',

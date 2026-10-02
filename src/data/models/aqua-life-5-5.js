@@ -1,7 +1,9 @@
+import { shop } from '../shop/aqua-life-5-5.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { singleZoneSpecRows } from '../shared/specRows.js'
 
 export const aquaLife55 = buildModel({
+  shop,
   slug: 'aqua-life-5-5',
   series: 'Aqua Life',
   category: 'Riptide Aqua Life · Standard Depth',

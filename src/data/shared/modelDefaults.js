@@ -1,5 +1,6 @@
 import { featureImages, featureBenefits } from './features.js'
 import { savings } from './savings.js'
+import { insulation } from './insulation.js'
 import { showroom } from './showroom.js'
 
 // Shell + cabinet colour options — identical swatch row on every Riptide spec
@@ -33,6 +34,7 @@ export function buildModel(model) {
     },
     benefits: featureBenefits,
     materials,
+    insulation,
     savings,
     showroom,
     finalCta: model.finalCta ?? {

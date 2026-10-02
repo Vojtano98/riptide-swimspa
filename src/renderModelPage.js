@@ -5,6 +5,8 @@ import { renderTrimComparison, bindTrimComparison } from './components/trimCompa
 import { renderModelBar, bindModelBar } from './components/modelBar.js'
 import { renderModelHighlights, bindModelHighlights } from './components/modelHighlights.js'
 import { renderModelDimensions, bindModelDimensions } from './components/modelDimensions.js'
+import { renderModelAbout } from './components/modelAbout.js'
+import { renderModelEquipment } from './components/modelEquipment.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
@@ -27,11 +29,13 @@ export function renderModelPage(model) {
     renderHeader({ transparent: true }),
     renderProductHero(model),
     renderQuickSpecs(model),
+    renderModelAbout(model),
     renderModelBar(model),
     renderTrimComparison(model),
     renderModelHighlights(model),
     renderMaterialsSwatches(model),
     renderModelDimensions(model),
+    renderModelEquipment(model),
     renderFeatureGrid(model),
     renderSavingsSection(model),
     renderShowroomSection(model),

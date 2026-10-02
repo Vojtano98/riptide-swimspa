@@ -1,7 +1,9 @@
+import { shop } from '../shop/easy-life-5-5.js'
 import { buildModel } from '../shared/modelDefaults.js'
 import { singleZoneSpecRows } from '../shared/specRows.js'
 
 export const easyLife55 = buildModel({
+  shop,
   slug: 'easy-life-5-5',
   series: 'Easy Life',
   category: 'Riptide Easy Life · Extra Depth',
