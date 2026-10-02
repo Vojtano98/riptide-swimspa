@@ -17,21 +17,24 @@ import { applyBasePath } from './utils/basePath.js'
 import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { initAnchors } from './utils/anchors.js'
 
 export function renderHomePage(home) {
   const app = document.getElementById('app')
 
+  // Order follows the buyer's questions: what is it → why is it better → what does it save
+  // → which one is for me → which model → can I trust the maker → come and see it.
   app.innerHTML = [
     renderHeader({ transparent: true }),
     renderHeroHome(home),
     renderJetMomentScroll(home.jetMoment),
-    renderCategorySplit(home),
     renderQuietStatement(home.quiet.afterCategories),
-    renderAdvantagesSplit(home),
-    renderQuietStatement(home.quiet.afterAdvantages),
-    renderTrustSection(home),
     renderWhyStatements(home),
     renderSavingsSection(home),
+    renderAdvantagesSplit(home),
+    renderQuietStatement(home.quiet.afterAdvantages),
+    renderCategorySplit(home),
+    renderTrustSection(home),
     renderShowroomSection(home),
     renderFinalCtaHome(home),
     renderFooter(),
@@ -50,4 +53,5 @@ export function renderHomePage(home) {
   initMagneticButtons()
   initCountUp()
   initLightbox()
+  initAnchors()
 }

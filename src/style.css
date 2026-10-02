@@ -2792,9 +2792,10 @@ p {
   max-width: 60ch;
 }
 
-/* Anchor targets clear the fixed header */
-#reseni, #uspora, #showroom, #blog, #kontakt {
-  scroll-margin-top: 100px;
+/* Homepage / series section anchors: every section lands flush at the top of the screen
+   (its own top padding already clears the fixed header), so all jump links behave alike. */
+#reseni, #uspora, #showroom, #blog, #kontakt, #kategorie, #technologie, #vyroba {
+  scroll-margin-top: 0;
 }
 
 /* ==========================================================================

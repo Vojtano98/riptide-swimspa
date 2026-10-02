@@ -9,11 +9,13 @@ const PRODUCTS = [
   { href: '/easy-life/', title: 'Easy Life', text: 'Extra hloubka · swim spa' },
 ]
 
-// Jump links to homepage sections; the text is each section's own heading.
+// Jump links to homepage sections, in the same order as the sections on the page; the
+// text is each section's own heading.
 const DISCOVER = [
-  { href: '/#kategorie', title: 'Řady Riptide', text: 'Čtyři řady. Jedno plavecké jádro.' },
   { href: '/#technologie', title: 'Technologie', text: 'Co dělá Riptide plavecké jádro jiným' },
   { href: '/#uspora', title: 'Úspora energie', text: 'Až o 26 % nižší náklady na ohřev' },
+  { href: '/#reseni', title: 'Která řada je pro vás', text: 'Jedno plavecké jádro. Čtyři řady na míru.' },
+  { href: '/#kategorie', title: 'Řady Riptide', text: 'Čtyři řady. Jedno plavecké jádro.' },
   { href: '/#vyroba', title: 'Výroba a servis', text: 'Zázemí, na které se dá spolehnout' },
 ]
 
