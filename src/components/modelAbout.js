@@ -1,5 +1,5 @@
-// Model description, taken from the official SwimSpa.cz product page (see
-// scripts/fetch-shop-content.py). First paragraph reads as the lead; the rest is
+// Model description and top-view picture, taken from the official SwimSpa.cz product page
+// (see scripts/fetch-shop-content.py). First paragraph reads as the lead; the rest is
 // collapsed in a native <details> so the page stays scannable and works without JS.
 export function renderModelAbout(model) {
   const shop = model.shop
@@ -14,6 +14,13 @@ export function renderModelAbout(model) {
         <div class="about-head" data-reveal>
           <span class="eyebrow">POPIS MODELU</span>
           <h2 class="h-section">O modelu ${model.name}.</h2>
+          ${
+            shop.image
+              ? `<figure class="about-figure">
+                  <img src="${shop.image.src}" alt="${model.name} — pohled shora" width="${shop.image.width}" height="${shop.image.height}" loading="lazy" decoding="async" />
+                </figure>`
+              : ''
+          }
         </div>
         <div class="about-body" data-reveal>
           <p class="body-l about-lead">${lead}</p>
@@ -26,7 +33,6 @@ export function renderModelAbout(model) {
                 </details>`
               : ''
           }
-          <a class="about-source" href="${shop.source}" target="_blank" rel="noopener">Popis modelu na SwimSpa.cz ↗</a>
         </div>
       </div>
     </section>

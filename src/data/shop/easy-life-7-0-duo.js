@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-easy-life-pro-7-0-duo/",
+  "image": {
+    "src": "/assets/photos/model-easy-life-7-0-duo.webp",
+    "width": 768,
+    "height": 278
+  },
   "description": [
     "Swim Spa Easy Life 7.0 Duo je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a kapacitně je navržena pro minimálně 4 osoby ve vířivkové části a více osob v bazénové zóně. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Easy Life 7.0 Duo a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce opravdu dlouhých dvouzónových swim spa, tedy do 7 metrů.",

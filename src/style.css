@@ -3483,14 +3483,18 @@ html.lb-open { overflow: hidden; }
 .about-more[open] .about-more-open { display: none; }
 .about-more[open] .about-more-close { display: inline; }
 .about-more[open] > summary { margin-bottom: 22px; }
-.about-source {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
+.about-figure {
+  margin: clamp(24px, 3vw, 40px) 0 0;
+  padding: clamp(18px, 2.4vw, 32px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
 }
-.about-source:hover { text-decoration: underline; }
+.about-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 @media (max-width: 900px) {
   .about-layout { grid-template-columns: 1fr; }
   .about-head { position: static; }

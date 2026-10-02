@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-aqua-life-hydro-5-5/",
+  "image": {
+    "src": "/assets/photos/model-aqua-life-5-5.webp",
+    "width": 768,
+    "height": 353
+  },
   "description": [
     "Swim Spa Aqua Life 5.5 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň se díky své ještě trošku kompaktní délce 549 cm vešla i do menších exteriérů či interiérů. Kapacitně je navržena pro minimálně 4 osoby ve vířivkové masážní části a aktivního plavce v zóně u protiproudu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Aqua Life 5.5 je zástupce velmi oblíbené středně velké délky jednozónových swim spa, tedy do cca 5,5 metrů s klasickou výškou 129 cm.",

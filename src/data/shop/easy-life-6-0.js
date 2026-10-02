@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-easy-life-pro-6-0/",
+  "image": {
+    "src": "/assets/photos/model-easy-life-6-0.webp",
+    "width": 768,
+    "height": 319
+  },
   "description": [
     "Swim Spa Easy Life 6.0 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň se díky své plnohodnotné délce 592 cm velikostně vyhoví i náročným plavcům či většímu počtu osob. Kapacitně je navržena pro minimálně 4 osoby ve vířivkové masážní části a aktivního plavce v zóně u protiproudu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Easy Life 6.0 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce velmi oblíbené a nejrozšířenější délky jednozónových swim spa, tedy do cca 6 metrů.",

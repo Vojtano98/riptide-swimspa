@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-atlas-hydro-6-0/",
+  "image": {
+    "src": "/assets/photos/model-atlas-6-0.webp",
+    "width": 768,
+    "height": 320
+  },
   "description": [
     "Swim Spa Atlas 6.0 je velký celoroční plavecký bazén vhodný pro rekreační a středně náročné plavání.",
     "Model Atlas 6.0 je zástupce velmi oblíbené větší délky jednozónových swim spa, tedy do cca 6 metrů s klasickou výškou 129 cm.",

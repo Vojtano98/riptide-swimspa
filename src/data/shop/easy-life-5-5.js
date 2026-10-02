@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-easy-life-pro-5-5/",
+  "image": {
+    "src": "/assets/photos/model-easy-life-5-5.webp",
+    "width": 768,
+    "height": 344
+  },
   "description": [
     "Swim Spa Easy Life 5.5 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň se ještě díky své kompaktnější délce 550 cm vešla i do menších exteriérů či interiérů. Kapacitně je navržena pro minimálně 4 osoby ve vířivkové masážní části a aktivního plavce v zóně u protiproudu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Easy Life 5.5 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce velmi oblíbené kompaktní až střední délky jednozónových swim spa, tedy do cca 5,5 metrů.",

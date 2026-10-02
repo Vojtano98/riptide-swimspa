@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-atlantis-pro-premium-7-0/",
+  "image": {
+    "src": "/assets/photos/model-atlantis-7-0.webp",
+    "width": 768,
+    "height": 278
+  },
   "description": [
     "Swim Spa Atlantis 7.0 je obří celoroční plavecký bazén s větší hloubkou vhodný pro pravidelné a náročné plavání.",
     "Model Atlantis 7.0 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce ojedinělých jednozónových swim spa dlouhé délky s větší hloubkou, tedy od 7 metrů a výškou 154 cm.",

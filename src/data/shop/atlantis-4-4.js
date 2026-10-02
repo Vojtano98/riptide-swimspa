@@ -4,6 +4,11 @@
 // per-level prices in src/data/models.
 export const shop = {
   "source": "https://www.swimspa.cz/swim-spa/riptide-atlantis-pro-premium-4-4/",
+  "image": {
+    "src": "/assets/photos/model-atlantis-4-4.webp",
+    "width": 1000,
+    "height": 556
+  },
   "description": [
     "Swim Spa Atlantis 4.4 je kompaktní celoroční plavecký bazén s větší hloubkou vhodný pro pravidelné a náročné plavání.",
     "Model Atlantis 4.4 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce velmi oblíbené kompaktní délky jednozónových swim spa s větší hloubkou, tedy do cca 4,5 metrů a výškou 154 cm.",

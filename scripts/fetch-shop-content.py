@@ -3,9 +3,11 @@
 
 Pulls, per model, only what the page itself states: the model description and the
 equipment lists (water care, insulation, additional equipment). Prices are NOT taken from
-here — see the note in the module header. Run: python3 scripts/fetch-shop-content.py
+here — see the note in the module header. The main product image (top view, transparent background) is downloaded and trimmed to
+its content; that step needs Pillow (pip install pillow).
+Run: python3 scripts/fetch-shop-content.py
 """
-import html, json, re, urllib.request
+import html, io, json, os, re, urllib.request
 
 BASE = 'https://www.swimspa.cz/swim-spa/'
 MODELS = {  # our slug -> shop slug
@@ -30,9 +32,29 @@ FIXES = [
 ]
 
 
-def lines_of(url):
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    t = urllib.request.urlopen(req, timeout=30).read().decode('utf-8', 'ignore')
+def fetch(url):
+    return urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=60).read()
+
+
+def product_image(slug, page_html):
+    """Main product image from the shop CDN -> trimmed WebP in public/assets/photos."""
+    from PIL import Image
+    m = re.search(r'https://cdn\.myshoptet\.com/usr/www\.swimspa\.cz/user/shop/orig/([^"\'\s?<>]+)', page_html)
+    if not m:
+        return None
+    im = Image.open(io.BytesIO(fetch(m.group(0)))).convert('RGBA')
+    box = im.split()[3].point(lambda v: 255 if v > 8 else 0).getbbox()
+    if box:
+        pad = 6
+        box = (max(0, box[0] - pad), max(0, box[1] - pad), min(im.width, box[2] + pad), min(im.height, box[3] + pad))
+        im = im.crop(box)
+    name = 'model-%s.webp' % slug
+    im.save('public/assets/photos/' + name, 'WEBP', quality=92, alpha_quality=100, method=6)
+    return {'src': '/assets/photos/' + name, 'width': im.width, 'height': im.height}
+
+
+def lines_of(url, raw=None):
+    t = fetch(url).decode('utf-8', 'ignore')
     t = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', t, flags=re.S)
     t = re.sub(r'<(br|/p|/li|/h\d|/div|/tr)[^>]*>', '\n', t)
     txt = html.unescape(re.sub(r'<[^>]+>', '', t))
@@ -72,6 +94,7 @@ def group(L, start, end):
 
 out = {}
 for slug, shop in MODELS.items():
+    page = fetch(BASE + shop + '/').decode('utf-8', 'ignore')
     L = lines_of(BASE + shop + '/')
     d0 = idx(L, 'Reproduktory') + 1
     d1 = idx(L, 'Inovativní design')
@@ -90,6 +113,7 @@ for slug, shop in MODELS.items():
     e0 = idx(L, 'Doplňková výbava')
     out[slug] = {
         'source': BASE + shop + '/',
+        'image': product_image(slug, page),
         'description': paras,
         'equipment': {
             'water': group(L, w0 + 1, w1),
