@@ -38,26 +38,28 @@ function parse(el) {
   return item
 }
 
-function run(item, duration) {
+const outQuart = (t) => 1 - Math.pow(1 - t, 4)
+
+function run(item, duration, easing = outQuart) {
   const token = ++item.token
   const start = performance.now()
   const step = (now) => {
     if (token !== item.token) return
     const t = Math.min(1, (now - start) / duration)
-    const eased = 1 - Math.pow(1 - t, 4)
+    const eased = easing(t)
     item.node.nodeValue = item.prefix + format(item.target * eased, item.decimals, item.sep) + item.suffix
     if (t < 1) requestAnimationFrame(step)
   }
   requestAnimationFrame(step)
 }
 
-export function startCountUp(el, { delay = 0, duration = 1400 } = {}) {
+export function startCountUp(el, { delay = 0, duration = 1400, easing } = {}) {
   const item = parsed.get(el)
   if (!item) return
   clearTimeout(item.timer)
   item.token++
   item.node.nodeValue = item.zero
-  item.timer = setTimeout(() => run(item, duration), delay)
+  item.timer = setTimeout(() => run(item, duration, easing), delay)
 }
 
 export function resetCountUp(el) {
