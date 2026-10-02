@@ -15,7 +15,6 @@ const DISCOVER = [
   { href: '/#technologie', title: 'Technologie', text: 'Co dělá Riptide plavecké jádro jiným' },
   { href: '/#uspora', title: 'Úspora energie', text: 'Až o 26 % nižší náklady na ohřev' },
   { href: '/#vyroba', title: 'Výroba a servis', text: 'Zázemí, na které se dá spolehnout' },
-  { href: '/#showroom', title: 'Kontakty a showroom', text: 'Navštivte nás a vyzkoušejte si Riptide' },
 ]
 
 const panelLinks = (items) =>
@@ -55,6 +54,7 @@ export function renderHeader({ transparent = false } = {}) {
                 ${panelLinks(DISCOVER)}
               </div>
             </li>
+            <li><a href="/#showroom" data-nav-link>Kontakty a showroom</a></li>
             <li class="site-nav-mobile-actions">
               <a href="tel:+420777605789" class="site-nav-mobile-phone" data-nav-link>+420 777 605 789</a>
               <button class="btn btn-primary site-nav-mobile-cta" data-open-inquiry data-nav-link>Spočítat cenu</button>
