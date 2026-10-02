@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 447
   },
+  "imageSide": {
+    "src": "/assets/photos/model-aqua-life-4-0-side.webp",
+    "width": 768,
+    "height": 561
+  },
   "description": [
     "Swim Spa Aqua Life 4.0 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň se díky své kompaktní délce 385 cm a šířce 220 cm vešla i do menších exteriérů či interiérů. Kapacitně je navržena pro minimálně 5 sedících osob ve vířivkové masážní části a jednu ležící osobu v lehu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Aqua Life 4.0 je zástupce velmi oblíbené kompaktní délky jednozónových swim spa, tedy do cca 4 metrů s nižší výškou 119 cm.",

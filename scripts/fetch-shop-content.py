@@ -36,21 +36,38 @@ def fetch(url):
     return urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=60).read()
 
 
-def product_image(slug, page_html):
-    """Main product image from the shop CDN -> trimmed WebP in public/assets/photos."""
+# Easy Life 6.0 Duo's 3/4 view is not labelled "side" on the shop; Aqua Life 6.0 Duo has no
+# model-specific 3/4 view at all (its other gallery picture is a duplicate of the top view).
+SIDE_OVERRIDES = {'easy-life-6-0-duo': '5213-1_easy-life-pro-6-duo.png'}
+CDN = 'https://cdn.myshoptet.com/usr/www.swimspa.cz/user/shop/orig/'
+
+
+def trimmed_webp(slug, kind, raw):
+    """Shop PNG (transparent bg) -> content-trimmed WebP in public/assets/photos."""
     from PIL import Image
-    m = re.search(r'https://cdn\.myshoptet\.com/usr/www\.swimspa\.cz/user/shop/orig/([^"\'\s?<>]+)', page_html)
-    if not m:
-        return None
-    im = Image.open(io.BytesIO(fetch(m.group(0)))).convert('RGBA')
+    im = Image.open(io.BytesIO(raw)).convert('RGBA')
     box = im.split()[3].point(lambda v: 255 if v > 8 else 0).getbbox()
     if box:
         pad = 6
         box = (max(0, box[0] - pad), max(0, box[1] - pad), min(im.width, box[2] + pad), min(im.height, box[3] + pad))
         im = im.crop(box)
-    name = 'model-%s.webp' % slug
+    name = 'model-%s%s.webp' % (slug, '' if kind == 'top' else '-' + kind)
     im.save('public/assets/photos/' + name, 'WEBP', quality=92, alpha_quality=100, method=6)
     return {'src': '/assets/photos/' + name, 'width': im.width, 'height': im.height}
+
+
+def product_images(slug, page_html):
+    """Top view (main image) and, where the shop has one for THIS model, a 3/4 view."""
+    m = re.search(r'/user/shop/orig/([^"\'\s?<>]+)', page_html)
+    if not m:
+        return None, None
+    top_name = m.group(1)
+    code = re.match(r'(\d+)', top_name).group(1)
+    big = list(dict.fromkeys(re.findall(r'/user/shop/big/(%s[^"\'\s?<>]*)' % code, page_html)))
+    side_name = SIDE_OVERRIDES.get(slug) or next((n for n in big if 'side' in n), None)
+    top = trimmed_webp(slug, 'top', fetch(CDN + top_name))
+    side = trimmed_webp(slug, 'side', fetch(CDN + side_name)) if side_name else None
+    return top, side
 
 
 def lines_of(url, raw=None):
@@ -95,6 +112,7 @@ def group(L, start, end):
 out = {}
 for slug, shop in MODELS.items():
     page = fetch(BASE + shop + '/').decode('utf-8', 'ignore')
+    images = product_images(slug, page)
     L = lines_of(BASE + shop + '/')
     d0 = idx(L, 'Reproduktory') + 1
     d1 = idx(L, 'Inovativní design')
@@ -113,7 +131,8 @@ for slug, shop in MODELS.items():
     e0 = idx(L, 'Doplňková výbava')
     out[slug] = {
         'source': BASE + shop + '/',
-        'image': product_image(slug, page),
+        'image': images[0],
+        'imageSide': images[1],
         'description': paras,
         'equipment': {
             'water': group(L, w0 + 1, w1),

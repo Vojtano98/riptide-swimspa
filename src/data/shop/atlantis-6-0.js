@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 319
   },
+  "imageSide": {
+    "src": "/assets/photos/model-atlantis-6-0-side.webp",
+    "width": 768,
+    "height": 642
+  },
   "description": [
     "Swim Spa Atlantis 6.0 je velký celoroční plavecký bazén s větší hloubkou vhodný pro pravidelné a náročné plavání.",
     "Model Atlantis 6.0 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce velmi oblíbené délky jednozónových swim spa s větší hloubkou, tedy do cca 6 metrů a výškou 154 cm.",

@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 330
   },
+  "imageSide": {
+    "src": "/assets/photos/model-aqua-life-6-0-side.webp",
+    "width": 768,
+    "height": 441
+  },
   "description": [
     "Swim Spa Aqua Life 6.0 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň jste díky své délce 592 cm měli spoustu prostoru na koupání a plavání. Kapacitně je navržena pro minimálně 4 osoby ve vířivkové masážní části a aktivního plavce v zóně u protiproudu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Aqua Life 6.0 je zástupce velmi oblíbené větší délky jednozónových swim spa, tedy do cca 6 metrů s klasickou výškou 129 cm.",

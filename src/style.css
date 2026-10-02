@@ -3485,15 +3485,67 @@ html.lb-open { overflow: hidden; }
 .about-more[open] > summary { margin-bottom: 22px; }
 .about-figure {
   margin: clamp(24px, 3vw, 40px) 0 0;
-  padding: clamp(18px, 2.4vw, 32px);
+  padding: clamp(14px, 2vw, 24px);
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-l);
 }
-.about-figure img {
-  display: block;
+.about-stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+.about-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+  cursor: zoom-in;
+}
+.about-img.is-active {
+  opacity: 1;
+  transform: none;
+}
+/* A single (top-view only) picture is not switchable: let it size the card itself. */
+.about-figure:not([data-about-figure]) .about-stage { aspect-ratio: auto; }
+.about-figure:not([data-about-figure]) .about-img {
+  position: static;
   height: auto;
+  opacity: 1;
+  transform: none;
+}
+.about-switch {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+  margin: 14px auto 0;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-white);
+}
+.about-switch button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.about-switch button:hover { color: var(--text); }
+.about-switch button.is-active {
+  background: var(--dark);
+  color: var(--dark-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-img { transition: none; transform: none; }
 }
 @media (max-width: 900px) {
   .about-layout { grid-template-columns: 1fr; }

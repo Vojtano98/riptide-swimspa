@@ -9,6 +9,7 @@ export const shop = {
     "width": 1000,
     "height": 411
   },
+  "imageSide": null,
   "description": [
     "Swim Spa Aqua Life 6.0 Duo je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a kapacitně je navržena pro minimálně 4 osoby ve vířivkové části a více osob v bazénové zóně. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Aqua Life 6.0 Duo je zástupce nejoblíbenější délky dvouzónových swim spa, tedy do 6 metrů.",

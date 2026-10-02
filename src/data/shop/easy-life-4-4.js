@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 411
   },
+  "imageSide": {
+    "src": "/assets/photos/model-easy-life-4-4-side.webp",
+    "width": 768,
+    "height": 675
+  },
   "description": [
     "Swim Spa Easy Life 4.4 je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli a zároveň se díky své kompaktní délce 443 cm vešla i do menších exteriérů či interiérů. Kapacitně je navržena pro minimálně 4 osoby ve vířivkové masážní části a aktivního plavce v zóně u protiproudu. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Easy Life 4.4 a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce velmi oblíbené kompaktní délky jednozónových swim spa, tedy do cca 4,5 metrů.",

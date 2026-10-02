@@ -5,7 +5,7 @@ import { renderTrimComparison, bindTrimComparison } from './components/trimCompa
 import { renderModelBar, bindModelBar } from './components/modelBar.js'
 import { renderModelHighlights, bindModelHighlights } from './components/modelHighlights.js'
 import { renderModelDimensions, bindModelDimensions } from './components/modelDimensions.js'
-import { renderModelAbout } from './components/modelAbout.js'
+import { renderModelAbout, bindModelAbout } from './components/modelAbout.js'
 import { renderModelInsulation, bindModelInsulation } from './components/modelInsulation.js'
 import { renderModelEquipment } from './components/modelEquipment.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
@@ -53,6 +53,7 @@ export function renderModelPage(model) {
   bindTrimComparison()
   bindModelHighlights()
   bindModelBar()
+  bindModelAbout()
   bindModelDimensions()
   bindModelInsulation()
   bindSavingsSection()

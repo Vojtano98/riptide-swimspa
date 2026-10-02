@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 424
   },
+  "imageSide": {
+    "src": "/assets/photos/model-atlas-4-4-side.webp",
+    "width": 763,
+    "height": 562
+  },
   "description": [
     "Swim Spa Atlas 4.4 je kompaktní celoroční plavecký bazén vhodný pro rekreační a středně náročné plavání.",
     "Model Atlas 4.4 je zástupce velmi oblíbené kompaktní délky jednozónových swim spa, tedy do cca 4,5 metrů s klasickou výškou 129 cm.",

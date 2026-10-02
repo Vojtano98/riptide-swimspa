@@ -9,6 +9,11 @@ export const shop = {
     "width": 768,
     "height": 245
   },
+  "imageSide": {
+    "src": "/assets/photos/model-easy-life-8-0-duo-side.webp",
+    "width": 768,
+    "height": 622
+  },
   "description": [
     "Swim Spa Easy Life 8.0 Duo je navržena tak, abyste si užívali a sdíleli krásné chvíle s rodinou či přáteli, kdy kapacitně je navržena pro minimálně 4 osoby ve vířivkové části a více osob v bazénové zóně. Využijte naplno slunečné dny, sváteční večery či úplně obyčejné chvíle v rodinném kruhu nebo menší skupině přátel.",
     "Model Easy Life 8.0 Duo a její PRO varianta, která znamená, že je swim spa vybavena 10stupňovými invertorovými čerpadly protiproudu je zástupce opravdu dlouhých ba nejdelších dvouzónových swim spa, tedy do 8 metrů.",
