@@ -1,5 +1,6 @@
 import { formatPrice } from '../utils/format.js'
 import { icon } from '../utils/icons.js'
+import { splitWords } from '../utils/splitWords.js'
 
 function renderLifestyleHero(product) {
   return `
@@ -9,7 +10,7 @@ function renderLifestyleHero(product) {
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>
-        <h1 class="hero-title">${product.name}</h1>
+        <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">
           <div>
@@ -38,7 +39,7 @@ function renderCutoutHero(product) {
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${product.category}</span>
-        <h1 class="hero-title">${product.name}</h1>
+        <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">
           <div>

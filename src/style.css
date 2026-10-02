@@ -2778,3 +2778,111 @@ p {
 #reseni, #uspora, #showroom, #blog, #kontakt {
   scroll-margin-top: 100px;
 }
+
+/* ==========================================================================
+   UX upgrade 1 — motion polish (hero, scroll cue, parallax, page transitions)
+   All additive; every effect is gated on prefers-reduced-motion.
+   ========================================================================== */
+
+/* Hero title: words rise in one after another instead of the block fading as one. */
+.hero-title.has-words {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.hero-title .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity 0.9s var(--ease) calc(0.15s + var(--i) * 0.09s),
+    transform 0.9s var(--ease) calc(0.15s + var(--i) * 0.09s);
+}
+.hero.is-loaded .hero-title .w {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero photo keeps drifting after the initial settle (slow Ken Burns push-in). */
+@media (prefers-reduced-motion: no-preference) {
+  .hero.is-loaded .hero-media img {
+    animation: hero-drift 24s ease-out 1.4s forwards;
+  }
+}
+@keyframes hero-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+
+/* Scroll cue: a thin line with a travelling dot instead of the bobbing chevron. */
+.hero-scroll-cue svg {
+  display: none;
+}
+.hero-scroll-cue::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.7));
+  transform-origin: top;
+  animation: cue-line 2.2s var(--ease) infinite;
+}
+@keyframes cue-line {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue::after { animation: none; }
+}
+
+/* Magnetic buttons ease back when the pointer leaves. */
+.hero-actions .btn,
+.final-cta-actions .btn {
+  transition: transform 0.35s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+/* Jet moment closes with a gradient into the light section below — driven by scroll
+   progress (--end-fade, set in jetMomentScroll.js) so it never washes out the caption. */
+.jet-moment-stage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), var(--bg-white));
+  opacity: var(--end-fade, 0);
+}
+
+/* Soft parallax: the photo inside a clipped frame drifts a few % while the frame passes
+   through the viewport. CSS scroll-driven animation — compositor only, no JS, and simply
+   absent in browsers that don't support it. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .trust-media img,
+    .showroom-media img,
+    .advantage-card-media img,
+    .tech-feature-media img {
+      transform: scale(1.12);
+      animation: media-parallax linear both;
+      animation-timeline: view();
+    }
+  }
+}
+@keyframes media-parallax {
+  from { transform: scale(1.12) translateY(-4%); }
+  to { transform: scale(1.12) translateY(4%); }
+}
+
+/* Cross-document page transitions (supporting browsers fade between pages). */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
+}

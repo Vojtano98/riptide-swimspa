@@ -1,4 +1,5 @@
 import { icon } from '../../utils/icons.js'
+import { splitWords } from '../../utils/splitWords.js'
 
 export function renderHeroHome(home) {
   const h = home.hero
@@ -9,7 +10,7 @@ export function renderHeroHome(home) {
       </div>
       <div class="container hero-content">
         <span class="eyebrow hero-eyebrow">${h.eyebrow}</span>
-        <h1 class="hero-title">${h.title}</h1>
+        <h1 class="hero-title has-words">${splitWords(h.title)}</h1>
         <p class="hero-tagline">${h.tagline}</p>
       </div>
       <div class="hero-scroll-cue">

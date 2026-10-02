@@ -12,6 +12,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initMagneticButtons } from './utils/magnetic.js'
 
 export function renderSeriesPage(series) {
   const app = document.getElementById('app')
@@ -36,4 +37,5 @@ export function renderSeriesPage(series) {
   bindInquiryModal({ name: series.breadcrumb[series.breadcrumb.length - 1].label })
 
   initScrollReveal()
+  initMagneticButtons()
 }

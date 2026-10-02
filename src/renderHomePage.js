@@ -13,6 +13,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initMagneticButtons } from './utils/magnetic.js'
 
 export function renderHomePage(home) {
   const app = document.getElementById('app')
@@ -40,4 +41,5 @@ export function renderHomePage(home) {
   bindInquiryModal({ name: 'Riptide swim spa' })
 
   initScrollReveal()
+  initMagneticButtons()
 }

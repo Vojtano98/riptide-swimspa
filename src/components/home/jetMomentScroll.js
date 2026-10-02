@@ -60,7 +60,8 @@ export function bindJetMomentScroll() {
   const section = document.querySelector('[data-jet-moment]')
   const frames = section ? Array.from(section.querySelectorAll('[data-frame]')) : []
   const content = section?.querySelector('[data-jet-content]')
-  if (!section || !frames.length || !content) return
+  const stage = section?.querySelector('.jet-moment-stage')
+  if (!section || !frames.length || !content || !stage) return
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const saveData = navigator.connection?.saveData
@@ -113,6 +114,8 @@ export function bindJetMomentScroll() {
     const opacity = Math.min(fadeIn, fadeOut)
     content.style.opacity = opacity
     content.style.transform = `translateY(${(1 - opacity) * 16}px)`
+    // Drives the closing gradient into the next (light) section — see .jet-moment-stage::after.
+    stage.style.setProperty('--end-fade', Math.min(1, Math.max(0, (progress - 0.8) / 0.2)).toFixed(3))
   }
 
   let targetProgress = 0

@@ -13,6 +13,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initMagneticButtons } from './utils/magnetic.js'
 
 export function renderModelPage(model) {
   const app = document.getElementById('app')
@@ -41,4 +42,5 @@ export function renderModelPage(model) {
   bindInquiryModal(model)
 
   initScrollReveal()
+  initMagneticButtons()
 }
