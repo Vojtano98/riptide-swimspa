@@ -3970,25 +3970,77 @@ html.lb-open { overflow: hidden; }
   line-height: 1.6;
   color: var(--text-secondary);
 }
+.about-acc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.about-toggle-all {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.about-toggle-all:hover { border-color: var(--accent); color: var(--accent); }
 .about-block {
-  padding-top: clamp(20px, 2.4vw, 30px);
   border-top: 1px solid var(--border);
+}
+.about-block:last-child {
+  border-bottom: 1px solid var(--border);
 }
 .about-block-title {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin: 0 0 14px;
-  font-size: clamp(20px, 1.8vw, 24px);
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: clamp(18px, 1.6vw, 21px);
+  font-weight: 700;
   letter-spacing: -0.02em;
+  transition: color 0.2s var(--ease);
 }
-.about-block-title span {
+.about-block-title::-webkit-details-marker { display: none; }
+.about-block-title:hover { color: var(--accent); }
+.about-block-n {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
-.about-block .about-p:last-child {
-  margin-bottom: 0;
+.about-block-label { flex: 1; }
+.about-block-chev {
+  flex: none;
+  color: var(--text-secondary);
+  transition: transform 0.3s var(--ease);
+}
+.about-block[open] > .about-block-title .about-block-chev { transform: rotate(180deg); }
+.about-block-body {
+  padding: 0 0 22px;
+  animation: about-open 0.35s var(--ease);
+}
+.about-block .about-p:last-child { margin-bottom: 0; }
+@keyframes about-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-block-body { animation: none; }
+  .about-block-chev { transition: none; }
 }

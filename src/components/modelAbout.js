@@ -27,7 +27,25 @@ function renderFigure(model, shop) {
     </figure>`
 }
 
+function bindAboutBlocks() {
+  const all = [...document.querySelectorAll('[data-about-block]')]
+  const btn = document.querySelector('[data-about-toggle-all]')
+  if (!btn || !all.length) return
+  const sync = () => {
+    const open = all.every((d) => d.open)
+    btn.textContent = open ? 'Sbalit vše' : 'Rozbalit vše'
+    btn.setAttribute('aria-pressed', String(open))
+  }
+  btn.addEventListener('click', () => {
+    const open = !all.every((d) => d.open)
+    all.forEach((d) => (d.open = open))
+    sync()
+  })
+  all.forEach((d) => d.addEventListener('toggle', sync))
+}
+
 export function bindModelAbout() {
+  bindAboutBlocks()
   const fig = document.querySelector('[data-about-figure]')
   if (!fig) return
   fig.addEventListener('click', (e) => {
@@ -47,13 +65,21 @@ export function renderModelAbout(model) {
   if (!shop?.description?.length) return ''
   const d = describeModel(shop.description)
 
+  // Topic blocks are collapsed by default (native <details>, works without JS) so the section
+  // stays short; "Rozbalit vše" opens or closes all of them.
   const blocks = d.blocks
     .map(
       (b, i) => `
-      <section class="about-block" data-reveal style="--d:${i * 0.05}s">
-        <h3 class="about-block-title"><span>${String(i + 1).padStart(2, '0')}</span>${b.label}</h3>
-        ${b.paras.map((p) => `<p class="about-p">${p}</p>`).join('')}
-      </section>
+      <details class="about-block" data-about-block>
+        <summary class="about-block-title">
+          <span class="about-block-n">${String(i + 1).padStart(2, '0')}</span>
+          <span class="about-block-label">${b.label}</span>
+          <svg class="about-block-chev" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="about-block-body">
+          ${b.paras.map((p) => `<p class="about-p">${p}</p>`).join('')}
+        </div>
+      </details>
     `
     )
     .join('')
@@ -71,7 +97,17 @@ export function renderModelAbout(model) {
             <p class="body-l about-lead">${d.lead}</p>
             ${d.intro.map((p) => `<p class="about-note">${p}</p>`).join('')}
           </div>
-          ${blocks}
+          ${
+            d.blocks.length
+              ? `<div class="about-acc" data-reveal>
+                  <div class="about-acc-head">
+                    <span>Podrobnosti</span>
+                    <button type="button" class="about-toggle-all" data-about-toggle-all aria-pressed="false">Rozbalit vše</button>
+                  </div>
+                  ${blocks}
+                </div>`
+              : ''
+          }
         </div>
       </div>
     </section>
