@@ -1,6 +1,9 @@
+import { describeModel } from '../utils/describe.js'
+
 // Model description and top-view picture, taken from the official SwimSpa.cz product page
-// (see scripts/fetch-shop-content.py). First paragraph reads as the lead; the rest is
-// collapsed in a native <details> so the page stays scannable and works without JS.
+// (see scripts/fetch-shop-content.py). The text is restructured by utils/describe.js: lead,
+// a note, then numbered topic blocks (massage zone, swim section, current, entry) with the
+// key facts in bold.
 // Main picture: 3/4 view of the model (default, where the shop has one) and the top view,
 // switched with a small segmented control. Both sit in one fixed-ratio frame so the card
 // never changes height when switching.
@@ -42,9 +45,18 @@ export function bindModelAbout() {
 export function renderModelAbout(model) {
   const shop = model.shop
   if (!shop?.description?.length) return ''
-  const [lead, ...rest] = shop.description
-  const visible = rest.slice(0, 2)
-  const more = rest.slice(2)
+  const d = describeModel(shop.description)
+
+  const blocks = d.blocks
+    .map(
+      (b, i) => `
+      <section class="about-block" data-reveal style="--d:${i * 0.05}s">
+        <h3 class="about-block-title"><span>${String(i + 1).padStart(2, '0')}</span>${b.label}</h3>
+        ${b.paras.map((p) => `<p class="about-p">${p}</p>`).join('')}
+      </section>
+    `
+    )
+    .join('')
 
   return `
     <section class="section section--white" id="popis">
@@ -54,17 +66,12 @@ export function renderModelAbout(model) {
           <h2 class="h-section">O modelu ${model.name}.</h2>
           ${renderFigure(model, shop)}
         </div>
-        <div class="about-body" data-reveal>
-          <p class="body-l about-lead">${lead}</p>
-          ${visible.map((p) => `<p class="about-p">${p}</p>`).join('')}
-          ${
-            more.length
-              ? `<details class="about-more">
-                  <summary><span class="about-more-open">Zobrazit celý popis</span><span class="about-more-close">Skrýt</span></summary>
-                  ${more.map((p) => `<p class="about-p">${p}</p>`).join('')}
-                </details>`
-              : ''
-          }
+        <div class="about-body">
+          <div data-reveal>
+            <p class="body-l about-lead">${d.lead}</p>
+            ${d.intro.map((p) => `<p class="about-note">${p}</p>`).join('')}
+          </div>
+          ${blocks}
         </div>
       </div>
     </section>

@@ -3942,3 +3942,53 @@ html.lb-open { overflow: hidden; }
   .massage-card, .massage-card-media img { transition: none; }
   .massage-card:hover, .massage-card:hover .massage-card-media img { transform: none; }
 }
+
+/* Model description, restructured: lead, a note, numbered topic blocks, key facts in bold. */
+.about-body {
+  display: grid;
+  gap: clamp(20px, 2.4vw, 32px);
+}
+.about-lead {
+  margin: 0 0 18px;
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.5;
+  color: var(--text);
+}
+.about-lead strong,
+.about-p strong,
+.about-note strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.about-note {
+  margin: 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-s, 12px) var(--radius-s, 12px) 0;
+  background: var(--bg-tint, #f3f6f7);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.about-block {
+  padding-top: clamp(20px, 2.4vw, 30px);
+  border-top: 1px solid var(--border);
+}
+.about-block-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-size: clamp(20px, 1.8vw, 24px);
+  letter-spacing: -0.02em;
+}
+.about-block-title span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.about-block .about-p:last-child {
+  margin-bottom: 0;
+}
