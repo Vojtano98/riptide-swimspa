@@ -13,7 +13,7 @@ export const featureImages = {
   insulation: photo('lifestyle-winter-spa.jpg'),
   control: photo('spatech-panel.jpg'),
   filtration: photo('shell-jets-detail.jpg'),
-  lighting: photo('lifestyle-collage-family.jpg'),
+  lighting: photo('shop-lighting.webp'), // official SwimSpa.cz Dream Time Lighting photo
 }
 
 // featureGrid.js layout: 1 hero card + 2 secondary + 3 tertiary.

@@ -7,7 +7,7 @@ const SELECTOR = [
   '.showroom-media img',
   '.tech-feature-media img',
   '.advantage-card-media img',
-  '.about-img',
+  '.about-img,.massage-card-media img',
 ].join(',')
 
 // Prefer the largest candidate of a <picture> over whichever size the page loaded.

@@ -22,6 +22,7 @@ import { applyBasePath } from './utils/basePath.js'
 import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { renderModelMassage } from './components/modelMassage.js'
 import { initAnchors } from './utils/anchors.js'
 
 export function renderModelPage(model) {
@@ -39,6 +40,7 @@ export function renderModelPage(model) {
     renderModelDimensions(model),
     renderModelEquipment(model),
     renderModelInsulation(model),
+    renderModelMassage(model),
     renderFeatureGrid(model),
     renderSavingsSection(model),
     renderShowroomSection(model),
