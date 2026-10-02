@@ -37,7 +37,7 @@ export function renderTrustSection(home) {
     : ''
 
   return `
-    <section class="section section--white">
+    <section class="section section--white" id="vyroba">
       <div class="container">
         <div class="trust-layout">
           <div class="trust-copy">

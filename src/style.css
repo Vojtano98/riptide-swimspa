@@ -3728,3 +3728,158 @@ html.lb-open { overflow: hidden; }
   .ins.is-scrub .ins-item-text { font-size: 14px; }
   .ins.is-scrub { height: 340vh; }
 }
+
+/* ==========================================================================
+   Header navigation groups — "Produkty" and "Objevte Riptide" dropdowns.
+   Desktop: panel opens on hover / focus / click. Below 1200px (hamburger panel) the
+   groups are always expanded under a small label, so nothing is hidden behind a tap.
+   ========================================================================== */
+.nav-group {
+  position: relative;
+}
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+.nav-trigger:hover,
+.nav-group.is-open .nav-trigger {
+  color: var(--text);
+}
+.nav-chevron {
+  transition: transform 0.25s var(--ease);
+}
+.nav-group.is-open .nav-chevron {
+  transform: rotate(180deg);
+}
+.site-header--transparent:not(.is-scrolled):not(.nav-is-open) .nav-trigger {
+  color: #fff;
+}
+.site-header--transparent:not(.is-scrolled):not(.nav-is-open) .nav-trigger:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-panel a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-panel strong {
+  font-weight: 600;
+}
+.nav-panel span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  white-space: normal;
+}
+
+@media (min-width: 1200px) {
+  .nav-panel {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: 50%;
+    min-width: 260px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 18px 48px rgba(10, 20, 24, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 6px);
+    transition: opacity 0.2s var(--ease), transform 0.25s var(--ease), visibility 0s linear 0.25s;
+  }
+  .nav-panel--wide {
+    min-width: 340px;
+  }
+  /* Invisible bridge so the pointer can travel from the trigger into the panel. */
+  .nav-panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    height: 20px;
+  }
+  @media (hover: hover) {
+    .nav-group:hover .nav-panel,
+    .nav-group:hover .nav-chevron {
+      transition-delay: 0s;
+    }
+    .nav-group:hover .nav-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+    .nav-group:hover .nav-chevron {
+      transform: rotate(180deg);
+    }
+    .nav-group:hover .nav-trigger {
+      color: var(--text);
+    }
+    .site-header--transparent:not(.is-scrolled):not(.nav-is-open) .nav-group:hover .nav-trigger {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+  .nav-group.is-open .nav-panel,
+  .nav-group:focus-within .nav-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    transition-delay: 0s;
+  }
+  .site-nav .nav-panel a,
+  .site-header--transparent:not(.is-scrolled):not(.nav-is-open) .site-nav .nav-panel a {
+    padding: 11px 14px;
+    border-radius: 10px;
+    color: var(--text);
+    white-space: normal;
+  }
+  .site-nav .nav-panel a:hover,
+  .site-header--transparent:not(.is-scrolled):not(.nav-is-open) .site-nav .nav-panel a:hover {
+    color: var(--text);
+    background: var(--bg-tint, #f3f6f7);
+  }
+}
+
+@media (max-width: 1199px) {
+  .site-nav {
+    overflow-y: auto;
+    gap: 18px;
+  }
+  .nav-trigger {
+    pointer-events: none;
+    cursor: default;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+  .nav-chevron {
+    display: none;
+  }
+  .nav-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .nav-panel a {
+    font-size: 19px;
+  }
+  .nav-panel span {
+    font-size: 13px;
+  }
+}
