@@ -16,6 +16,7 @@ import { bindInquiryModal } from './components/inquiryModal.js'
 
 import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
+import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
 
@@ -53,4 +54,5 @@ export function renderModelPage(model) {
   initScrollReveal()
   initMagneticButtons()
   initCountUp()
+  initLightbox()
 }
