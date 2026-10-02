@@ -1,13 +1,10 @@
 import { shopDetail } from '../data/shared/shopDetail.js'
 
-// Hydromassage cards (photo + the shop's own title and text). Only for the swim spa lines
-// that have a massage zone — Atlas / Atlantis are pure swim pools, and their shop
-// descriptions don't mention one, so they don't get this section.
-const HYDRO_SERIES = ['Aqua Life', 'Easy Life']
+// Hydromassage cards (photo + the shop's own title and text). The official SwimSpa.cz page
+// shows this block, identically, on every model — Atlas and Atlantis included — so it is
+// shown on every model page here too.
 
 export function renderModelMassage(model) {
-  if (!HYDRO_SERIES.includes(model.series)) return ''
-
   const cards = shopDetail.massage
     .map(
       (c, i) => `
