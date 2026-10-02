@@ -6,6 +6,7 @@ import { renderModelBar, bindModelBar } from './components/modelBar.js'
 import { renderModelHighlights, bindModelHighlights } from './components/modelHighlights.js'
 import { renderModelDimensions, bindModelDimensions } from './components/modelDimensions.js'
 import { renderModelAbout } from './components/modelAbout.js'
+import { renderModelInsulation, bindModelInsulation } from './components/modelInsulation.js'
 import { renderModelEquipment } from './components/modelEquipment.js'
 import { renderMaterialsSwatches } from './components/materialsSwatches.js'
 import { renderFeatureGrid } from './components/featureGrid.js'
@@ -36,6 +37,7 @@ export function renderModelPage(model) {
     renderMaterialsSwatches(model),
     renderModelDimensions(model),
     renderModelEquipment(model),
+    renderModelInsulation(model),
     renderFeatureGrid(model),
     renderSavingsSection(model),
     renderShowroomSection(model),
@@ -52,6 +54,7 @@ export function renderModelPage(model) {
   bindModelHighlights()
   bindModelBar()
   bindModelDimensions()
+  bindModelInsulation()
   bindSavingsSection()
   bindMobileStickyCTA()
   bindInquiryModal(model)

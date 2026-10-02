@@ -5,6 +5,7 @@ const LINKS = [
   ['parametry', 'Parametry'],
   ['provedeni', 'Provedení'],
   ['rozmery', 'Rozměry'],
+  ['izolace', 'Izolace'],
   ['funkce', 'Technologie'],
   ['uspora', 'Úspora'],
   ['showroom', 'Showroom'],
