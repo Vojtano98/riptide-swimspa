@@ -48,6 +48,19 @@ export function bindModelAbout() {
   bindAboutBlocks()
   const fig = document.querySelector('[data-about-figure]')
   if (!fig) return
+  // Swipe left/right on the picture flips between the views (same as the buttons).
+  let startX = null
+  fig.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true })
+  fig.addEventListener('touchend', (e) => {
+    if (startX == null) return
+    const dx = e.changedTouches[0].clientX - startX
+    startX = null
+    if (Math.abs(dx) < 45) return
+    const buttons = [...fig.querySelectorAll('[data-view-btn]')]
+    const current = buttons.findIndex((b) => b.classList.contains('is-active'))
+    const next = buttons[(current + (dx < 0 ? 1 : buttons.length - 1)) % buttons.length]
+    next.click()
+  })
   fig.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-view-btn]')
     if (!btn) return

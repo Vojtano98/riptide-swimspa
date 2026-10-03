@@ -23,6 +23,7 @@ import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
 import { renderModelMassage } from './components/modelMassage.js'
+import { renderModelRelated } from './components/modelRelated.js'
 import { initAnchors } from './utils/anchors.js'
 
 export function renderModelPage(model) {
@@ -36,13 +37,12 @@ export function renderModelPage(model) {
     renderModelAbout(model),
     renderModelBar(model),
     renderTrimComparison(model),
-    renderModelHighlights(model),
-    renderMaterialsSwatches(model),
+    renderModelEquipment(model, { highlights: renderModelHighlights(model), materials: renderMaterialsSwatches(model) }),
     renderModelDimensions(model),
-    renderModelEquipment(model),
     renderModelInsulation(model),
     renderModelMassage(model),
     renderFeatureGrid(model),
+    renderModelRelated(model),
     renderSavingsSection(model),
     renderShowroomSection(model),
     renderFinalCtaHome(model),

@@ -1,4 +1,4 @@
-// "Equipment at a glance": the handful of specs people compare first, as big numbers,
+// "Equipment at a glance" (a block inside the Výbava section, see modelEquipment.js): the handful of specs people compare first, as big numbers,
 // for the equipment level currently selected in the picker above (trim:change swaps it).
 import { sortVariants, initialVariant } from '../utils/variants.js'
 
@@ -29,17 +29,7 @@ export function renderModelHighlights(model) {
     })
     .join('')
 
-  return `
-    <section class="section section--tint" id="vybava">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <span class="eyebrow">VÝBAVA NA PRVNÍ POHLED</span>
-          <h2 class="h-section">Co dostanete.</h2>
-        </div>
-        <div class="hl-sets" data-reveal>${sets}</div>
-      </div>
-    </section>
-  `
+  return `<div class="hl-sets" data-reveal>${sets}</div>`
 }
 
 export function bindModelHighlights() {

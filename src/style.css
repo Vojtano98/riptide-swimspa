@@ -4414,3 +4414,141 @@ main:focus { outline: none; }
 /* <picture> wrappers around content photos are layout-transparent: the <img> behaves exactly
    as it did before it was wrapped (absolute fills, flex items, grid cells). */
 picture { display: contents; }
+
+/* Výbava: highlights → collapsed full lists → colour options, in one section. */
+.equip-accs {
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(24px, 3vw, 40px);
+}
+.equip-acc {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+.equip-acc-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(18px, 2.4vw, 28px);
+  list-style: none;
+  cursor: pointer;
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.equip-acc-title::-webkit-details-marker { display: none; }
+.equip-acc-title:hover { color: var(--accent-ink); }
+.equip-acc[open] .about-block-chev { transform: rotate(180deg); }
+.equip-acc .equip-list { padding: 4px clamp(18px, 2.4vw, 28px) 22px; animation: about-open 0.35s var(--ease); }
+.equip-acc .equip-row:first-child { padding-top: 12px; border-top: 1px solid var(--border); }
+.equip-materials {
+  margin-top: clamp(32px, 4vw, 56px);
+  padding-top: clamp(24px, 3vw, 40px);
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 900px) {
+  .equip-accs { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+/* Product-page hero: stronger floor under the text so the tagline stays readable over
+   bright water, and a soft shadow as a second line of defence. */
+.hero:not(.hero--home) .hero-media::after {
+  background: linear-gradient(180deg, rgba(10, 10, 8, 0.5) 0%, rgba(10, 10, 8, 0.08) 28%, rgba(10, 10, 8, 0.35) 52%, rgba(10, 10, 8, 0.86) 100%);
+}
+.hero:not(.hero--home) .hero-title,
+.hero:not(.hero--home) .hero-tagline {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.38);
+}
+.trim-panel-ask {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  background: var(--bg);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Phones: long card grids become swipeable rows (with the next card peeking in), and
+   the pinned insulation sequence gets a shorter track — the page is far less tall. */
+@media (max-width: 760px) {
+  .benefits-grid,
+  .massage-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    padding-bottom: 6px;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .benefits-grid::-webkit-scrollbar,
+  .massage-grid::-webkit-scrollbar { display: none; }
+  .benefits-row-secondary,
+  .benefits-row-tertiary { display: contents; }
+  .benefits-grid > .benefit-card,
+  .benefits-row-secondary > .benefit-card,
+  .benefits-row-tertiary > .benefit-card,
+  .massage-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    min-height: 360px;
+  }
+  .massage-card { min-height: 0; }
+  .ins.is-scrub { height: 270vh; }
+}
+
+/* Other models of the same line, at the end of a model page. */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+.related-card .model-card-media { aspect-ratio: 16 / 10; }
+.related-card .model-card-content { padding: 16px 20px 20px; }
+.related-card .model-card-name { margin-bottom: 6px; }
+.related-card .model-card-price { margin-bottom: 0; }
+.related-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: clamp(24px, 3vw, 36px);
+}
+@media (max-width: 760px) {
+  .related-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .related-grid::-webkit-scrollbar { display: none; }
+  .related-card { flex: 0 0 72%; scroll-snap-align: start; }
+}
+
+/* Inquiry form: name + one way to reach you; the rest is optional and tucked away. */
+.form-hint { margin: -4px 0 0; font-size: 13px; color: var(--text-secondary); }
+.form-more { margin: 14px 0 4px; }
+.form-more summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+.form-more summary::-webkit-details-marker { display: none; }
+.form-more summary::before { content: '+'; display: inline-block; width: 18px; font-weight: 800; }
+.form-more[open] summary::before { content: '−'; }
+.form-optional { font-weight: 500; color: var(--text-secondary); }
+.form-more .form-grid { padding-top: 8px; }
+.modal-steps { margin: 0 0 4px; padding-left: 20px; text-align: left; display: grid; gap: 8px; color: var(--text-secondary); }
+.form-field input[aria-invalid="true"] { border-color: #c0392b; }

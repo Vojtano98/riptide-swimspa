@@ -27,37 +27,43 @@ function formHTML(context) {
     <form data-inquiry-form novalidate>
       <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="form-grid">
-        <div class="form-field">
+        <div class="form-field full">
           <label for="f-name">Jméno</label>
           <input id="f-name" name="name" type="text" required autocomplete="name" />
         </div>
         <div class="form-field">
           <label for="f-phone">Telefon</label>
-          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" />
         </div>
-        <div class="form-field full">
+        <div class="form-field">
           <label for="f-email">E-mail</label>
-          <input id="f-email" name="email" type="email" required autocomplete="email" />
+          <input id="f-email" name="email" type="email" autocomplete="email" />
         </div>
-        <div class="form-field">
-          <label for="f-location">Lokalita</label>
-          <input id="f-location" name="location" type="text" placeholder="Město, PSČ" />
-        </div>
-        <div class="form-field">
-          <label for="f-placement">Umístění</label>
-          <select id="f-placement" name="placement">
-            <option value="zahrada">Zahrada</option>
-            <option value="terasa">Terasa</option>
-            <option value="interier">Interiér</option>
-            <option value="nevim">Zatím nevím</option>
-          </select>
-        </div>
-        <div class="form-field full">
-          <label for="f-note">Poznámka</label>
-          <textarea id="f-note" name="note" rows="3"></textarea>
-        </div>
+        <p class="form-hint full">Stačí vyplnit telefon <strong>nebo</strong> e-mail.</p>
       </div>
-      <p class="form-error" data-inquiry-error hidden></p>
+      <details class="form-more">
+        <summary>Chci doplnit lokalitu a poznámku <span class="form-optional">(nepovinné)</span></summary>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="f-location">Lokalita</label>
+            <input id="f-location" name="location" type="text" placeholder="Město, PSČ" autocomplete="postal-code" />
+          </div>
+          <div class="form-field">
+            <label for="f-placement">Umístění</label>
+            <select id="f-placement" name="placement">
+              <option value="nevim">Zatím nevím</option>
+              <option value="zahrada">Zahrada</option>
+              <option value="terasa">Terasa</option>
+              <option value="interier">Interiér</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="f-note">Poznámka</label>
+            <textarea id="f-note" name="note" rows="3"></textarea>
+          </div>
+        </div>
+      </details>
+      <p class="form-error" data-inquiry-error role="alert" hidden></p>
       <button class="btn btn-primary modal-submit" type="submit" data-submit-btn>Odeslat poptávku</button>
     </form>
   `
@@ -67,8 +73,13 @@ function successHTML() {
   return `
     <div class="modal-success">
       <div class="modal-success-icon">${icon('check', 26)}</div>
-      <h3 class="modal-title">Děkujeme za poptávku</h3>
-      <p class="modal-subtitle">Ozveme se vám do 24 hodin s nezávaznou kalkulací.</p>
+      <h3 class="modal-title" tabindex="-1" data-success-title>Děkujeme za poptávku</h3>
+      <p class="modal-subtitle">Co bude dál:</p>
+      <ol class="modal-steps">
+        <li>Do 24 hodin se vám ozveme.</li>
+        <li>Připravíme nezávaznou kalkulaci.</li>
+        <li>Prohlídka showroomu je možná po předchozí domluvě.</li>
+      </ol>
     </div>
   `
 }
@@ -79,7 +90,17 @@ function bindForm(form, overlay, context) {
 
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault()
-    if (!form.reportValidity()) return
+    const name = form.elements.name
+    const phone = form.elements.phone.value.trim()
+    const email = form.elements.email.value.trim()
+    const fail = (msg, field) => {
+      errorEl.textContent = msg
+      errorEl.hidden = false
+      field?.focus()
+    }
+    if (!name.value.trim()) return fail('Napište nám prosím své jméno.', name)
+    if (!phone && !email) return fail('Vyplňte prosím telefon nebo e-mail, abychom vás mohli kontaktovat.', form.elements.phone)
+    if (email && !form.elements.email.checkValidity()) return fail('E-mail nevypadá správně — zkontrolujte ho prosím.', form.elements.email)
 
     const data = new FormData(form)
     if (data.get('botcheck')) return // honeypot tripped — silently drop, no request sent
@@ -92,12 +113,12 @@ function bindForm(form, overlay, context) {
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: buildSubject(context),
       from_name: 'Riptide Swim Spa — nová poptávka',
-      replyto: data.get('email'),
+      ...(email ? { replyto: email } : {}),
       'Jméno zákazníka': data.get('name'),
-      'Telefon zákazníka': data.get('phone'),
-      'E-mail zákazníka': data.get('email'),
+      'Telefon zákazníka': phone || 'neuvedeno',
+      'E-mail zákazníka': email || 'neuvedeno',
       Lokalita: data.get('location') || 'neuvedeno',
-      'Plánované umístění': PLACEMENT_LABELS[data.get('placement')] || data.get('placement'),
+      'Plánované umístění': PLACEMENT_LABELS[data.get('placement')] || data.get('placement') || 'neuvedeno',
       'Poznámka zákazníka': data.get('note') || 'bez poznámky',
       'Poptávaný model': context.name,
       'Vybraná výbava': context.variantName || 'obecná poptávka (výbava nevybrána)',
@@ -115,6 +136,7 @@ function bindForm(form, overlay, context) {
       if (!res.ok || !result.success) throw new Error(result.message || 'Odeslání se nezdařilo.')
 
       overlay.querySelector('.modal-body').innerHTML = successHTML()
+      overlay.querySelector('[data-success-title]')?.focus()
     } catch (err) {
       errorEl.textContent = 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 777 605 789.'
       errorEl.hidden = false

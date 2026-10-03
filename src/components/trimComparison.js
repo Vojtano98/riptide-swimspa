@@ -61,7 +61,8 @@ export function renderTrimComparison(model) {
             ${v.highlights.map((h) => `<li>${icon('check', 13)}${h}</li>`).join('')}
           </ul>
           ${delta}
-          <button class="btn btn-primary trim-panel-cta" data-open-inquiry data-variant-name="${v.name}">Poptat ${v.name}</button>
+          ${v.price == null ? `<p class="trim-panel-ask">Cenu výbavy ${v.name} vám rádi pošleme — nezávazně, do 24 hodin.</p>` : ''}
+          <button class="btn btn-primary trim-panel-cta" data-open-inquiry data-variant-name="${v.name}">${v.price == null ? `Poptat cenu ${v.name}` : `Poptat ${v.name}`}</button>
           <p class="trim-panel-note">Odpovídáme do 24 hodin · Nezávazná kalkulace</p>
         </div>
       `

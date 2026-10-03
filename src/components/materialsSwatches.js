@@ -13,8 +13,6 @@ export function renderMaterialsSwatches(model) {
   `
 
   return `
-    <section class="section section--tint">
-      <div class="container">
         <div class="materials-layout" data-reveal>
           <div>
             <span class="eyebrow">Barevné provedení</span>
@@ -32,7 +30,5 @@ export function renderMaterialsSwatches(model) {
             </div>
           </div>
         </div>
-      </div>
-    </section>
   `
 }

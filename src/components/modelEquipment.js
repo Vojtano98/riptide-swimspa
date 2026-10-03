@@ -11,27 +11,38 @@ const rows = (pairs) =>
     )
     .join('')
 
-export function renderModelEquipment(model) {
+const acc = (title, pairs, open = false) => `
+  <details class="equip-acc"${open ? ' open' : ''}>
+    <summary class="equip-acc-title">
+      <span>${title}</span>
+      <svg class="about-block-chev" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </summary>
+    <dl class="equip-list">${rows(pairs)}</dl>
+  </details>`
+
+// One "Výbava" section: the headline numbers for the selected equipment level, the full
+// lists (collapsed) and the colour options — what used to be three separate sections.
+export function renderModelEquipment(model, { highlights = '', materials = '' } = {}) {
   const shop = model.shop
-  if (!shop?.equipment) return ''
-  const { water, extras } = shop.equipment
+  const equipment = shop?.equipment
+  if (!equipment && !highlights) return ''
   return `
-    <section class="section section--tint" id="vybava-detail">
+    <section class="section section--tint" id="vybava">
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">VÝBAVA</span>
-          <h2 class="h-section">Výbava ${model.name} do detailu.</h2>
+          <h2 class="h-section">Co dostanete.</h2>
         </div>
-        <div class="equip-grid">
-          <div class="equip-card" data-reveal>
-            <h3 class="equip-title">Vodní péče</h3>
-            <dl class="equip-list">${rows(water)}</dl>
-          </div>
-          <div class="equip-card" data-reveal>
-            <h3 class="equip-title">Doplňková výbava</h3>
-            <dl class="equip-list">${rows(extras)}</dl>
-          </div>
-        </div>
+        ${highlights}
+        ${
+          equipment
+            ? `<div class="equip-accs" id="vybava-detail" data-reveal>
+                ${acc('Vodní péče', equipment.water)}
+                ${acc('Doplňková výbava', equipment.extras)}
+              </div>`
+            : ''
+        }
+        ${materials ? `<div class="equip-materials">${materials}</div>` : ''}
       </div>
     </section>
   `
