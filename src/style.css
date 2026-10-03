@@ -4473,7 +4473,7 @@ picture { display: contents; }
 
 /* Phones: long card grids become swipeable rows (with the next card peeking in), and
    the pinned insulation sequence gets a shorter track — the page is far less tall. */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .benefits-grid,
   .massage-grid {
     display: flex;
@@ -4494,12 +4494,14 @@ picture { display: contents; }
   .benefits-row-secondary > .benefit-card,
   .benefits-row-tertiary > .benefit-card,
   .massage-card {
-    flex: 0 0 82%;
+    flex: 0 0 min(82%, 420px);
     scroll-snap-align: start;
     min-height: 360px;
   }
   .massage-card { min-height: 0; }
-  .ins.is-scrub { height: 270vh; }
+}
+@media (max-width: 900px) {
+  .ins.is-scrub { height: 240vh; }
 }
 
 /* Other models of the same line, at the end of a model page. */
@@ -4678,3 +4680,14 @@ picture { display: contents; }
   .jet-moment { height: 220vh; }
   .quiet.is-scrub { height: 140vh; }
 }
+
+/* Nothing may widen the page: elements that slide in from the side (reveal "right") must not
+   make a phone's layout viewport wider than the screen (it would zoom the page out). */
+html, body { overflow-x: clip; }
+main { overflow-x: clip; }
+.rv-source a { display: inline-flex; align-items: center; min-height: 44px; }
+.compare-table thead th a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 760px) {
+  .showroom-media img { aspect-ratio: 16 / 10; object-fit: cover; }
+}
+.adv-q .seg { width: fit-content; max-width: 100%; }

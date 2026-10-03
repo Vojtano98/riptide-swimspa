@@ -33,7 +33,9 @@ export function openModal(bodyHTML, { labelledBy = '' } = {}) {
   if (app) app.inert = true
   overlay.addEventListener('keydown', trapTab)
 
-  const focusable = overlay.querySelector('input, button, textarea, select')
+  // First form field if there is one (not the honeypot), otherwise the first button.
+  const focusable =
+    overlay.querySelector('input:not([tabindex="-1"]):not([type="checkbox"]), textarea, select') || overlay.querySelector('button')
   if (focusable) focusable.focus()
 
   return overlay

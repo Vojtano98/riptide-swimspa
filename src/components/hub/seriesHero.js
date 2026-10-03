@@ -52,3 +52,8 @@ export function renderSeriesHero(series) {
     </section>
   `
 }
+
+// On a phone the line switcher scrolls sideways: bring the current line into view.
+export function bindSeriesHero() {
+  document.querySelector('.series-switch .is-active')?.scrollIntoView({ inline: 'center', block: 'nearest' })
+}

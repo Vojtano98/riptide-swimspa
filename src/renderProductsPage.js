@@ -30,6 +30,7 @@ export function renderProductsPage() {
 
   const hub = {
     models,
+    headingTag: 'h1',
     seriesFilter: SERIES.map(seriesName),
     intro: {
       eyebrow: 'NABÍDKA RIPTIDE',

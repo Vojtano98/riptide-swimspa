@@ -1,4 +1,5 @@
 import { formatPrice } from '../../utils/format.js'
+import { applyBasePath } from '../../utils/basePath.js'
 import { withShopData } from '../../data/shared/shopData.js'
 import { modelBriefs } from '../../data/shared/modelBriefs.js'
 import { atlas } from '../../data/series/atlas.js'
@@ -18,7 +19,7 @@ const models = [atlas, atlantis, aquaLife, easyLife]
   .filter(Boolean)
 
 const QUESTIONS = [
-  { key: 'use', label: 'Co s ním budete dělat?', options: [['swim', 'Hlavně plavat'], ['both', 'Plavat i relaxovat v hydromasáži']] },
+  { key: 'use', label: 'Co s ním budete dělat?', options: [['swim', 'Hlavně plavat'], ['both', 'Plavat i relaxovat']] },
   { key: 'depth', label: 'Jakou hloubku chcete?', options: [['std', 'Standardní (do 129 cm)'], ['deep', 'Extra (154 cm)']] },
   { key: 'len', label: 'Kolik máte místa na délku?', options: [['s', 'Do 5 m'], ['m', '5–6 m'], ['l', 'Přes 6 m']] },
   { key: 'zones', label: 'Teplotní zóny', options: [['one', 'Jedna'], ['two', 'Dvě (Duo)']], onlyWhen: (a) => a.use !== 'swim' },
@@ -96,8 +97,7 @@ export function bindModelAdvisor() {
       ? `${found.length === 1 ? 'Odpovídá 1 model' : `Odpovídá ${found.length} ${found.length < 5 ? 'modely' : 'modelů'}`} — seřazeno od nejkratšího.`
       : 'Takový model zatím v nabídce není — zkuste některou odpověď změnit.'
     out.innerHTML = found.map(card).join('')
-    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-    out.querySelectorAll('a[href^="/"]').forEach((a) => a.setAttribute('href', base + a.getAttribute('href')))
+    applyBasePath(out)
   }
 
   root.addEventListener('click', (e) => {

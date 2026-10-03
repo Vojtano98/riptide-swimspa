@@ -91,7 +91,7 @@ export function renderModelsGrid(hub) {
             ? `<div class="section-head" data-reveal><h2 class="h-section">Modely řady ${hub.breadcrumb[hub.breadcrumb.length - 1].label}.</h2></div>`
             : `<div class="section-head" data-reveal>
           <span class="eyebrow">${hub.intro.eyebrow}</span>
-          <h2 class="h-section">${hub.intro.headline}</h2>
+          <${hub.headingTag || 'h2'} class="h-section">${hub.intro.headline}</${hub.headingTag || 'h2'}>
           <p class="body-l">${hub.intro.text}</p>
         </div>`
         }
