@@ -771,8 +771,9 @@ p {
   padding-bottom: clamp(48px, 7vw, 88px);
   color: #fff;
 }
-.jet-moment-eyebrow {
-  color: rgba(255, 255, 255, 0.72);
+.jet-moment .eyebrow.jet-moment-eyebrow {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 .jet-moment-claim {
   max-width: 760px;
@@ -1543,7 +1544,7 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 8, 0) 30%, rgba(10, 10, 8, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 8, 0) 18%, rgba(10, 10, 8, 0.6) 55%, rgba(10, 10, 8, 0.88) 100%);
 }
 .benefit-card-content {
   position: relative;
@@ -1563,7 +1564,8 @@ p {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
   margin-bottom: 10px;
 }
 .benefit-card-hero .benefit-label {
