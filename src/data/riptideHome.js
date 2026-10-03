@@ -70,7 +70,7 @@ export const home = {
     afterCategories: {
       tone: 'white',
       eyebrow: 'MODELY DUO',
-      text: 'Plavejte ve <em>29 °C</em>. Relaxujte ve <em>37 °C</em>. Ve stejnou chvíli.',
+      text: 'Plavejte ve <em>29 °C</em>. Relaxujte ve <em>37 °C</em>. {pause} Ve stejnou chvíli.',
     },
     afterAdvantages: {
       tone: 'dark',

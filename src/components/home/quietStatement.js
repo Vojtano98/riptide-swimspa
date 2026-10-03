@@ -1,5 +1,5 @@
 // One big sentence on its own screen — the "breathing" beat between denser sections.
-// `text` may contain <em> to colour the key phrase.
+// `text` may contain <em> to colour the key phrase and `{pause}` for a longer beat.
 //
 // The section is a tall scroll track with a sticky stage (same mechanics as the jet
 // moment): while it is pinned, scroll position decides how many words are revealed, so
@@ -14,6 +14,11 @@ export function renderQuietStatement(q) {
       .split(/(\s+)/)
       .map((tok) => {
         if (/^\s*$/.test(tok)) return tok
+        // `{pause}` in the copy holds the next word back by a few extra scroll beats.
+        if (tok === '{pause}') {
+          i += 4
+          return ''
+        }
         const html = `<span class="w" style="--i:${i}">${tok}</span>`
         // A beat after each sentence so the thoughts land one by one.
         i += /\.$/.test(tok) ? 2 : 1
@@ -34,7 +39,7 @@ export function renderQuietStatement(q) {
   })
 
   return `
-    <section class="quiet quiet--${q.tone || 'white'}" data-quiet data-quiet-total="${i}">
+    <section class="quiet quiet--${q.tone || 'white'}${q.text.includes('{pause}') ? ' quiet--paced' : ''}" data-quiet data-quiet-total="${i}">
       <div class="quiet-stage">
         <div class="container">
           ${q.eyebrow ? `<span class="eyebrow quiet-eyebrow">${q.eyebrow}</span>` : ''}

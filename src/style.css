@@ -2911,6 +2911,8 @@ p {
 .quiet.is-scrub {
   height: 165vh;
 }
+/* A sentence with a {pause} beat gets extra track so the other words keep their pace. */
+.quiet.is-scrub.quiet--paced { height: 205vh; }
 /* The white sentence follows a white section that already ends in padding — pull it up
    so there is no long empty stretch between the two. */
 .quiet--white.is-scrub {
@@ -4683,6 +4685,7 @@ picture { display: contents; }
 @media (max-width: 760px) {
   .jet-moment { height: 220vh; }
   .quiet.is-scrub { height: 140vh; }
+  .quiet.is-scrub.quiet--paced { height: 175vh; }
 }
 
 /* Nothing may widen the page: elements that slide in from the side (reveal "right") must not
