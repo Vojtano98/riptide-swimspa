@@ -3321,7 +3321,7 @@ p {
   font-weight: 700;
   letter-spacing: 0.1em;
 }
-/* Slow, staged sequence (see bindModelDimensions): outlines draw themselves over ~3 s,
+/* Slow, staged sequence (see bindModelDimensions): outlines draw themselves over ~2 s,
    then each dimension line fades in as its figure counts up. Transitions only exist under
    .is-drawing so the reset after scrolling away is instant, not a reverse animation. */
 .dim-plan.is-armed .draw { stroke-dashoffset: 1; }
@@ -3333,7 +3333,7 @@ p {
 .dim-plan.is-drawing .dim-step {
   opacity: 1;
   transform: none;
-  transition: opacity 1s var(--ease) var(--d, 0s), transform 1s var(--ease) var(--d, 0s);
+  transition: opacity 0.8s var(--ease) var(--d, 0s), transform 0.8s var(--ease) var(--d, 0s);
 }
 @media (max-width: 900px) {
   .dim-layout { grid-template-columns: 1fr; }
