@@ -1,4 +1,5 @@
 export function formatPrice(value, currency = 'Kč') {
+  if (value == null || Number.isNaN(Number(value))) return 'Na dotaz'
   const formatted = Math.round(value)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')

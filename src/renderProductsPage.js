@@ -16,6 +16,7 @@ import { initScrollReveal } from './utils/reveal.js'
 import { applyBasePath } from './utils/basePath.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { withShopData } from './data/shared/shopData.js'
 import { initAnchors } from './utils/anchors.js'
 
 // One flat catalogue of every model, in series order; each card carries its series name
@@ -25,7 +26,7 @@ const seriesName = (s) => s.breadcrumb[s.breadcrumb.length - 1].label
 
 export function renderProductsPage() {
   const app = document.getElementById('app')
-  const models = SERIES.flatMap((s) => s.models.map((m) => ({ ...m, brand: seriesName(s), series: seriesName(s) })))
+  const models = SERIES.flatMap((s) => withShopData(s.models).map((m) => ({ ...m, brand: seriesName(s), series: seriesName(s) })))
 
   const hub = {
     models,

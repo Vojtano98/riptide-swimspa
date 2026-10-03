@@ -21,31 +21,35 @@ function renderTools(models, seriesFilter) {
   const briefs = models.map(briefFor)
   if (models.length < 3 || briefs.some((b) => !b)) return ''
   const hasDuo = briefs.some((b) => b.duo)
-  const seriesChips = seriesFilter?.length
+  // Toolbar: series as a segmented control (left), "Duo" switch + sort menu (right).
+  const series = seriesFilter?.length
     ? `
-      <div class="models-tools-group" role="group" aria-label="Filtr řady">
-        <span class="models-tools-label">Řada</span>
-        <button type="button" class="chip is-active" data-series-filter="" aria-pressed="true">Všechny</button>
+      <div class="seg" role="group" aria-label="Řada">
+        <button type="button" class="seg-btn is-active" data-series-filter="" aria-pressed="true">Všechny</button>
         ${seriesFilter
-          .map((n) => `<button type="button" class="chip" data-series-filter="${n}" aria-pressed="false">${n}</button>`)
+          .map((n) => `<button type="button" class="seg-btn" data-series-filter="${n}" aria-pressed="false">${n}</button>`)
           .join('')}
       </div>`
-    : ''
+    : '<span></span>'
   return `
-    <div class="models-tools" data-reveal>
-      ${seriesChips}
-      <div class="models-tools-group" role="group" aria-label="Řazení modelů">
-        <span class="models-tools-label">Řadit</span>
-        <button type="button" class="chip is-active" data-sort="default" aria-pressed="true">Doporučené</button>
-        <button type="button" class="chip" data-sort="price" aria-pressed="false">Nejlevnější</button>
-        <button type="button" class="chip" data-sort="length" aria-pressed="false">Nejdelší</button>
-        <button type="button" class="chip" data-sort="volume" aria-pressed="false">Největší objem</button>
+    <div class="models-toolbar" data-reveal>
+      ${series}
+      <div class="models-toolbar-right">
+        ${
+          hasDuo
+            ? `<button type="button" class="switch" data-filter-duo role="switch" aria-checked="false"><span class="switch-track"><span class="switch-knob"></span></span>Dvě teplotní zóny</button>`
+            : ''
+        }
+        <label class="sort-select">
+          <span class="sr-only">Řadit</span>
+          <select data-sort-select aria-label="Řadit modely">
+            <option value="default">Doporučené</option>
+            <option value="price">Cena: od nejnižší</option>
+            <option value="length">Nejdelší</option>
+            <option value="volume">Největší objem</option>
+          </select>
+        </label>
       </div>
-      ${
-        hasDuo
-          ? `<button type="button" class="chip chip--filter" data-filter-duo aria-pressed="false">Dvě teplotní zóny (Duo)</button>`
-          : ''
-      }
     </div>
   `
 }
@@ -55,19 +59,23 @@ export function renderModelsGrid(hub) {
     .map((m, i) => {
       const brief = briefFor(m)
       return `
-      <a class="model-card" href="${m.href}" data-reveal data-index="${i}" data-price="${m.price}"
+      <a class="model-card" href="${m.href}" data-reveal data-index="${i}" data-price="${m.price ?? ''}"
         data-length="${brief ? brief.length : 0}" data-volume="${brief ? brief.volume : 0}" data-duo="${brief && brief.duo ? 1 : 0}" data-series="${m.series || ''}"${
           m.external ? ' target="_blank" rel="noopener"' : ''
         }>
-        <div class="model-card-media${m.external ? ' model-card-media--contain' : ''}">
-          <img src="${m.image}" alt="${m.imageAlt}" loading="lazy" decoding="async" />
+        <div class="model-card-media${m.external ? ' model-card-media--contain' : ''}${m.thumb ? ' model-card-media--thumb' : ''}">
+          ${
+            m.thumb
+              ? `<img src="${m.thumb.src}" alt="${m.imageAlt}" width="${m.thumb.width}" height="${m.thumb.height}" loading="lazy" decoding="async" />`
+              : `<img src="${m.image}" alt="${m.imageAlt}" loading="lazy" decoding="async" />`
+          }
           ${m.brand ? `<span class="model-card-brand">${m.brand}</span>` : ''}
           ${m.external ? '' : renderSpecs(brief)}
         </div>
         <div class="model-card-content">
           <h3 class="model-card-name">${m.name}</h3>
           <p class="model-card-tagline">${m.tagline}</p>
-          <div class="model-card-price">od ${formatPrice(m.price, m.currency)}</div>
+          <div class="model-card-price">${formatPrice(m.price, m.currency)}${m.priceTier ? `<span class="model-card-tier">${m.priceTier}</span>` : ''}</div>
           <span class="model-card-cta">${m.external ? 'Zobrazit na SwimSpa.cz ↗' : 'Zobrazit detail →'}</span>
         </div>
       </a>
@@ -96,7 +104,7 @@ export function renderModelsGrid(hub) {
 // no re-render, so images, reveal state and scroll position are untouched.
 export function bindModelsGrid() {
   const grid = document.querySelector('.models-grid')
-  const tools = document.querySelector('.models-tools')
+  const tools = document.querySelector('.models-toolbar')
   if (!grid || !tools) return
 
   const cards = [...grid.querySelectorAll('.model-card')]
@@ -105,11 +113,13 @@ export function bindModelsGrid() {
   let series = ''
   const countEl = document.querySelector('[data-models-count]')
 
+  const num = (card, key) => (card.dataset[key] === '' ? Infinity : Number(card.dataset[key]))
+
   const apply = () => {
     const key = { price: 'price', length: 'length', volume: 'volume' }[sort]
     const ranked = [...cards].sort((a, b) =>
       key
-        ? (key === 'price' ? 1 : -1) * (Number(a.dataset[key]) - Number(b.dataset[key])) || a.dataset.index - b.dataset.index
+        ? (key === 'price' ? 1 : -1) * (num(a, key) - num(b, key)) || a.dataset.index - b.dataset.index
         : a.dataset.index - b.dataset.index
     )
     ranked.forEach((card, i) => {
@@ -123,17 +133,9 @@ export function bindModelsGrid() {
   }
 
   tools.addEventListener('click', (e) => {
-    const sortBtn = e.target.closest('[data-sort]')
     const duoBtn = e.target.closest('[data-filter-duo]')
     const seriesBtn = e.target.closest('[data-series-filter]')
-    if (sortBtn) {
-      sort = sortBtn.dataset.sort
-      tools.querySelectorAll('[data-sort]').forEach((b) => {
-        const on = b === sortBtn
-        b.classList.toggle('is-active', on)
-        b.setAttribute('aria-pressed', String(on))
-      })
-    } else if (seriesBtn) {
+    if (seriesBtn) {
       series = seriesBtn.dataset.seriesFilter
       tools.querySelectorAll('[data-series-filter]').forEach((b) => {
         const on = b === seriesBtn
@@ -142,9 +144,13 @@ export function bindModelsGrid() {
       })
     } else if (duoBtn) {
       duoOnly = !duoOnly
-      duoBtn.classList.toggle('is-active', duoOnly)
-      duoBtn.setAttribute('aria-pressed', String(duoOnly))
+      duoBtn.classList.toggle('is-on', duoOnly)
+      duoBtn.setAttribute('aria-checked', String(duoOnly))
     } else return
+    apply()
+  })
+  tools.querySelector('[data-sort-select]')?.addEventListener('change', (e) => {
+    sort = e.target.value
     apply()
   })
   apply()

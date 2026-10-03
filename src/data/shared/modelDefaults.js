@@ -2,6 +2,7 @@ import { featureImages, featureBenefits } from './features.js'
 import { savings } from './savings.js'
 import { insulation } from './insulation.js'
 import { showroom } from './showroom.js'
+import { shopPrices } from './shopPrices.js'
 
 // Shell + cabinet colour options — identical swatch row on every Riptide spec
 // sheet in the catalogues (Atlas, Atlantis, Aqua Life and Easy Life alike).
@@ -24,10 +25,16 @@ const materials = {
 // savings + showroom sections, mobile CTA) with the model-specific fields
 // (name, dimensions, variants, spec table) defined in each model's own file.
 export function buildModel(model) {
+  // Prices come from the official SwimSpa.cz e-shop, which sells one equipment level per
+  // model; the other levels have no published price ("Na dotaz").
+  const shopPrice = shopPrices[model.slug]
   return {
     currency: 'Kč',
     heroStyle: 'lifestyle',
     ...model,
+    price: shopPrice ? shopPrice.price : null,
+    priceTier: shopPrice?.tier ?? null,
+    variants: model.variants.map((v) => ({ ...v, price: shopPrice && v.name === shopPrice.tier ? shopPrice.price : null })),
     images: {
       feature: featureImages,
       ...model.images,

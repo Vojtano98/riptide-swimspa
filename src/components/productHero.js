@@ -13,8 +13,8 @@ function renderLifestyleHero(product) {
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">
           <div>
-            <div class="hero-price-label">Cena</div>
-            <div class="hero-price">od ${formatPrice(product.price, product.currency)}</div>
+            <div class="hero-price-label">Cena${product.priceTier ? ` · výbava ${product.priceTier}` : ''}</div>
+            <div class="hero-price">${formatPrice(product.price, product.currency)}</div>
           </div>
           <div class="hero-actions">
             <button class="btn btn-primary" data-open-inquiry>Spočítat finální cenu</button>
@@ -45,8 +45,8 @@ function renderCutoutHero(product) {
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">
           <div>
-            <div class="hero-price-label">Cena</div>
-            <div class="hero-price">od ${formatPrice(product.price, product.currency)}</div>
+            <div class="hero-price-label">Cena${product.priceTier ? ` · výbava ${product.priceTier}` : ''}</div>
+            <div class="hero-price">${formatPrice(product.price, product.currency)}</div>
           </div>
           <div class="hero-actions">
             <button class="btn btn-primary" data-open-inquiry>Spočítat finální cenu</button>

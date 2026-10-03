@@ -10,7 +10,7 @@ export function renderModelCompare(hub) {
   if (models.length < 2 || briefs.some((b) => !b)) return ''
 
   const rows = [
-    ['Cena od', (m) => formatPrice(m.price, m.currency)],
+    ['Cena', (m) => (m.price == null ? null : `${formatPrice(m.price, m.currency)}${m.priceTier ? `<small class="cmp-tier">${m.priceTier}</small>` : ''}`)],
     ['Délka', (m, b) => `${formatNumber(b.length)} cm`],
     ['Šířka', (m, b) => `${formatNumber(b.width)} cm`],
     ['Hloubka', (m, b) => `${formatNumber(b.height)} cm`],

@@ -1,5 +1,6 @@
 import { formatPrice } from '../utils/format.js'
 import { icon } from '../utils/icons.js'
+import { sortVariants, initialVariant } from '../utils/variants.js'
 
 // Interactive trim picker, kept compact: a segmented control (name + price) switches tiers;
 // one panel shows what that tier is (highlights) and what changes versus the base tier.
@@ -8,15 +9,15 @@ import { icon } from '../utils/icons.js'
 // side-by-side comparison of all tiers.
 export function renderTrimComparison(model) {
   const { specRows } = model
-  const variants = [...model.variants].sort((a, b) => a.price - b.price)
+  const variants = sortVariants(model.variants)
   const base = variants[0]
-  const initialId = (variants.find((v) => v.featured) || base).id
+  const initialId = initialVariant(model).id
 
   const tabs = variants
     .map((v) => {
       const isActive = v.id === initialId
       return `
-      <button class="trim-tab${isActive ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" data-trim-name="${v.name}" data-trim-price="${v.price}" type="button" role="tab" aria-selected="${isActive}">
+      <button class="trim-tab${isActive ? ' is-active' : ''}" data-trim-tab data-trim-id="${v.id}" data-trim-name="${v.name}" data-trim-price="${v.price ?? ''}" type="button" role="tab" aria-selected="${isActive}">
         <span class="trim-tab-name">${v.name}</span>
         <span class="trim-tab-price">${formatPrice(v.price, model.currency)}</span>
         ${v.featured ? '<span class="trim-tab-badge">Doporučeno</span>' : ''}
@@ -159,7 +160,7 @@ export function bindTrimComparison() {
       lists.forEach((l) => l.classList.toggle('is-active', l.dataset.trimId === id))
       document.dispatchEvent(
         new CustomEvent('trim:change', {
-          detail: { id, name: tab.dataset.trimName, price: Number(tab.dataset.trimPrice) },
+          detail: { id, name: tab.dataset.trimName, price: tab.dataset.trimPrice === '' ? null : Number(tab.dataset.trimPrice) },
         })
       )
     })

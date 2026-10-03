@@ -1,10 +1,12 @@
 // "Equipment at a glance": the handful of specs people compare first, as big numbers,
 // for the equipment level currently selected in the picker above (trim:change swaps it).
+import { sortVariants, initialVariant } from '../utils/variants.js'
+
 const CANDIDATES = ['seating', 'capacity', 'massageJets', 'swimJets', 'tenSpeed', 'swimPumps', 'weight']
 
 export function renderModelHighlights(model) {
-  const variants = [...model.variants].sort((a, b) => a.price - b.price)
-  const initial = variants.find((v) => v.featured) || variants[0]
+  const variants = sortVariants(model.variants)
+  const initial = initialVariant(model)
   const labels = Object.fromEntries(model.specRows.map((r) => [r.key, r.label]))
 
   const sets = variants

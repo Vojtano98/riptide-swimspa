@@ -16,9 +16,11 @@ import { applyBasePath } from './utils/basePath.js'
 import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { withShopData } from './data/shared/shopData.js'
 import { initAnchors } from './utils/anchors.js'
 
-export function renderSeriesPage(series) {
+export function renderSeriesPage(rawSeries) {
+  const series = { ...rawSeries, models: withShopData(rawSeries.models) }
   const app = document.getElementById('app')
 
   app.innerHTML = [

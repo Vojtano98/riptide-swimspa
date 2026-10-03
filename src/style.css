@@ -4160,3 +4160,157 @@ html.lb-open { overflow: hidden; }
   .models-tools-group .chip, .models-tools-label { flex: none; white-space: nowrap; }
   .models-tools > .chip--filter { flex: none; }
 }
+
+/* ==========================================================================
+   Model list toolbar (series segmented control · Duo switch · sort menu) and
+   real product thumbnails on the cards
+   ========================================================================== */
+.models-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  margin: -12px 0 12px;
+}
+.models-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.seg::-webkit-scrollbar { display: none; }
+.seg-btn {
+  flex: none;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.seg-btn:hover:not(.is-active) { color: var(--text); }
+.seg-btn.is-active {
+  background: var(--dark);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(10, 20, 24, 0.18);
+}
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.switch-track {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  border-radius: 999px;
+  background: #d5dbde;
+  transition: background 0.25s var(--ease);
+}
+.switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(10, 20, 24, 0.3);
+  transition: transform 0.25s var(--ease);
+}
+.switch.is-on .switch-track { background: var(--accent); }
+.switch.is-on .switch-knob { transform: translateX(16px); }
+.sort-select {
+  position: relative;
+  display: inline-flex;
+}
+.sort-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 42px;
+  padding: 0 40px 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-white)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' stroke='%2351595e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+.sort-select select:hover, .sort-select select:focus-visible { border-color: var(--accent); outline: none; }
+.models-count {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Real product pictures (transparent PNG → WebP): shown whole on a soft studio backdrop. */
+.model-card-media--thumb {
+  background: radial-gradient(120% 90% at 50% 35%, #ffffff 0%, #eef2f4 100%);
+}
+.model-card-media--thumb img {
+  object-fit: contain;
+  padding: 7% 6% 11%;
+}
+.model-card-tier {
+  margin-left: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  vertical-align: 2px;
+}
+.cmp-tier {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 720px) {
+  .models-toolbar { margin-top: 0; }
+  .seg { width: 100%; }
+  .seg-btn { padding: 9px 14px; font-size: 13px; }
+  .models-toolbar-right { width: 100%; margin-left: 0; flex-wrap: wrap; gap: 12px; }
+  .sort-select { order: -1; flex: 1 1 100%; }
+  .sort-select select { width: 100%; height: 44px; }
+}
+/* Light thumbnails: the spec strip reads dark-on-light instead of white-on-dark. */
+.model-card-media--thumb .model-card-specs {
+  color: var(--text-secondary);
+  background: linear-gradient(180deg, rgba(238, 242, 244, 0), rgba(238, 242, 244, 0.96) 55%);
+}
+.model-card-media--thumb .model-card-specs b { color: var(--text); }

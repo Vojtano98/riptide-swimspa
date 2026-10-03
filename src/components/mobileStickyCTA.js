@@ -4,8 +4,8 @@ export function renderMobileStickyCTA(product) {
   return `
     <div class="mobile-cta" id="mobile-cta">
       <div>
-        <div class="mobile-cta-price-label">Cena</div>
-        <div class="mobile-cta-price">od ${formatPrice(product.price, product.currency)}</div>
+        <div class="mobile-cta-price-label">Cena${product.priceTier ? ` · ${product.priceTier}` : ''}</div>
+        <div class="mobile-cta-price">${formatPrice(product.price, product.currency)}</div>
       </div>
       <button class="btn btn-primary" data-open-inquiry>Spočítat cenu</button>
     </div>

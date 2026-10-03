@@ -1,12 +1,13 @@
 import { formatNumber } from '../utils/format.js'
 import { startCountUp, resetCountUp } from '../utils/countUp.js'
+import { sortVariants } from '../utils/variants.js'
 
 const parseCm = (s) => parseFloat(s.replace(',', '.'))
 
 // Scaled top + side outline of the model drawn from the spec-sheet dimensions, so
 // "will it fit in my garden" is answered at a glance. Pure SVG, no assets.
 export function renderModelDimensions(model) {
-  const base = [...model.variants].sort((a, b) => a.price - b.price)[0]
+  const base = sortVariants(model.variants)[0]
   const m = base?.specs?.dimensions?.match(/([\d.,]+)\s*×\s*([\d.,]+)\s*×\s*([\d.,]+)/)
   if (!m) return ''
   const [L, Wd, H] = [m[1], m[2], m[3]].map(parseCm)
