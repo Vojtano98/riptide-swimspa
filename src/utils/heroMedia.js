@@ -24,26 +24,21 @@ export function heroMedia(src, alt) {
   `
 }
 
-// Reveals the hero as one moment: the sharp photo fades in once decoded, and the title /
-// tagline rise in together with it — but never wait longer than MAX_WAIT_MS (slow network),
-// in which case the text comes in over the blurred photo and the sharp one fades in later.
-const MAX_WAIT_MS = 900
+// The title and tagline rise in right away over the blurred photo (so the largest, slowest
+// element — the sharp image — is what defines load time, not an animation we delayed), and
+// the sharp image fades in over the blur as soon as it is decoded.
+const FAILSAFE_MS = 4000
 
 export function bindHeroReady(hero) {
   if (!hero) return
   const img = hero.querySelector('.hero-media img')
-  const timeout = new Promise((resolve) => setTimeout(resolve, MAX_WAIT_MS))
+  requestAnimationFrame(() => hero.classList.add('is-loaded'))
 
-  const imageReady = img
-    ? (img.decode ? img.decode() : new Promise((r) => (img.complete ? r() : img.addEventListener('load', r, { once: true }))))
-        .catch(() => {})
-        .then(() => hero.classList.add('is-ready'))
-    : Promise.resolve()
-  const fontsReady = document.fonts?.ready ?? Promise.resolve()
-  // Failsafe: whatever happens to decode(), the photo must never stay invisible.
-  setTimeout(() => hero.classList.add('is-ready'), MAX_WAIT_MS + 3000)
-
-  Promise.race([Promise.all([imageReady, fontsReady]), timeout]).then(() =>
-    requestAnimationFrame(() => hero.classList.add('is-loaded'))
-  )
+  const ready = () => hero.classList.add('is-ready')
+  if (!img) return ready()
+  if (img.decode) img.decode().then(ready, ready)
+  else if (img.complete) ready()
+  else img.addEventListener('load', ready, { once: true })
+  // Whatever happens to decode(), the photo must never stay invisible.
+  setTimeout(ready, FAILSAFE_MS)
 }

@@ -26,6 +26,7 @@ export function renderHomePage(home) {
   // → which one is for me → which model → can I trust the maker → come and see it.
   app.innerHTML = [
     renderHeader({ transparent: true }),
+    '<main id="main" tabindex="-1">',
     renderHeroHome(home),
     renderJetMomentScroll(home.jetMoment),
     renderQuietStatement(home.quiet.afterCategories),
@@ -37,6 +38,7 @@ export function renderHomePage(home) {
     renderTrustSection(home),
     renderShowroomSection(home),
     renderFinalCtaHome(home),
+    '</main>',
     renderFooter(),
   ].join('')
 

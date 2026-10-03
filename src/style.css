@@ -1,7 +1,22 @@
-/* Manrope is loaded via a <link rel="stylesheet"> in each page's <head>, not @import here —
-   an @import inside this file forces the browser to fetch, parse and parse-block on it only
-   after this whole stylesheet has downloaded, serially delaying first text paint. A <link>
-   in the HTML is discovered by the preload scanner immediately and fetched in parallel. */
+/* Manrope is self-hosted (variable font, two subsets: latin-ext covers Czech diacritics).
+   Both files are preloaded from every page's <head>, so text paints in the final font
+   with no request to a third party. */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/assets/fonts/manrope-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/assets/fonts/manrope-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 /* Tokens */
 :root {
@@ -16,6 +31,8 @@
   --border-dark: rgba(238, 244, 245, 0.12);
   --accent: #0891b2;
   --accent-soft: rgba(8, 145, 178, 0.12);
+  /* Accent for text on light backgrounds: --accent itself is only 3.5:1 there, this is 5.3:1. */
+  --accent-ink: #0e7490;
 
   --container: 1400px;
   --gutter: clamp(20px, 4vw, 64px);
@@ -88,7 +105,7 @@ button {
 
 .eyebrow {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -146,7 +163,7 @@ p {
 }
 
 .label-sm {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -381,7 +398,7 @@ p {
   gap: 8px;
 }
 .brand-partner-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -643,7 +660,7 @@ p {
   transform: translateY(0);
 }
 .hero-price-label {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
@@ -678,7 +695,7 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -853,7 +870,7 @@ p {
   position: absolute;
   top: clamp(20px, 2.4vw, 32px);
   right: clamp(20px, 2.4vw, 32px);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -938,7 +955,7 @@ p {
 .trim-tab.is-active .trim-tab-price { color: rgba(255, 255, 255, 0.78); }
 .trim-tab-badge {
   margin-top: 4px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -991,7 +1008,7 @@ p {
 }
 .trim-delta-eyebrow {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1047,7 +1064,7 @@ p {
   white-space: nowrap;
 }
 .trim-table thead th {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1113,7 +1130,7 @@ p {
   border-radius: 999px;
   background: var(--accent);
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1158,7 +1175,7 @@ p {
   box-shadow: inset 0 0 0 3px var(--bg-white);
 }
 .material-swatch-name {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 @media (max-width: 900px) {
@@ -1319,7 +1336,7 @@ p {
 }
 .quick-spec-label {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--text-secondary);
@@ -1542,7 +1559,7 @@ p {
 }
 .benefit-label {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1775,7 +1792,7 @@ p {
   transform: scale(1.1);
 }
 .swatch-name {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -2059,7 +2076,7 @@ p {
   position: absolute;
   top: 12px;
   left: 12px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2124,7 +2141,7 @@ p {
   flex-wrap: wrap;
 }
 .footer-col-title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2229,7 +2246,7 @@ p {
   grid-column: 1 / -1;
 }
 .form-field label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -2321,7 +2338,7 @@ p {
   transform: translateY(0);
 }
 .mobile-cta-price-label {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-secondary);
@@ -2484,7 +2501,7 @@ p {
 }
 .savings-note {
   margin-top: 24px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--dark-text-secondary);
 }
 @media (max-width: 900px) {
@@ -2557,7 +2574,7 @@ p {
   gap: 8px 16px;
 }
 .showroom-contact-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2969,7 +2986,7 @@ p {
 }
 .models-tools-label {
   margin-right: 4px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -3026,7 +3043,7 @@ p {
   left: 0;
   z-index: 1;
   background: var(--bg-white);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -3111,7 +3128,7 @@ p {
 }
 .model-bar-title strong { font-size: 15px; }
 .model-bar-title span {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 .model-bar-nav {
@@ -3173,7 +3190,7 @@ p {
 }
 .trim-panel-note {
   margin: 12px 0 0;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 
@@ -3205,7 +3222,7 @@ p {
   border-radius: var(--radius-m);
 }
 .hl-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -3540,7 +3557,7 @@ html.lb-open { overflow: hidden; }
 }
 .equip-row:first-child { border-top: 0; padding-top: 0; }
 .equip-row dt {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -3598,7 +3615,7 @@ html.lb-open { overflow: hidden; }
 .ins-diagram svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
 .ins-note {
   margin: 12px 0 0;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
   color: var(--dark-text-secondary);
 }
@@ -3805,7 +3822,7 @@ html.lb-open { overflow: hidden; }
   .nav-trigger {
     pointer-events: none;
     cursor: default;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -3919,7 +3936,7 @@ html.lb-open { overflow: hidden; }
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 12px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3961,7 +3978,7 @@ html.lb-open { overflow: hidden; }
 .about-block-title::-webkit-details-marker { display: none; }
 .about-block-title:hover { color: var(--accent); }
 .about-block-n {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--accent);
@@ -4082,7 +4099,7 @@ html.lb-open { overflow: hidden; }
   border-bottom: 1px solid var(--border);
 }
 .spec-row dt {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--text-secondary);
@@ -4133,7 +4150,7 @@ html.lb-open { overflow: hidden; }
 .site-nav a.nav-trigger { display: inline-flex; align-items: center; gap: 6px; }
 @media (max-width: 1199px) {
   .site-nav a.nav-trigger {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -4286,7 +4303,7 @@ html.lb-open { overflow: hidden; }
   padding: 3px 9px;
   border-radius: 999px;
   background: var(--bg);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--text-secondary);
@@ -4295,7 +4312,7 @@ html.lb-open { overflow: hidden; }
 .cmp-tier {
   display: block;
   margin-top: 2px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -4314,3 +4331,82 @@ html.lb-open { overflow: hidden; }
   background: linear-gradient(180deg, rgba(238, 242, 244, 0), rgba(238, 242, 244, 0.96) 55%);
 }
 .model-card-media--thumb .model-card-specs b { color: var(--text); }
+
+/* ==========================================================================
+   Accessibility pass: text contrast, keyboard focus, skip link, touch targets
+   ========================================================================== */
+
+/* Accent as text colour on light backgrounds uses the darker ink (AA contrast); on dark
+   surfaces the original, brighter accent is kept. */
+.eyebrow,
+.model-card-cta,
+.trim-panel-price,
+.trim-delta-eyebrow,
+.about-block-n,
+.install-step-number,
+.variant-badge,
+.blog-card-cta,
+.type-card-cta {
+  color: var(--accent-ink);
+}
+.trim-tab-badge { color: var(--accent-ink); }
+.trim-tab.is-active .trim-tab-badge { color: #5fd0e8; }
+:is(.section--dark, .quiet--dark, .ins, .jet-moment, .site-footer, .benefit-card, .final-cta, .modal) .eyebrow {
+  color: var(--accent);
+}
+.hero .eyebrow { color: rgba(255, 255, 255, 0.78); }
+
+/* Keyboard focus: a clear ring everywhere, white on dark surfaces. */
+:where(a, button, select, input, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+:where(.btn, .chip, .seg-btn, .trim-tab, .sort-select select, .about-toggle-all, .nav-toggle):focus-visible {
+  border-radius: 999px;
+}
+:where(.section--dark, .quiet--dark, .ins, .jet-moment, .hero, .site-footer, .final-cta, .benefit-card) :focus-visible {
+  outline-color: #fff;
+}
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 1px;
+}
+main:focus { outline: none; }
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease);
+}
+.skip-link:focus { transform: none; }
+
+/* Comfortable touch targets (44 px) on touch screens and on phones. */
+@media (pointer: coarse), (max-width: 760px) {
+  .footer-col a,
+  .footer-legal a,
+  .showroom-contact-value,
+  .breadcrumb a,
+  .btn-text {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .footer-col a, .footer-col span { margin-bottom: 0; }
+  .brand-lockup { min-height: 44px; display: inline-flex; align-items: center; }
+  .seg-btn, .chip, .about-toggle-all, .about-switch button, .switch, .trim-tab, .sort-select select {
+    min-height: 44px;
+  }
+  .footer-col a { width: 100%; }
+}

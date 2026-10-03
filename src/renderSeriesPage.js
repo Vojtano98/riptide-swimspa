@@ -25,6 +25,7 @@ export function renderSeriesPage(rawSeries) {
 
   app.innerHTML = [
     renderHeader(),
+    '<main id="main" tabindex="-1">',
     renderBreadcrumb(series.breadcrumb),
     renderModelsGrid(series),
     renderModelCompare(series),
@@ -34,6 +35,7 @@ export function renderSeriesPage(rawSeries) {
     renderSavingsSection(series),
     renderShowroomSection(series),
     renderFinalCtaHome(series),
+    '</main>',
     renderFooter(),
   ].join('')
 

@@ -64,39 +64,64 @@ export function bindJetMomentScroll() {
   if (!section || !frames.length || !content || !stage) return
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const saveData = navigator.connection?.saveData
-  if (prefersReducedMotion || saveData) {
+  const conn = navigator.connection
+  const slow = conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType))
+  if (prefersReducedMotion || slow) {
     section.classList.add('is-static')
     return
   }
 
-  // Promote all deferred frames from data-src to src together, well before the
-  // section reaches the viewport (large rootMargin = long lead time), so the
-  // full sequence is already decoded by the time the visitor starts scrubbing
-  // it — only the *timing* of the request is deferred, not its availability
-  // during the animation itself.
-  const loadObserver = new IntersectionObserver(
-    (entries) => {
-      if (!entries.some((e) => e.isIntersecting)) return
-      frames.forEach((frame) => {
-        const src = frame.dataset.src
-        if (src) {
-          frame.src = src
-          delete frame.dataset.src
-        }
-      })
-      loadObserver.disconnect()
-    },
-    { rootMargin: '400px 0px' }
-  )
-  loadObserver.observe(section)
+  // The 119 deferred frames (~2 MB) are fetched progressively and never before the page
+  // has had its say: nothing starts until the visitor first scrolls (or, failing that,
+  // ~2.5 s after load). A coarse pass (every 4th frame) goes first so the sequence already
+  // plays — a little choppier — by the time the section is reached; the rest fills in after.
+  // Six requests at a time keep the network free for whatever the visitor is looking at.
+  const loaded = new Set()
+  const markLoaded = (i) => loaded.add(i)
+  if (frames[0].complete && frames[0].naturalWidth) markLoaded(0)
+  else frames[0].addEventListener('load', () => markLoaded(0), { once: true })
+
+  const order = [...frames.keys()].slice(1).sort((a, b) => (a % 4 === 0 ? 0 : 1) - (b % 4 === 0 ? 0 : 1) || a - b)
+  const loadFrame = (i) =>
+    new Promise((resolve) => {
+      const f = frames[i]
+      if (!f.dataset.src) return resolve()
+      f.addEventListener('load', () => (markLoaded(i), resolve()), { once: true })
+      f.addEventListener('error', resolve, { once: true })
+      f.src = f.dataset.src
+      delete f.dataset.src
+    })
+  let started = false
+  const startLoading = async () => {
+    if (started) return
+    started = true
+    window.removeEventListener('scroll', startLoading)
+    frames[0].loading = 'eager'
+    for (let k = 0; k < order.length; k += 6) await Promise.all(order.slice(k, k + 6).map(loadFrame))
+  }
+  window.addEventListener('scroll', startLoading, { passive: true, once: true })
+  const afterLoad = () => setTimeout(startLoading, 2500)
+  if (document.readyState === 'complete') afterLoad()
+  else window.addEventListener('load', afterLoad, { once: true })
+
+  // Show the closest frame that has actually arrived, so a half-loaded sequence never
+  // flashes an empty stage.
+  const nearestLoaded = (i) => {
+    if (loaded.has(i)) return i
+    for (let d = 1; d < frames.length; d++) {
+      if (loaded.has(i - d)) return i - d
+      if (loaded.has(i + d)) return i + d
+    }
+    return null
+  }
 
   let activeIndex = 0
   let zCounter = 1
   frames[0].style.zIndex = zCounter
 
   const applyProgress = (progress) => {
-    const index = Math.min(frames.length - 1, Math.round(progress * (frames.length - 1)))
+    const wanted = Math.min(frames.length - 1, Math.round(progress * (frames.length - 1)))
+    const index = nearestLoaded(wanted) ?? activeIndex
     if (index !== activeIndex) {
       // Only the incoming frame ever fades (0 -> 1); the outgoing one is left at
       // opacity 1 and simply covered by the next frame's higher z-index, so there's

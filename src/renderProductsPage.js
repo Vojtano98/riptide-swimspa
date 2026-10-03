@@ -40,10 +40,12 @@ export function renderProductsPage() {
 
   app.innerHTML = [
     renderHeader(),
+    '<main id="main" tabindex="-1">',
     renderBreadcrumb([{ label: 'Domů', href: '/' }, { label: 'Produkty' }]),
     renderModelsGrid(hub),
     renderShowroomSection({ showroom }),
     renderFinalCtaHome({ finalCta: home.finalCta }),
+    '</main>',
     renderFooter(),
   ].join('')
 

@@ -30,6 +30,7 @@ export function renderModelPage(model) {
 
   app.innerHTML = [
     renderHeader({ transparent: true }),
+    '<main id="main" tabindex="-1">',
     renderProductHero(model),
     renderQuickSpecs(model),
     renderModelAbout(model),
@@ -45,6 +46,7 @@ export function renderModelPage(model) {
     renderSavingsSection(model),
     renderShowroomSection(model),
     renderFinalCtaHome(model),
+    '</main>',
     renderFooter(),
     renderMobileStickyCTA(model),
   ].join('')

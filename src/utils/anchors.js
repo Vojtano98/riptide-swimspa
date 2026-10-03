@@ -14,7 +14,12 @@ function settle(el, tries = 0) {
   setTimeout(() => settle(el, tries + 1), 140)
 }
 
+const focusTarget = (el) => {
+  if (el.matches('main, [tabindex="-1"]')) el.focus({ preventScroll: true })
+}
+
 export function scrollToTarget(el, { smooth = true } = {}) {
+  focusTarget(el)
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0
   const top = el.getBoundingClientRect().top + window.scrollY - margin

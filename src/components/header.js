@@ -27,6 +27,7 @@ const panelLinks = (items) =>
 
 export function renderHeader({ transparent = false } = {}) {
   return `
+    <a class="skip-link" href="#main">Přeskočit na obsah</a>
     <header class="site-header${transparent ? ' site-header--transparent' : ''}" id="site-header">
       <div class="container">
         <a href="/" class="brand-lockup" aria-label="Riptide Swim Spa — domů">

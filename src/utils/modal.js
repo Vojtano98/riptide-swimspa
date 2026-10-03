@@ -27,10 +27,33 @@ export function openModal(bodyHTML, { labelledBy = '' } = {}) {
   overlay.querySelector('.modal-close').addEventListener('click', closeModal)
   document.addEventListener('keydown', onKeydown)
 
+  // Everything behind the dialog becomes inert (no tabbing, no screen-reader access),
+  // and Tab / Shift+Tab cycle inside the dialog.
+  const app = document.getElementById('app')
+  if (app) app.inert = true
+  overlay.addEventListener('keydown', trapTab)
+
   const focusable = overlay.querySelector('input, button, textarea, select')
   if (focusable) focusable.focus()
 
   return overlay
+}
+
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), select, textarea, [tabindex]:not([tabindex="-1"])'
+
+function trapTab(e) {
+  if (e.key !== 'Tab' || !activeModal) return
+  const items = [...activeModal.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null)
+  if (!items.length) return
+  const first = items[0]
+  const last = items[items.length - 1]
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault()
+    last.focus()
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault()
+    first.focus()
+  }
 }
 
 function onKeydown(e) {
@@ -42,6 +65,8 @@ export function closeModal() {
   activeModal.classList.remove('is-open')
   document.body.classList.remove('modal-open')
   document.removeEventListener('keydown', onKeydown)
+  const app = document.getElementById('app')
+  if (app) app.inert = false
   const el = activeModal
   activeModal = null
   setTimeout(() => el.remove(), 200)
