@@ -4128,3 +4128,35 @@ html.lb-open { overflow: hidden; }
   .specs-body { animation: none; }
   .specs-chev { transition: none; }
 }
+
+/* "Produkty" is a real link (to the full catalogue) that also opens the series dropdown. */
+.site-nav a.nav-trigger { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 1199px) {
+  .site-nav a.nav-trigger {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+}
+.models-count {
+  margin: -6px 0 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .models-tools { gap: 10px; }
+  .models-tools-group {
+    flex-wrap: nowrap;
+    width: calc(100% + 2 * var(--gutter, 20px));
+    margin-inline: calc(-1 * var(--gutter, 20px));
+    padding-inline: var(--gutter, 20px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .models-tools-group::-webkit-scrollbar { display: none; }
+  .models-tools-group .chip, .models-tools-label { flex: none; white-space: nowrap; }
+  .models-tools > .chip--filter { flex: none; }
+}

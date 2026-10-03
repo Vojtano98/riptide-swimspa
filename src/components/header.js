@@ -3,6 +3,7 @@ const CHEVRON =
 
 // Series descriptors are the same eyebrows the homepage category tiles use.
 const PRODUCTS = [
+  { href: '/produkty/', title: 'Všechny produkty', text: 'Přehled všech modelů a cen' },
   { href: '/atlas/', title: 'Atlas', text: 'Standardní hloubka · pool' },
   { href: '/atlantis/', title: 'Atlantis', text: 'Extra hloubka · pool' },
   { href: '/aqua-life/', title: 'Aqua Life', text: 'Standardní hloubka · swim spa' },
@@ -45,7 +46,7 @@ export function renderHeader({ transparent = false } = {}) {
         <nav>
           <ul class="site-nav" id="site-nav">
             <li class="nav-group">
-              <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="nav-products">Produkty ${CHEVRON}</button>
+              <a href="/produkty/" class="nav-trigger" aria-controls="nav-products" data-nav-link>Produkty ${CHEVRON}</a>
               <div class="nav-panel" id="nav-products">
                 ${panelLinks(PRODUCTS)}
               </div>
@@ -103,10 +104,11 @@ export function bindHeader() {
     groups.forEach((g) => {
       if (g === except) return
       g.classList.remove('is-open')
-      g.querySelector('.nav-trigger').setAttribute('aria-expanded', 'false')
+      g.querySelector('.nav-trigger').setAttribute?.('aria-expanded', 'false')
     })
   groups.forEach((g) => {
     const trigger = g.querySelector('.nav-trigger')
+    if (trigger.tagName === 'A') return // "Produkty" is a real link; its dropdown opens on hover / focus
     trigger.addEventListener('click', () => {
       const open = g.classList.toggle('is-open')
       trigger.setAttribute('aria-expanded', String(open))
