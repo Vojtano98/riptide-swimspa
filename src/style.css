@@ -2008,7 +2008,11 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 8, 0) 30%, rgba(10, 10, 8, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 8, 0) 18%, rgba(10, 10, 8, 0.62) 52%, rgba(10, 10, 8, 0.9) 100%);
+}
+.category-tile .eyebrow {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 .category-tile-content {
   position: absolute;
