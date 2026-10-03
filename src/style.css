@@ -891,117 +891,60 @@ p {
    affordance is obvious at a glance, each showing its own highlights so scanning
    across tiers already answers "what's better here" before a single click happens.
    See bindTrimComparison() for the click-to-switch behaviour. */
+/* Segmented picker: name + price per tier, equal columns, the active one filled dark. */
 .trim-tabs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
 }
 .trim-tab {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 14px;
-  text-align: left;
-  padding: clamp(20px, 2.2vw, 26px);
-  border-radius: var(--radius-l);
-  border: 2px solid var(--border);
-  background: var(--bg-white);
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 14px 8px 13px;
+  border: none;
+  border-radius: 15px;
+  background: transparent;
   cursor: pointer;
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
   font-family: inherit;
+  color: var(--text);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-.trim-tab:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(18, 24, 27, 0.08);
-}
+.trim-tab:hover:not(.is-active) { background: rgba(255, 255, 255, 0.7); }
 .trim-tab.is-active {
   background: var(--dark);
-  border-color: var(--dark);
-  box-shadow: 0 12px 28px rgba(10, 20, 24, 0.18);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(10, 20, 24, 0.2);
 }
+.trim-tab-name {
+  font-size: clamp(14px, 1.5vw, 17px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.trim-tab-price {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.trim-tab.is-active .trim-tab-price { color: rgba(255, 255, 255, 0.78); }
 .trim-tab-badge {
-  position: absolute;
-  top: clamp(16px, 2vw, 22px);
-  right: clamp(16px, 2vw, 22px);
+  margin-top: 4px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
 }
-.trim-tab.is-active .trim-tab-badge {
-  color: #fff;
-}
-.trim-tab-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  padding-right: 70px;
-}
-.trim-tab-name {
-  font-size: 19px;
-  font-weight: 700;
-}
-.trim-tab.is-active .trim-tab-name {
-  color: #fff;
-}
-.trim-tab-price {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accent);
-  white-space: nowrap;
-}
-.trim-tab.is-active .trim-tab-price {
-  color: #fff;
-}
-.trim-tab-highlights {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-.trim-tab-highlights li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-.trim-tab-highlights svg {
-  flex-shrink: 0;
-  color: var(--accent);
-}
-.trim-tab.is-active .trim-tab-highlights li {
-  color: var(--dark-text-secondary);
-}
-.trim-tab.is-active .trim-tab-highlights svg {
-  color: #fff;
-}
-.trim-tab-action {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.trim-tab.is-active .trim-tab-action {
-  border-top-color: var(--border-dark);
-  color: #fff;
-}
-.trim-tab-action svg {
-  color: inherit;
-}
+.trim-tab.is-active .trim-tab-badge { color: #5fd0e8; }
 
 /* Trim panel — only the active tier's panel is displayed. */
 .trim-panels {
@@ -4043,4 +3986,145 @@ html.lb-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .about-block-body { animation: none; }
   .about-block-chev { transition: none; }
+}
+
+/* ==========================================================================
+   Provedení — compact configurator panel + collapsed parameter sheet
+   ========================================================================== */
+.cfg {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.cfg .trim-panels { margin: 14px 0 0; }
+.cfg .trim-panel {
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: 24px;
+}
+.trim-panel-head { margin-bottom: 6px; }
+.trim-panel-name { font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -0.02em; }
+.trim-panel-price { font-size: clamp(18px, 2vw, 22px); }
+.trim-panel-desc { margin-bottom: 16px; font-size: 15px; line-height: 1.55; }
+.trim-chips {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.trim-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.trim-chips svg { color: var(--accent); flex: none; }
+.cfg .trim-delta {
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+}
+.cfg .trim-delta-list { gap: 0; }
+.cfg .trim-delta-list li {
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(18, 24, 27, 0.07);
+  align-items: baseline;
+}
+.cfg .trim-delta-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.cfg .trim-delta-list li:first-child { padding-top: 0; }
+.cfg .trim-delta-value { text-align: right; }
+.cfg .trim-delta-note { margin-bottom: 20px; }
+.cfg .trim-panel-cta { height: 52px; border-radius: 999px; }
+
+.specs {
+  max-width: 880px;
+  margin: clamp(20px, 3vw, 32px) auto 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 140px;
+}
+.specs-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: color 0.2s var(--ease);
+}
+.specs-summary::-webkit-details-marker { display: none; }
+.specs-summary:hover { color: var(--accent); }
+.specs-chev { color: var(--text-secondary); transition: transform 0.3s var(--ease); }
+.specs[open] .specs-chev { transform: rotate(180deg); }
+.specs-body { padding: 0 0 26px; animation: about-open 0.35s var(--ease); }
+.specs-switch { margin: 0 0 18px; }
+.specs-view { display: none; }
+.specs-view.is-active { display: block; }
+.spec-list { display: none; margin: 0; }
+.spec-list.is-active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(24px, 4vw, 56px);
+}
+.spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+.spec-row dt {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+.spec-row dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.spec-row.is-diff dt::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 1px;
+}
+.specs-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.specs-legend-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.specs .trim-table th:first-child,
+.specs .trim-table td:first-child { position: sticky; left: 0; background: var(--bg-white); }
+.specs .trim-table .trim-row-differs th:first-child { background: var(--accent-soft); }
+
+@media (max-width: 640px) {
+  .spec-list.is-active { grid-template-columns: 1fr; }
+  .spec-row { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .spec-row dd { text-align: right; }
+  .trim-tab { padding: 12px 4px 11px; }
+  .cfg .trim-delta-list li { flex-direction: column; gap: 2px; }
+  .cfg .trim-delta-value { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .specs-body { animation: none; }
+  .specs-chev { transition: none; }
 }
