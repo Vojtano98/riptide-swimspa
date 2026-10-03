@@ -1,3 +1,4 @@
+import { photo } from '../../utils/photo.js'
 export function renderAdvantagesSplit(home) {
   const a = home.advantages
 
@@ -6,7 +7,7 @@ export function renderAdvantagesSplit(home) {
       (c) => `
       <div class="advantage-card" data-reveal>
         <div class="advantage-card-media">
-          <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" decoding="async" />
+          ${photo(c.image, c.imageAlt, { sizes: '(max-width: 900px) 100vw, 50vw' })}
         </div>
         <div class="advantage-card-body">
           <span class="eyebrow">${c.eyebrow}</span>

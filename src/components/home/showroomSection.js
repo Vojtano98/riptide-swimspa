@@ -9,7 +9,7 @@ export function renderShowroomSection(home) {
       : `
         <picture>
           <source type="image/webp" srcset="${img.webp}" />
-          <img src="${img.src}" alt="${s.imageAlt}" loading="lazy" decoding="async" />
+          <img src="${img.src}" alt="${s.imageAlt}" width="806" height="604" loading="lazy" decoding="async" />
         </picture>
       `
 

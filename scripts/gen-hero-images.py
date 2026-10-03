@@ -1,4 +1,4 @@
-"""Responsive WebP variants + tiny blurred placeholder (LQIP) for every hero photo.
+"""Responsive WebP variants + tiny blurred placeholder (LQIP) for every content photo (heroes, tiles, sections).
 
 Writes public/assets/photos/<name>-{640,960,1440}.webp (never upscaled) and
 src/data/shared/heroImages.js (width list + base64 placeholder per photo).
@@ -11,7 +11,9 @@ PHOTOS = 'public/assets/photos'
 NAMES = [
     'hero-aerial-swimmer', 'action-swimmer-underwater', 'detail-water-step',
     'lifestyle-collage-family', 'lifestyle-poolside-friends', 'lifestyle-winter-spa',
-    'product-duo-terrace',
+    'product-duo-terrace', 'spatech-app', 'spatech-panel', 'shell-jets-detail',
+    'swim-spa-cutaway', 'pool-cutaway', 'accessory-band', 'accessory-handrail',
+    'accessory-swim-line', 'accessory-swim-pole',
 ]
 WIDTHS = [640, 960, 1440]
 

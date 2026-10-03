@@ -1,3 +1,4 @@
+import { photo } from '../utils/photo.js'
 // Photo-card variant of textBenefitsGrid, used only for accessories (which now has real
 // product photography). Renders nothing if the series has no accessories data.
 export function renderAccessoryShowcase(section) {
@@ -8,7 +9,7 @@ export function renderAccessoryShowcase(section) {
       (item) => `
       <div class="accessory-card" data-reveal>
         <div class="accessory-card-media">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" />
+          ${photo(item.image, item.title, { sizes: '(max-width: 760px) 50vw, 25vw' })}
         </div>
         <h3 class="accessory-card-title">${item.title}</h3>
         <p class="accessory-card-text">${item.text}</p>

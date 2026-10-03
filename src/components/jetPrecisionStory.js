@@ -1,3 +1,4 @@
+import { photo } from '../utils/photo.js'
 // Renders nothing if the series has no jetPrecision data — Atlas/Atlantis (pure swim
 // pools, no hydrotherapy seating) get their own swim-jet-focused copy + a cropped image
 // instead (see data/shared/poolPrecision.js), never this hydrotherapy-specific version.
@@ -10,7 +11,7 @@ export function renderJetPrecisionStory(section) {
     <section class="section section--white">
       <div class="container">
         <div class="precision-media" data-reveal="scale">
-          <img src="${section.image}" alt="${section.imageAlt}" loading="lazy" decoding="async" />
+          ${photo(section.image, section.imageAlt, { sizes: '(max-width: 900px) 100vw, 50vw' })}
         </div>
         <div class="precision-copy" data-reveal>
           <span class="eyebrow">${section.eyebrow}</span>

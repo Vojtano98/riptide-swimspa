@@ -3,12 +3,16 @@ import { icon } from '../utils/icons.js'
 import { splitWords } from '../utils/splitWords.js'
 import { heroMedia, bindHeroReady } from '../utils/heroMedia.js'
 
+// Catalogue category labels are English; the page is Czech.
+const czCategory = (c) =>
+  c.replace('Standard Depth', 'standardní hloubka').replace('Extra Depth', 'extra hloubka').replace('Dual Zone', 'dvě teplotní zóny')
+
 function renderLifestyleHero(product) {
   return `
     <section class="hero" id="hero">
       ${heroMedia(product.images.hero, product.images.heroAlt)}
       <div class="container hero-content">
-        <span class="eyebrow hero-eyebrow">${product.category}</span>
+        <span class="eyebrow hero-eyebrow">${czCategory(product.category)}</span>
         <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">
@@ -40,7 +44,7 @@ function renderCutoutHero(product) {
     <section class="hero hero--cutout" id="hero">
       ${heroMedia(product.images.hero, product.images.heroAlt)}
       <div class="container hero-content">
-        <span class="eyebrow hero-eyebrow">${product.category}</span>
+        <span class="eyebrow hero-eyebrow">${czCategory(product.category)}</span>
         <h1 class="hero-title has-words">${splitWords(product.name)}</h1>
         <p class="hero-tagline">${product.tagline}</p>
         <div class="hero-meta">

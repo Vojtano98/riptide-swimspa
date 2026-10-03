@@ -4410,3 +4410,7 @@ main:focus { outline: none; }
   }
   .footer-col a { width: 100%; }
 }
+
+/* <picture> wrappers around content photos are layout-transparent: the <img> behaves exactly
+   as it did before it was wrapped (absolute fills, flex items, grid cells). */
+picture { display: contents; }

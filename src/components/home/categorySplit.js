@@ -1,9 +1,10 @@
+import { photo } from '../../utils/photo.js'
 export function renderCategorySplit(home) {
   const cards = home.categories
     .map(
       (c) => `
       <a class="category-tile" href="${c.href}" data-reveal="scale">
-        <img src="${c.image}" alt="${c.imageAlt}" loading="lazy" decoding="async" />
+        ${photo(c.image, c.imageAlt, { sizes: '(max-width: 760px) 100vw, 50vw' })}
         <div class="category-tile-content">
           <span class="eyebrow">${c.eyebrow}</span>
           <h3 class="category-tile-title">${c.title}</h3>

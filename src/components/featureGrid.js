@@ -1,3 +1,5 @@
+import { photo } from '../utils/photo.js'
+
 export function renderFeatureGrid(product) {
   const b = product.benefits
   const images = product.images.feature
@@ -11,7 +13,7 @@ export function renderFeatureGrid(product) {
         </div>
         <div class="benefits-grid">
           <div class="benefit-card benefit-card-hero" data-reveal>
-            <img src="${images[b.hero.image]}" alt="${b.hero.label}" loading="lazy" decoding="async" />
+            ${photo(images[b.hero.image], b.hero.label, { sizes: '100vw' })}
             <div class="benefit-card-content">
               <span class="benefit-label">${b.hero.label}</span>
               <p class="benefit-text">${b.hero.text}</p>
@@ -23,7 +25,7 @@ export function renderFeatureGrid(product) {
               .map(
                 (f) => `
                 <div class="benefit-card benefit-card-secondary" data-reveal>
-                  <img src="${images[f.image]}" alt="${f.label}" loading="lazy" decoding="async" />
+                  ${photo(images[f.image], f.label, { sizes: '(max-width: 900px) 100vw, 33vw' })}
                   <div class="benefit-card-content">
                     <span class="benefit-label">${f.label}</span>
                     <p class="benefit-text">${f.text}</p>
@@ -39,7 +41,7 @@ export function renderFeatureGrid(product) {
               .map(
                 (f) => `
                 <div class="benefit-card benefit-card-tertiary" data-reveal>
-                  <img src="${images[f.image]}" alt="${f.label}" loading="lazy" decoding="async" />
+                  ${photo(images[f.image], f.label, { sizes: '(max-width: 900px) 100vw, 33vw' })}
                   <div class="benefit-card-content">
                     <span class="benefit-label">${f.label}</span>
                     <p class="benefit-text">${f.text}</p>

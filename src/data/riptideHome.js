@@ -3,7 +3,7 @@ import { showroom } from './shared/showroom.js'
 
 export const home = {
   hero: {
-    eyebrow: 'FOR FITNESS, RELAXATION AND FUN',
+    eyebrow: 'RIPTIDE SWIM SPA',
     title: 'Plavání, relaxace, zábava.',
     tagline: 'Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz.',
     image: '/assets/photos/hero-aerial-swimmer.jpg',
@@ -122,7 +122,7 @@ export const home = {
         layout: 'image-right',
         image: '/assets/photos/lifestyle-winter-spa.jpg',
         eyebrow: '5STUPŇOVÁ IZOLACE PLATINUM LOCK',
-        claim: 'Až o 26 % nižší náklady na ohřev než standard CEC.',
+        claim: 'Teplo zůstává ve vodě — celý rok.',
         text: 'Uzamykatelný kryt z vysokohustotní pěny, celoplošná pěnová izolace a třívrstvá tepelná bariéra drží teplo tam, kam patří — ve vodě, celý rok.',
       },
       {
@@ -151,7 +151,7 @@ export const home = {
         '1200': '/assets/photos/trust-factory-1200.webp',
         '1800': '/assets/photos/trust-factory-1800.webp',
       },
-      alt: 'Showroom a distribuční zázemí swim spa Riptide',
+      alt: 'Výrobní hala swim spa Riptide',
     },
   },
 
