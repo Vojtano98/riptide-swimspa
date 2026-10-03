@@ -24,6 +24,8 @@ import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
 import { renderModelMassage } from './components/modelMassage.js'
 import { renderModelRelated } from './components/modelRelated.js'
+import { renderReviews } from './components/reviewsSection.js'
+import { renderFaq } from './components/faqSection.js'
 import { initAnchors } from './utils/anchors.js'
 
 export function renderModelPage(model) {
@@ -42,6 +44,8 @@ export function renderModelPage(model) {
     renderModelInsulation(model),
     renderModelMassage(model),
     renderFeatureGrid(model),
+    renderReviews(),
+    renderFaq({ limit: 6 }),
     renderModelRelated(model),
     renderSavingsSection(model),
     renderShowroomSection(model),

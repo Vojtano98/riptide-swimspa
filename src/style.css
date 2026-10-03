@@ -4552,3 +4552,129 @@ picture { display: contents; }
 .form-more .form-grid { padding-top: 8px; }
 .modal-steps { margin: 0 0 4px; padding-left: 20px; text-align: left; display: grid; gap: 8px; color: var(--text-secondary); }
 .form-field input[aria-invalid="true"] { border-color: #c0392b; }
+
+/* Customer ratings (SwimSpa.cz store reviews) */
+.rv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-bottom: clamp(24px, 3vw, 44px);
+}
+.rv-head .h-section { margin-bottom: 0; }
+.rv-summary { display: flex; align-items: center; gap: 16px; }
+.rv-score { font-size: clamp(44px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.rv-stars { display: inline-flex; gap: 2px; color: #f5a623; }
+.rv-count { display: block; margin-top: 4px; font-size: 14px; color: var(--text-secondary); }
+.rv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+}
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: clamp(20px, 2.2vw, 28px);
+  background: var(--bg);
+  border-radius: var(--radius-l);
+}
+.rv-card blockquote { margin: 0; flex: 1; font-size: 16px; line-height: 1.55; color: var(--text); }
+.rv-card figcaption { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--text-secondary); }
+.rv-card figcaption strong { color: var(--text); }
+.rv-source { margin: clamp(18px, 2vw, 28px) 0 0; }
+.rv-source a { font-weight: 700; color: var(--accent-ink); }
+@media (max-width: 900px) {
+  .rv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .rv-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .rv-grid::-webkit-scrollbar { display: none; }
+  .rv-card { flex: 0 0 84%; scroll-snap-align: start; }
+}
+
+/* FAQ */
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 6vw, 96px);
+  align-items: start;
+}
+.faq-head { position: sticky; top: 120px; }
+.faq-head .body-l { margin-bottom: 22px; }
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+.faq-src { color: var(--text-secondary); font-size: 14px; }
+.faq-list .about-block-title { font-size: clamp(16px, 1.5vw, 19px); }
+@media (max-width: 900px) {
+  .faq-layout { grid-template-columns: 1fr; }
+  .faq-head { position: static; }
+}
+
+/* Model advisor */
+.adv-questions { display: grid; gap: 18px; }
+.adv-q { display: grid; gap: 8px; }
+.adv-q[hidden] { display: none; }
+.adv-q-label { font-size: 14px; font-weight: 700; color: var(--text); }
+.adv-seg { max-width: 100%; }
+.adv-status { margin: 22px 0 14px; font-size: 14px; color: var(--text-secondary); }
+.adv-results:empty { display: none; }
+@media (min-width: 900px) {
+  .adv-questions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 32px; }
+}
+
+/* Series page header */
+.series-hero { padding: 12px var(--gutter) 0; max-width: calc(var(--container) + 2 * var(--gutter)); margin: 0 auto; }
+.series-hero-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(380px, 56vh, 560px);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--dark);
+  color: #fff;
+}
+.series-hero-media, .series-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.series-hero-media img { object-fit: cover; }
+.series-hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10, 20, 24, 0.9) 0%, rgba(10, 20, 24, 0.55) 45%, rgba(10, 20, 24, 0.1) 100%);
+}
+.series-hero-body { position: relative; z-index: 1; padding: clamp(24px, 4vw, 56px); max-width: 760px; }
+.series-hero-body .eyebrow { color: rgba(255, 255, 255, 0.78); }
+.series-hero-title { margin: 0 0 14px; font-size: clamp(32px, 4.6vw, 60px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; }
+.series-hero-text { margin: 0 0 22px; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: rgba(255, 255, 255, 0.86); max-width: 62ch; }
+.series-hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.series-hero-facts li {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 13px;
+  font-weight: 600;
+}
+.series-switch { display: flex; justify-content: center; padding-top: 18px; padding-bottom: 4px; }
+.series-switch .seg { max-width: 100%; }
+.series-switch a.seg-btn { display: inline-flex; align-items: center; }
+.series-hero + .section { padding-top: clamp(40px, 5vw, 72px); }
+.breadcrumb + .series-hero { padding-top: 0; }
+
+/* Phones: the pinned scroll sequences are a little shorter, so the page spends less of
+   the visitor's thumb on "waiting" sections. */
+@media (max-width: 760px) {
+  .jet-moment { height: 220vh; }
+  .quiet.is-scrub { height: 140vh; }
+}

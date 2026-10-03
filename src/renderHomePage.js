@@ -17,6 +17,9 @@ import { applyBasePath } from './utils/basePath.js'
 import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { renderReviews } from './components/reviewsSection.js'
+import { renderFaq } from './components/faqSection.js'
+import { renderModelAdvisor, bindModelAdvisor } from './components/home/modelAdvisor.js'
 import { initAnchors } from './utils/anchors.js'
 
 export function renderHomePage(home) {
@@ -33,9 +36,12 @@ export function renderHomePage(home) {
     renderWhyStatements(home),
     renderSavingsSection(home),
     renderAdvantagesSplit(home),
+    renderModelAdvisor(),
     renderQuietStatement(home.quiet.afterAdvantages),
     renderCategorySplit(home),
     renderTrustSection(home),
+    renderReviews(),
+    renderFaq(),
     renderShowroomSection(home),
     renderFinalCtaHome(home),
     '</main>',
@@ -49,6 +55,7 @@ export function renderHomePage(home) {
   bindJetMomentScroll()
   bindSavingsSection()
   bindQuietStatements()
+  bindModelAdvisor()
   bindInquiryModal({ name: 'Riptide swim spa' })
 
   initScrollReveal()

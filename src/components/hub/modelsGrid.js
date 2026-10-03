@@ -86,11 +86,15 @@ export function renderModelsGrid(hub) {
   return `
     <section class="section section--white" id="modely">
       <div class="container">
-        <div class="section-head" data-reveal>
+        ${
+          hub.noHead
+            ? `<div class="section-head" data-reveal><h2 class="h-section">Modely řady ${hub.breadcrumb[hub.breadcrumb.length - 1].label}.</h2></div>`
+            : `<div class="section-head" data-reveal>
           <span class="eyebrow">${hub.intro.eyebrow}</span>
           <h2 class="h-section">${hub.intro.headline}</h2>
           <p class="body-l">${hub.intro.text}</p>
-        </div>
+        </div>`
+        }
         ${renderTools(hub.models, hub.seriesFilter)}
         ${hub.seriesFilter ? `<p class="models-count" aria-live="polite" data-models-count></p>` : ''}
         <div class="models-grid">${cards}</div>

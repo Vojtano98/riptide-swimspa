@@ -16,6 +16,7 @@ import { applyBasePath } from './utils/basePath.js'
 import { initLightbox } from './utils/lightbox.js'
 import { initCountUp } from './utils/countUp.js'
 import { initMagneticButtons } from './utils/magnetic.js'
+import { renderSeriesHero } from './components/hub/seriesHero.js'
 import { withShopData } from './data/shared/shopData.js'
 import { initAnchors } from './utils/anchors.js'
 
@@ -27,7 +28,8 @@ export function renderSeriesPage(rawSeries) {
     renderHeader(),
     '<main id="main" tabindex="-1">',
     renderBreadcrumb(series.breadcrumb),
-    renderModelsGrid(series),
+    renderSeriesHero(series),
+    renderModelsGrid({ ...series, noHead: true }),
     renderModelCompare(series),
     renderTextBenefitsGrid(series.hydrotherapy, { tone: 'tint' }),
     renderJetPrecisionStory(series.jetPrecision),

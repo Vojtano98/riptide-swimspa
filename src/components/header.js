@@ -16,6 +16,7 @@ const DISCOVER = [
   { href: '/#technologie', title: 'Technologie', text: 'Co dělá Riptide plavecké jádro jiným' },
   { href: '/#uspora', title: 'Úspora energie', text: 'Až o 26 % nižší náklady na ohřev' },
   { href: '/#reseni', title: 'Která řada je pro vás', text: 'Jedno plavecké jádro. Čtyři řady na míru.' },
+  { href: '/#pruvodce', title: 'Najděte svůj model', text: 'Pár otázek a ukážeme, co vám sedí' },
   { href: '/#kategorie', title: 'Řady Riptide', text: 'Čtyři řady. Jedno plavecké jádro.' },
   { href: '/#vyroba', title: 'Výroba a servis', text: 'Zázemí, na které se dá spolehnout' },
 ]

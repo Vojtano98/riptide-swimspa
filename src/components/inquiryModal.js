@@ -39,7 +39,7 @@ function formHTML(context) {
           <label for="f-email">E-mail</label>
           <input id="f-email" name="email" type="email" autocomplete="email" />
         </div>
-        <p class="form-hint full">Stačí vyplnit telefon <strong>nebo</strong> e-mail.</p>
+        <p class="form-hint" style="grid-column: 1 / -1">Stačí vyplnit telefon <strong>nebo</strong> e-mail.</p>
       </div>
       <details class="form-more">
         <summary>Chci doplnit lokalitu a poznámku <span class="form-optional">(nepovinné)</span></summary>
