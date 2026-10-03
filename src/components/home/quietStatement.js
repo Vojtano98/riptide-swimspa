@@ -45,7 +45,7 @@ export function renderQuietStatement(q) {
   `
 }
 
-const LEAD = 0.6
+const LEAD = 0.4
 
 export function bindQuietStatements() {
   const sections = [...document.querySelectorAll('[data-quiet]')]
@@ -96,7 +96,8 @@ export function bindQuietStatements() {
       const rect = s.section.getBoundingClientRect()
       if (rect.bottom < -innerHeight || rect.top > innerHeight * 2) return
       // Progress starts LEAD of a screen *before* the stage pins, so the first words are
-      // already appearing while the section is still scrolling in (no empty white screen).
+      // already appearing while the section is still scrolling in (no empty white screen), but
+      // only once the sentence itself has come up into the screen.
       const lead = innerHeight * LEAD
       const scrollable = rect.height - innerHeight + lead
       s.target = scrollable > 0 ? Math.min(1, Math.max(0, (lead - rect.top) / scrollable)) : 1
