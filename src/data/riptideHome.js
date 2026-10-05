@@ -81,8 +81,8 @@ export const home = {
 
   jetMoment: {
     eyebrow: 'HYDROMASÁŽ · ŘADY AQUA LIFE A EASY LIFE',
-    claim: 'Po tréninku se jen přesunete o metr dál.',
-    text: 'Teplá voda a cílené masážní trysky uvolní svaly po plavání i po dni v práci. Hydromasážní sezení s lehátkem je součástí každého modelu Aqua Life a Easy Life.',
+    claim: 'Plavání i masáž. V jedné vaně.',
+    text: 'Na jednom konci plavecký proud, na druhém hydromasážní sezení s lehátkem. Teplá voda a cílené trysky uvolní svaly po plavání i po dni v práci.',
     posterAlt: 'Hydromasážní trysky Riptide v provozu — voda vířící v bazénku swim spa',
     frames: Array.from(
       { length: 120 },
