@@ -3,7 +3,7 @@ import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
 import { renderJetMomentScroll, bindJetMomentScroll } from './components/home/jetMomentScroll.js'
 import { renderQuietStatement, bindQuietStatements } from './components/home/quietStatement.js'
 import { renderCategorySplit } from './components/home/categorySplit.js'
-import { renderAdvantagesSplit } from './components/home/advantagesSplit.js'
+import { renderSwimSpaExplainer } from './components/home/swimSpaExplainer.js'
 import { renderTrustSection } from './components/home/trustSection.js'
 import { renderSavingsSection, bindSavingsSection } from './components/home/savingsChart.js'
 import { renderWhyStatements } from './components/home/whyStatements.js'
@@ -25,20 +25,21 @@ import { initAnchors } from './utils/anchors.js'
 export function renderHomePage(home) {
   const app = document.getElementById('app')
 
-  // Order follows the buyer's questions: what is it → why is it better → what does it save
-  // → which one is for me → which model → can I trust the maker → come and see it.
+  // Order follows the buyer's questions: what is a swim spa → why is this one better →
+  // the extras (hydromassage, two temperatures) → what does it cost to run → which series
+  // and model is for me → can I trust the maker → come and see it.
   app.innerHTML = [
     renderHeader({ transparent: true }),
     '<main id="main" tabindex="-1">',
     renderHeroHome(home),
+    renderSwimSpaExplainer(home),
+    renderWhyStatements(home),
     renderJetMomentScroll(home.jetMoment),
     renderQuietStatement(home.quiet.afterCategories),
-    renderWhyStatements(home),
     renderSavingsSection(home),
-    renderAdvantagesSplit(home),
-    renderModelAdvisor(),
     renderQuietStatement(home.quiet.afterAdvantages),
     renderCategorySplit(home),
+    renderModelAdvisor(),
     renderTrustSection(home),
     renderReviews(),
     renderFaq(),

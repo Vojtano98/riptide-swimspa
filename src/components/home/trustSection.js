@@ -39,7 +39,7 @@ export function renderTrustSection(home) {
   return `
     <section class="section section--tint" id="vyroba">
       <div class="container">
-        <div class="trust-layout">
+        <div class="trust-layout${media ? '' : ' trust-layout--plain'}">
           <div class="trust-copy">
             <div class="section-head section-head--tight" data-reveal>
               <span class="eyebrow">${t.eyebrow}</span>

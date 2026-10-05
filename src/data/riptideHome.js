@@ -4,50 +4,74 @@ import { showroom } from './shared/showroom.js'
 export const home = {
   hero: {
     eyebrow: 'RIPTIDE SWIM SPA',
-    title: 'Plavání, relaxace, zábava.',
-    tagline: 'Riptide swim spa — exkluzivně v ČR přes SwimSpa.cz.',
+    title: 'Plavání bez konce. Na pár metrech.',
+    tagline: 'Swim spa je bazén s protiproudem — plavete na místě proti proudu vody. Místo 25metrové dráhy stačí 4 až 8 metrů zahrady.',
     image: '/assets/photos/hero-aerial-swimmer.jpg',
     imageAlt: 'Riptide swim spa — pohled shora na plavce v zahradním bazénu',
+    primaryCta: { label: 'Najít svůj model', href: '#pruvodce' },
+    secondaryCta: { label: 'Prohlédnout řady', href: '#kategorie' },
+  },
+
+  // "What is a swim spa" — the first thing a newcomer needs before any technology talk.
+  explainer: {
+    eyebrow: 'CO JE SWIM SPA',
+    headline: 'Bazén, ve kterém nikdy nedoplavete na konec.',
+    text: 'Plavecké trysky vytvářejí proud a vy proti němu plavete na místě — jako na běžeckém pásu, jen ve vodě. Vana je krátká a dobře izolovaná, takže ji vyhřejete a zakryjete jako vířivku.',
+    image: '/assets/photos/swim-spa-cutaway.jpg',
+    imageAlt: 'Půdorys swim spa Riptide — vlevo hydromasážní zóna, vpravo plavecká dráha',
+    zones: [
+      { label: 'Hydromasážní zóna', note: 'sezení a lehátko s tryskami — u řad Aqua Life a Easy Life' },
+      { label: 'Plavecká dráha', note: 'plavete na místě proti proudu z plaveckých trysek' },
+    ],
+    points: [
+      { title: 'Plavete na místě', text: 'Proud z plaveckých trysek nahrazuje délku bazénu. Žádné otáčky u stěny.' },
+      { title: 'Vejde se na zahradu', text: 'Podle modelu měří 3,9 až 8 metrů na délku a 2,2 až 2,35 metru na šířku.' },
+      { title: 'Plavání i relax', text: 'Řady Aqua Life a Easy Life mají navíc hydromasážní sezení. Modely Duo ho oddělují do vlastní zóny s teplejší vodou.' },
+    ],
   },
 
   categoriesIntro: {
     eyebrow: 'ŘADY RIPTIDE',
-    headline: 'Čtyři řady. Jedno plavecké jádro.',
-    text: 'Standardní i extra hloubka, čistě plavecké bazény i swim spa s hydromasáží — vyberte řadu podle toho, jak budete plavat, relaxovat, nebo obojí.',
+    headline: 'Čtyři řady. Dvě otázky.',
+    text: 'Chcete jen plavat, nebo i relaxovat v hydromasáži? A stačí vám standardní hloubka, nebo chcete hlubší vodu? Odpovědi vás dovedou k jedné ze čtyř řad.',
   },
 
   categories: [
     {
-      eyebrow: 'STANDARDNÍ HLOUBKA · POOL',
+      slug: 'atlas',
+      eyebrow: 'JEN PLAVÁNÍ · STANDARDNÍ HLOUBKA',
       title: 'Atlas',
-      text: 'Vstupní řada plaveckých bazénů se standardní hloubkou 129 cm a patentovanými swim jety.',
+      text: 'Plavecký bazén bez masážního sezení — celá vana patří plavání. Vana vysoká 129 cm.',
       cta: 'Prohlédnout Atlas',
       href: '/atlas/',
       image: '/assets/photos/action-swimmer-underwater.jpg',
       imageAlt: 'Riptide Atlas',
     },
     {
-      eyebrow: 'EXTRA HLOUBKA · POOL',
+      slug: 'atlantis',
+      eyebrow: 'JEN PLAVÁNÍ · EXTRA HLOUBKA',
       title: 'Atlantis',
-      text: 'Extra hloubka 154 cm a nejtlustší skořepina na trhu pro seriózní plavecký trénink.',
+      text: 'Plavecký bazén s hlubší vodou pro náročnější trénink. Vana vysoká 154 cm, hloubka vody přes 140 cm.',
       cta: 'Prohlédnout Atlantis',
       href: '/atlantis/',
       image: '/assets/photos/hero-aerial-swimmer.jpg',
       imageAlt: 'Riptide Atlantis',
     },
     {
-      eyebrow: 'STANDARDNÍ HLOUBKA · SWIM SPA',
+      slug: 'aqua-life',
+      eyebrow: 'PLAVÁNÍ + HYDROMASÁŽ · STANDARDNÍ HLOUBKA',
       title: 'Aqua Life',
-      text: 'Plavání i hydromasáž v jednom — od kompaktní 4.0 po dvouzónovou 6.0 Duo.',
+      text: 'Plavání i hydromasáž v jedné vaně — od kompaktní 4.0 po dvouzónovou 6.0 Duo.',
       cta: 'Prohlédnout Aqua Life',
       href: '/aqua-life/',
       image: '/assets/photos/lifestyle-poolside-friends.jpg',
       imageAlt: 'Riptide Aqua Life',
     },
     {
-      eyebrow: 'EXTRA HLOUBKA · SWIM SPA',
+      slug: 'easy-life',
+      eyebrow: 'PLAVÁNÍ + HYDROMASÁŽ · EXTRA HLOUBKA',
       title: 'Easy Life',
-      text: 'Nejširší nabídka velikostí — osm modelů od 4.4 po vlajkovou 8.0 Duo.',
+      text: 'Plavání i hydromasáž s hlubší vodou. Nejširší výběr velikostí — až po vlajkovou 8.0 Duo.',
       cta: 'Prohlédnout Easy Life',
       href: '/easy-life/',
       image: '/assets/photos/product-duo-terrace.jpg',
@@ -56,9 +80,9 @@ export const home = {
   ],
 
   jetMoment: {
-    eyebrow: 'HYDROMASÁŽNÍ ZÓNA',
-    claim: 'Stovky litrů vody v pohybu. Klid pro tělo i mysl.',
-    text: 'Teplá voda a cílené masážní trysky uvolňují svaly, zmírňují stres a zlepšují krevní oběh — přesně to nabízí hydromasážní zóny u řad Aqua Life a Easy Life.',
+    eyebrow: 'HYDROMASÁŽ · ŘADY AQUA LIFE A EASY LIFE',
+    claim: 'Po tréninku se jen přesunete o metr dál.',
+    text: 'Teplá voda a cílené masážní trysky uvolní svaly po plavání i po dni v práci. Hydromasážní sezení s lehátkem je součástí každého modelu Aqua Life a Easy Life.',
     posterAlt: 'Hydromasážní trysky Riptide v provozu — voda vířící v bazénku swim spa',
     frames: Array.from(
       { length: 120 },
@@ -75,84 +99,47 @@ export const home = {
     afterAdvantages: {
       tone: 'dark',
       eyebrow: 'HLOUBKA',
-      text: '<em>129 cm</em> nebo <em>154 cm</em>. Vyberte hloubku, která sedí vašemu plavání.',
+      text: 'Standardní, nebo <em>extra hloubka</em>. Hlubší voda — <em>přes 140 cm</em> — pro plavání naplno.',
     },
-  },
-
-  advantages: {
-    eyebrow: 'PROČ RIPTIDE',
-    headline: 'Jedno plavecké jádro. Čtyři řady na míru.',
-    text: 'Všechny řady Riptide sdílí stejnou patentovanou plaveckou technologii a 5stupňovou izolaci — liší se hloubkou, rozměry a tím, jestli chcete čistě plavecký bazén, nebo i hydromasážní posezení.',
-    columns: [
-      {
-        image: '/assets/photos/action-swimmer-underwater.jpg',
-        imageAlt: 'Plavání proti proudu Riptide',
-        eyebrow: 'PRO SPORT',
-        title: 'Atlas & Atlantis',
-        text: 'Čisté plavecké bazény bez hydromasážního posezení — maximum prostoru pro plavecký styl, standardní i extra hloubka.',
-        points: ['129 cm nebo 154 cm hloubka', 'Až 4× 3" turbo swim jety', 'Nejtlustší skořepina na trhu (Atlantis)'],
-        href: '/atlas/',
-        cta: 'Prohlédnout plavecké bazény',
-      },
-      {
-        image: '/assets/photos/lifestyle-collage-family.jpg',
-        imageAlt: 'Rodinná zábava v Riptide swim spa',
-        eyebrow: 'PRO RODINU',
-        title: 'Aqua Life & Easy Life',
-        text: 'Swim spa s hydromasážním posezením a lehátkem — plavání i relaxace ve stejné vodě, u Duo verzí ve dvou zónách zvlášť.',
-        points: ['Až 45 hydromasážních trysek', 'Duo verze: 29 °C a 37 °C zároveň', '6 až 8 velikostí v každé řadě'],
-        href: '/easy-life/',
-        cta: 'Prohlédnout swim spa',
-      },
-    ],
   },
 
   why: {
     eyebrow: 'TECHNOLOGIE RIPTIDE',
-    headline: 'Co dělá Riptide plavecké jádro jiným.',
+    headline: 'Proč se v Riptide plave jinak.',
     statements: [
       {
         layout: 'image-left',
-        image: '/assets/photos/action-swimmer-underwater.jpg',
-        eyebrow: 'PATENTOVANÉ 3" SWIM JETY',
-        claim: 'Silný, ale hladký plavecký proud — bez turbulencí.',
-        text: 'Voštinová konstrukce trysek rozprostírá proud rovnoměrně, na rozdíl od běžných přímo-vstřikovaných trysek na trhu. Power-flow čerpadla cílí proud přesně na ramena a hrudník.',
+        image: '/assets/photos/detail-water-step.jpg',
+        eyebrow: 'PATENTOVANÉ PLAVECKÉ TRYSKY',
+        claim: 'Silný, ale hladký proud — bez turbulencí.',
+        text: 'Běžné trysky vodu jen vystřelí a proud se láme. Trysky Riptide ji rozprostřou do šířky, takže plavete v rovnoměrném proudu, který míří na ramena a hrudník.',
       },
       {
         layout: 'image-right',
         image: '/assets/photos/lifestyle-winter-spa.jpg',
-        eyebrow: '5STUPŇOVÁ IZOLACE PLATINUM LOCK',
+        eyebrow: 'PĚTIVRSTVÁ IZOLACE PLATINUM LOCK',
         claim: 'Teplo zůstává ve vodě — celý rok.',
-        text: 'Uzamykatelný kryt z vysokohustotní pěny, celoplošná pěnová izolace a třívrstvá tepelná bariéra drží teplo tam, kam patří — ve vodě, celý rok.',
+        text: 'Uzamykatelný termokryt, celoplošná pěnová izolace a třívrstvé bednění drží teplo tam, kam patří. I v zimě.',
       },
       {
         layout: 'image-left',
         image: '/assets/photos/spatech-app.jpg',
         eyebrow: 'OVLÁDÁNÍ SPATECH',
         claim: 'Dotykový panel i aplikace — vše pod kontrolou.',
-        text: '6 režimů tepelného čerpadla, 4 přednastavené profily a Wi-Fi/Bluetooth připojení. Devatenáct let vývoje, 5 let záruky na řídicí systém.',
+        text: 'Teplotu, proud i filtraci nastavíte na panelu nebo z telefonu přes Wi-Fi a Bluetooth. 6 režimů tepelného čerpadla, 4 přednastavené profily a 5 let záruky na řídicí systém.',
       },
     ],
   },
 
   trust: {
     eyebrow: 'PROČ DŮVĚŘOVAT RIPTIDE',
-    headline: 'Výroba a servisní zázemí, na které se dá spolehnout.',
-    text: 'Riptide vyrábí Oasis Spas ve vlastním výrobním závodě Crystal Island — jedné z největších výrobních hal na spa a swim spa na světě — s vybudovanou servisní sítí napříč Evropou i Austrálií.',
+    headline: 'Za Riptide stojí jeden z největších výrobních závodů na světě.',
+    text: 'Riptide vyrábí společnost Oasis Spas ve vlastním závodě Crystal Island. V Česku značku výhradně zastupuje SwimSpa.cz se showroomem v Praze.',
     stats: [
       { value: '150 000 m²', label: 'výrobní závod Crystal Island' },
       { value: '300 000+', label: 'vyrobených spa a swim spa ročně' },
       { value: '46 zemí', label: 'kam se značka Oasis/Riptide dodává' },
     ],
-    image: {
-      src: '/assets/photos/trust-factory.jpg',
-      webp: {
-        '800': '/assets/photos/trust-factory-800.webp',
-        '1200': '/assets/photos/trust-factory-1200.webp',
-        '1800': '/assets/photos/trust-factory-1800.webp',
-      },
-      alt: 'Výrobní hala swim spa Riptide',
-    },
   },
 
   savings,
@@ -162,7 +149,7 @@ export const home = {
     headline: 'Pojďme najít vaše Riptide swim spa.',
     text: 'Poradíme s výběrem řady, velikosti i výbavy — podle zahrady, rozpočtu a toho, jestli chcete hlavně plavat, relaxovat, nebo obojí.',
     primaryCta: { label: 'Nezávazná poptávka', inquiry: true },
-    secondaryCta: { label: 'Domluvit prohlídku showroomu', href: '/#showroom' },
+    secondaryCta: { label: 'Zavolat +420 777 605 789', href: 'tel:+420777605789' },
     note: 'Odpovídáme do 24 hodin. Nezávazná konzultace zdarma.',
   },
 }

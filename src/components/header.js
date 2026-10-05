@@ -4,21 +4,20 @@ const CHEVRON =
 // Series descriptors are the same eyebrows the homepage category tiles use.
 const PRODUCTS = [
   { href: '/produkty/', title: 'Všechny produkty', text: 'Přehled všech modelů a cen' },
-  { href: '/atlas/', title: 'Atlas', text: 'Standardní hloubka · pool' },
-  { href: '/atlantis/', title: 'Atlantis', text: 'Extra hloubka · pool' },
-  { href: '/aqua-life/', title: 'Aqua Life', text: 'Standardní hloubka · swim spa' },
-  { href: '/easy-life/', title: 'Easy Life', text: 'Extra hloubka · swim spa' },
+  { href: '/atlas/', title: 'Atlas', text: 'Jen plavání · standardní hloubka' },
+  { href: '/atlantis/', title: 'Atlantis', text: 'Jen plavání · extra hloubka' },
+  { href: '/aqua-life/', title: 'Aqua Life', text: 'Plavání + hydromasáž · standardní hloubka' },
+  { href: '/easy-life/', title: 'Easy Life', text: 'Plavání + hydromasáž · extra hloubka' },
 ]
 
-// Jump links to homepage sections, in the same order as the sections on the page; the
-// text is each section's own heading.
+// Jump links to homepage sections, in the same order as the sections on the page.
 const DISCOVER = [
-  { href: '/#technologie', title: 'Technologie', text: 'Co dělá Riptide plavecké jádro jiným' },
+  { href: '/#swim-spa', title: 'Co je swim spa', text: 'Bazén, ve kterém plavete na místě' },
+  { href: '/#technologie', title: 'Technologie', text: 'Proč se v Riptide plave jinak' },
   { href: '/#uspora', title: 'Úspora energie', text: 'Až o 26 % nižší náklady na ohřev' },
-  { href: '/#reseni', title: 'Která řada je pro vás', text: 'Jedno plavecké jádro. Čtyři řady na míru.' },
-  { href: '/#pruvodce', title: 'Najděte svůj model', text: 'Pár otázek a ukážeme, co vám sedí' },
-  { href: '/#kategorie', title: 'Řady Riptide', text: 'Čtyři řady. Jedno plavecké jádro.' },
-  { href: '/#vyroba', title: 'Výroba a servis', text: 'Zázemí, na které se dá spolehnout' },
+  { href: '/#kategorie', title: 'Řady Riptide', text: 'Čtyři řady, dvě otázky' },
+  { href: '/#pruvodce', title: 'Najděte svůj model', text: 'Čtyři otázky a ukážeme, co vám sedí' },
+  { href: '/#faq', title: 'Časté otázky', text: 'Místo, napájení, provoz, ceny' },
 ]
 
 const panelLinks = (items) =>

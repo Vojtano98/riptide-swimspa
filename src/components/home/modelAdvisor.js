@@ -18,11 +18,34 @@ const models = [atlas, atlantis, aquaLife, easyLife]
   })
   .filter(Boolean)
 
+// `hint` explains the choice in one line, so nobody has to scroll back to understand it;
+// `short` is how the answer reads in the summary above the results.
 const QUESTIONS = [
-  { key: 'use', label: 'Co s ním budete dělat?', options: [['swim', 'Hlavně plavat'], ['both', 'Plavat i relaxovat']] },
-  { key: 'depth', label: 'Jakou hloubku chcete?', options: [['std', 'Standardní (do 129 cm)'], ['deep', 'Extra (154 cm)']] },
-  { key: 'len', label: 'Kolik máte místa na délku?', options: [['s', 'Do 5 m'], ['m', '5–6 m'], ['l', 'Přes 6 m']] },
-  { key: 'zones', label: 'Teplotní zóny', options: [['one', 'Jedna'], ['two', 'Dvě (Duo)']], onlyWhen: (a) => a.use !== 'swim' },
+  {
+    key: 'use',
+    label: 'Co s ním budete dělat?',
+    hint: 'Řady Atlas a Atlantis jsou čistě plavecké. Aqua Life a Easy Life mají navíc hydromasážní sezení.',
+    options: [['swim', 'Hlavně plavat', 'jen plavání'], ['both', 'Plavat i relaxovat', 'plavání i hydromasáž']],
+  },
+  {
+    key: 'depth',
+    label: 'Jak hlubokou vodu chcete?',
+    hint: 'Standardní vana je vysoká 119–129 cm: snazší nástup, méně vody k ohřevu. Extra má 154 cm a hloubku vody přes 140 cm — víc prostoru pro záběr.',
+    options: [['std', 'Standardní', 'standardní hloubka'], ['deep', 'Extra hloubka', 'extra hloubka']],
+  },
+  {
+    key: 'len',
+    label: 'Kolik máte místa na délku?',
+    hint: 'Počítejte i s místem na obsluhu kolem vany — poradíme při konzultaci.',
+    options: [['s', 'Do 5 m', 'do 5 m'], ['m', '5–6 m', '5–6 m'], ['l', 'Přes 6 m', 'přes 6 m']],
+  },
+  {
+    key: 'zones',
+    label: 'Jedna teplota, nebo dvě?',
+    hint: 'Modely Duo mají plaveckou a masážní část oddělené — třeba 29 °C na plavání a 37 °C na relaxaci.',
+    options: [['one', 'Jedna', 'jedna teplota'], ['two', 'Dvě (Duo)', 'dvě teploty']],
+    onlyWhen: (a) => a.use !== 'swim',
+  },
 ]
 
 const matches = (m, a) =>
@@ -39,6 +62,7 @@ export function renderModelAdvisor() {
         <div class="seg adv-seg" role="group" aria-label="${q.label}">
           ${q.options.map(([v, l]) => `<button type="button" class="seg-btn" data-val="${v}" aria-pressed="false">${l}</button>`).join('')}
         </div>
+        <p class="adv-q-hint">${q.hint}</p>
       </div>`
   ).join('')
 
@@ -47,12 +71,12 @@ export function renderModelAdvisor() {
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">NAJDĚTE SVŮJ MODEL</span>
-          <h2 class="h-section">Který swim spa se hodí vám?</h2>
-          <p class="body-l">Odpovězte na pár otázek a ukážeme modely, které odpovídají. Na otázky, které vás nezajímají, můžete odpověď přeskočit.</p>
+          <h2 class="h-section">Které swim spa se hodí vám?</h2>
+          <p class="body-l">Čtyři otázky a hned uvidíte modely, které odpovídají. Co nevíte, klidně přeskočte.</p>
         </div>
         <div class="adv" data-advisor data-reveal>
           <div class="adv-questions">${qs}</div>
-          <p class="adv-status" data-adv-status aria-live="polite">Vyberte alespoň jednu odpověď.</p>
+          <p class="adv-status" data-adv-status aria-live="polite">Začněte první otázkou — výsledky se zobrazí tady.</p>
           <div class="related-grid adv-results" data-adv-results></div>
         </div>
       </div>
@@ -88,14 +112,17 @@ export function bindModelAdvisor() {
 
     const chosen = Object.keys(answers).length
     if (!chosen) {
-      status.textContent = 'Vyberte alespoň jednu odpověď.'
+      status.textContent = 'Začněte první otázkou — výsledky se zobrazí tady.'
       out.innerHTML = ''
       return
     }
     const found = models.filter((m) => matches(m, answers)).sort((a, b) => a.length - b.length)
-    status.textContent = found.length
-      ? `${found.length === 1 ? 'Odpovídá 1 model' : `Odpovídá ${found.length} ${found.length < 5 ? 'modely' : 'modelů'}`} — seřazeno od nejkratšího.`
-      : 'Takový model zatím v nabídce není — zkuste některou odpověď změnit.'
+    // Say back what was chosen, so the list reads as an answer, not just a filter.
+    const picked = QUESTIONS.filter((q) => answers[q.key]).map((q) => q.options.find((o) => o[0] === answers[q.key])[2])
+    const count = found.length === 1 ? '1 model' : `${found.length} ${found.length < 5 ? 'modely' : 'modelů'}`
+    status.innerHTML = found.length
+      ? `<strong>${picked.join(' · ')}</strong> — ${found.length === 1 ? 'odpovídá' : found.length < 5 ? 'odpovídají' : 'odpovídá'} ${count}, od nejkratšího.`
+      : `<strong>${picked.join(' · ')}</strong> — takovou kombinaci Riptide nenabízí. Zkuste jednu odpověď změnit.`
     out.innerHTML = found.map(card).join('')
     applyBasePath(out)
   }
