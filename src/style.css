@@ -4962,8 +4962,9 @@ h1, h2, h3 { text-wrap: balance; }
 .quiet--dark .quiet-answer { color: var(--dark-text-secondary); }
 .quiet--dark .quiet-answer em { color: #5fd0e8; }
 .quiet.is-scrub .quiet-answer { will-change: opacity, transform; }
-.quiet-answer span { display: block; }
-.quiet-answer span + span { margin-top: 0.35em; }
+.quiet-answer-line { display: block; }
+.quiet-answer-line + .quiet-answer-line { margin-top: 0.35em; }
+.quiet.is-scrub .aw { display: inline-block; will-change: opacity, transform; }
 @media (max-width: 760px) {
-  .quiet-answer span + span { margin-top: 0.8em; }
+  .quiet-answer-line + .quiet-answer-line { margin-top: 0.8em; }
 }

@@ -7,6 +7,25 @@
 // moment): while it is pinned, scroll position decides how many words are revealed, so
 // the visitor sets the pace and nothing plays on a timer. bindQuietStatements() eases
 // the revealed amount toward the scroll position so wheel/trackpad jumps glide.
+// The answer is revealed word by word too. Words are wrapped outside the tags, so <strong>
+// and <em> keep working; each new line starts after a short beat.
+function answerHTML(answer) {
+  let n = 0
+  return answer
+    .split(/\s*\{br\}\s*/)
+    .map((line, li) => {
+      if (li) n += 3
+      const html = line
+        .split(/(<[^>]+>)/)
+        .map((part) =>
+          part.startsWith('<') ? part : part.replace(/[^\s\u00a0]+/g, (w) => `<span class="aw" style="--i:${n++}">${w}</span>`)
+        )
+        .join('')
+      return `<span class="quiet-answer-line">${html}</span>`
+    })
+    .join('')
+}
+
 export function renderQuietStatement(q) {
   if (!q) return ''
 
@@ -48,7 +67,7 @@ export function renderQuietStatement(q) {
         <div class="container">
           ${q.eyebrow ? `<span class="eyebrow quiet-eyebrow">${q.eyebrow}</span>` : ''}
           <h2 class="quiet-text">${words}</h2>
-          ${q.answer ? `<p class="quiet-answer" data-quiet-answer>${q.answer.split(/\s*\{br\}\s*/).map((line) => `<span>${line}</span>`).join('')}</p>` : ''}
+          ${q.answer ? `<p class="quiet-answer" data-quiet-answer>${answerHTML(q.answer)}</p>` : ''}
         </div>
       </div>
     </section>
@@ -71,6 +90,7 @@ export function bindQuietStatements() {
       eyebrow: section.querySelector('.quiet-eyebrow'),
       words: [...section.querySelectorAll('.w')],
       answer: section.querySelector('[data-quiet-answer]'),
+      answerWords: [...section.querySelectorAll('.aw')],
       total: Number(section.dataset.quietTotal) + 1.6,
       target: 0,
       shown: 0,
@@ -80,13 +100,17 @@ export function bindQuietStatements() {
 
   const paint = (s) => {
     // Words finish revealing at 70 % of the range; the rest is time to read it. With an
-    // answer, the question is done by 40 % and the answer rides in between 52 % and 74 %.
+    // answer, the question is done by 40 % and the answer follows word by word between 46 % and 82 %.
     const x = Math.min(1, s.shown / (s.answer ? 0.4 : 0.7)) * s.total
     if (s.answer) {
-      const t = Math.min(1, Math.max(0, (s.shown - 0.52) / 0.22))
-      const e = 1 - Math.pow(1 - t, 3)
-      s.answer.style.opacity = e
-      s.answer.style.transform = `translateY(${(1 - e) * 56}px)`
+      const span = 4 // words in flight at once
+      const last = Number(s.answerWords[s.answerWords.length - 1].style.getPropertyValue('--i'))
+      const ax = Math.min(1, Math.max(0, (s.shown - 0.46) / 0.36)) * (last + span)
+      s.answerWords.forEach((w) => {
+        const t = Math.min(1, Math.max(0, (ax - Number(w.style.getPropertyValue('--i'))) / span))
+        w.style.opacity = t
+        w.style.transform = `translateY(${(1 - t) * 0.5}em)`
+      })
     }
     s.words.forEach((w) => {
       const t = Math.min(1, Math.max(0, (x - Number(w.style.getPropertyValue('--i'))) / 1.6))
