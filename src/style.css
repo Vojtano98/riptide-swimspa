@@ -4973,3 +4973,15 @@ h1, h2, h3 { text-wrap: balance; }
 @media (max-width: 760px) {
   .quiet.is-scrub.quiet--qa { height: 215vh; }
 }
+/* Big trust numbers: always one line. The size follows the column width (container units),
+   and tabular digits keep the width steady while the number counts up. */
+.trust-layout--plain .trust-stat { container-type: inline-size; }
+.trust-layout--plain .trust-stat-value {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(30px, 15cqw, 76px);
+}
+@media (max-width: 640px) {
+  .trust-layout--plain .trust-stat { container-type: normal; }
+  .trust-layout--plain .trust-stat-value { font-size: clamp(26px, 8.4vw, 34px); }
+}
