@@ -8,7 +8,7 @@ export const atlas60 = buildModel({
   series: 'Atlas',
   category: 'Riptide Atlas · Standard Depth',
   name: 'Atlas 6.0',
-  tagline: 'Prostorný plavecký bazén se standardní hloubkou 129 cm — pro celoroční plavání i rodinnou zábavu.',
+  tagline: 'Prostorný plavecký bazén se standardní hloubkou (vana vysoká 129 cm) — pro celoroční plavání i rodinnou zábavu.',
   price: 559900,
 
   images: {
@@ -20,7 +20,7 @@ export const atlas60 = buildModel({
     { value: '591,5', unit: 'cm', label: 'délka' },
     { value: '235', unit: 'cm', label: 'šířka' },
     { value: '8 970', unit: 'l', label: 'objem vody' },
-    { value: 'až 4×', unit: '', label: '3" turbo swim jety' },
+    { value: 'až 4×', unit: '', label: '3" turbo plavecké trysky' },
   ],
 
   specRows: poolSpecRows,
@@ -30,7 +30,7 @@ export const atlas60 = buildModel({
       name: 'Pro Premium',
       price: 629900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a nejsilnějším proudem v řadě.',
-      highlights: ['4× 3" turbo swim jety', '10-stupňové plavání', 'Plavecké potrubí 3"'],
+      highlights: ['4× 3" turbo plavecké trysky', '10-stupňové plavání', 'Plavecké potrubí 3"'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         capacity: '8 970 l',
@@ -50,7 +50,7 @@ export const atlas60 = buildModel({
       name: 'Pro Luxury',
       price: 599900,
       description: 'Stejný výkon trysek, jednorychlostní plavecký proud a rozšířený dotykový panel AP40.',
-      highlights: ['4× 3" turbo swim jety', 'Ovládací panel TP10 + AP40', 'Nižší nároky na přívod (32 A)'],
+      highlights: ['4× 3" turbo plavecké trysky', 'Ovládací panel TP10 + AP40', 'Nižší nároky na přívod (32 A)'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         capacity: '8 970 l',
@@ -70,8 +70,8 @@ export const atlas60 = buildModel({
       id: 'hydro',
       name: 'Hydro',
       price: 559900,
-      description: 'Odlehčené provedení se 2 swim jety pro rekreační plavání a nejnižší pořizovací náklady.',
-      highlights: ['2× 3" turbo swim jety', 'Nejnižší nároky na přívod (25 A)', 'Stejná izolace Platinum Lock'],
+      description: 'Odlehčené provedení se 2 plavecké trysky pro rekreační plavání a nejnižší pořizovací náklady.',
+      highlights: ['2× 3" turbo plavecké trysky', 'Nejnižší nároky na přívod (25 A)', 'Stejná izolace Platinum Lock'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         capacity: '8 970 l',

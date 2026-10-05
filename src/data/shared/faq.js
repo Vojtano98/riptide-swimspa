@@ -28,7 +28,7 @@ export const faq = [
   },
   {
     q: 'Jakou hloubku zvolit?',
-    a: 'Standardní hloubka (1,2 m) znamená snazší přístup, levnější vytápění a údržbu. Extra hloubka (1,45 m) dává plavání v realističtějším a náročnějším prostředí. <span class="faq-src">Podle popisu výrobce na SwimSpa.cz.</span>',
+    a: 'Řady se standardní hloubkou (Atlas, Aqua Life) mají vanu vysokou 129 cm, Aqua Life 4.0 má 119 cm — snazší nástup a méně vody k ohřevu. Řady s extra hloubkou (Atlantis, Easy Life) mají vanu vysokou 154 cm a hloubku vody přes 140 cm — víc prostoru pro záběr a pro vyšší plavce.',
   },
   {
     q: 'Co znamená Duo?',

@@ -1,10 +1,15 @@
 import { shopDetail } from '../data/shared/shopDetail.js'
+import { modelBriefs } from '../data/shared/modelBriefs.js'
 
 // Hydromassage cards (photo + the shop's own title and text). The official SwimSpa.cz page
 // shows this block, identically, on every model — Atlas and Atlantis included — so it is
 // shown on every model page here too.
 
 export function renderModelMassage(model) {
+  // Atlas and Atlantis are pure swimming pools (no massage seating in the spec sheet), so a
+  // "massage zone" section would contradict the rest of the page. Remove this guard to show
+  // the block on every model again.
+  if (!modelBriefs[model.slug]?.massageJets) return ''
   const cards = shopDetail.massage
     .map(
       (c, i) => `
@@ -26,7 +31,7 @@ export function renderModelMassage(model) {
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">HYDROMASÁŽ</span>
-          <h2 class="h-section">Masážní zóna ${model.name}.</h2>
+          <h2 class="h-section">Hydromasážní zóna.</h2>
         </div>
         <div class="massage-grid">${cards}</div>
       </div>

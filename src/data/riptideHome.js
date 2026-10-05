@@ -148,7 +148,7 @@ export const home = {
   finalCta: {
     headline: 'Pojďme najít vaše Riptide swim spa.',
     text: 'Poradíme s výběrem řady, velikosti i výbavy — podle zahrady, rozpočtu a toho, jestli chcete hlavně plavat, relaxovat, nebo obojí.',
-    primaryCta: { label: 'Nezávazná poptávka', inquiry: true },
+    primaryCta: { label: 'Poptat cenu', inquiry: true },
     secondaryCta: { label: 'Zavolat +420 777 605 789', href: 'tel:+420777605789' },
     note: 'Odpovídáme do 24 hodin. Nezávazná konzultace zdarma.',
   },

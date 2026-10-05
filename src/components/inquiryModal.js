@@ -10,19 +10,77 @@ const PLACEMENT_LABELS = {
   nevim: 'Zatím neví',
 }
 
+// One form, three ways in. The button that opened it sets the intent, so the dialog answers
+// what was actually asked for: a price, a showroom visit, or a question.
+const INTENTS = {
+  price: {
+    title: 'Nezávazná poptávka',
+    lead: 'Pošleme vám cenu a nabídku na míru.',
+    noteLabel: 'Poznámka',
+    submit: 'Odeslat poptávku',
+    subject: 'Poptávka z webu',
+  },
+  showroom: {
+    title: 'Prohlídka showroomu',
+    lead: 'Praha 10 – Michle. Ozveme se a domluvíme termín.',
+    noteLabel: 'Poznámka',
+    submit: 'Domluvit prohlídku',
+    subject: 'Zájem o prohlídku showroomu',
+  },
+  question: {
+    title: 'Zeptejte se poradce',
+    lead: 'Napište, co potřebujete vědět — odpovíme vám osobně.',
+    noteLabel: 'Na co se chcete zeptat?',
+    submit: 'Odeslat dotaz',
+    subject: 'Dotaz z webu',
+  },
+}
+
 function subtitleFor(context) {
-  return context.variantName ? `${context.name} — ${context.variantName} · odpovídáme do 24 hodin.` : `${context.name} — odpovídáme do 24 hodin.`
+  const what = context.variantName ? `${context.name} — ${context.variantName}` : context.name
+  return `${what} · ${INTENTS[context.intent].lead} Odpovídáme do 24 hodin.`
 }
 
 function buildSubject(context) {
-  return context.variantName
-    ? `Poptávka z webu — ${context.name} (${context.variantName})`
-    : `Poptávka z webu — ${context.name}`
+  const base = INTENTS[context.intent].subject
+  return context.variantName ? `${base} — ${context.name} (${context.variantName})` : `${base} — ${context.name}`
 }
 
 function formHTML(context) {
+  const intent = INTENTS[context.intent]
+  const field = {
+    when: `
+          <div class="form-field full">
+            <label for="f-when">Kdy se vám to hodí? <span class="form-optional">(nepovinné)</span></label>
+            <input id="f-when" name="when" type="text" placeholder="např. příští týden odpoledne" />
+          </div>`,
+    note: `
+          <div class="form-field full">
+            <label for="f-note">${intent.noteLabel}</label>
+            <textarea id="f-note" name="note" rows="3"></textarea>
+          </div>`,
+    place: `
+          <div class="form-field">
+            <label for="f-location">Lokalita</label>
+            <input id="f-location" name="location" type="text" placeholder="Město, PSČ" autocomplete="postal-code" />
+          </div>
+          <div class="form-field">
+            <label for="f-placement">Umístění</label>
+            <select id="f-placement" name="placement">
+              <option value="nevim">Zatím nevím</option>
+              <option value="zahrada">Zahrada</option>
+              <option value="terasa">Terasa</option>
+              <option value="interier">Interiér</option>
+            </select>
+          </div>`,
+  }
+  // What the intent is about goes straight into the form; the rest stays tucked away.
+  const upfront = context.intent === 'showroom' ? field.when : context.intent === 'question' ? field.note : ''
+  const more = context.intent === 'question' ? field.place : context.intent === 'showroom' ? field.note : field.place + field.note
+  const moreLabel = context.intent === 'question' ? 'Chci doplnit lokalitu' : context.intent === 'showroom' ? 'Chci připsat poznámku' : 'Chci doplnit lokalitu a poznámku'
+
   return `
-    <h3 class="modal-title" id="inquiry-modal-title">Nezávazná poptávka</h3>
+    <h3 class="modal-title" id="inquiry-modal-title">${intent.title}</h3>
     <p class="modal-subtitle">${subtitleFor(context)}</p>
     <form data-inquiry-form novalidate>
       <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -40,45 +98,31 @@ function formHTML(context) {
           <input id="f-email" name="email" type="email" autocomplete="email" />
         </div>
         <p class="form-hint" style="grid-column: 1 / -1">Stačí vyplnit telefon <strong>nebo</strong> e-mail.</p>
+        ${upfront}
       </div>
       <details class="form-more">
-        <summary>Chci doplnit lokalitu a poznámku <span class="form-optional">(nepovinné)</span></summary>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="f-location">Lokalita</label>
-            <input id="f-location" name="location" type="text" placeholder="Město, PSČ" autocomplete="postal-code" />
-          </div>
-          <div class="form-field">
-            <label for="f-placement">Umístění</label>
-            <select id="f-placement" name="placement">
-              <option value="nevim">Zatím nevím</option>
-              <option value="zahrada">Zahrada</option>
-              <option value="terasa">Terasa</option>
-              <option value="interier">Interiér</option>
-            </select>
-          </div>
-          <div class="form-field full">
-            <label for="f-note">Poznámka</label>
-            <textarea id="f-note" name="note" rows="3"></textarea>
-          </div>
-        </div>
+        <summary>${moreLabel} <span class="form-optional">(nepovinné)</span></summary>
+        <div class="form-grid">${more}</div>
       </details>
       <p class="form-error" data-inquiry-error role="alert" hidden></p>
-      <button class="btn btn-primary modal-submit" type="submit" data-submit-btn>Odeslat poptávku</button>
+      <button class="btn btn-primary modal-submit" type="submit" data-submit-btn>${intent.submit}</button>
     </form>
   `
 }
 
-function successHTML() {
+function successHTML(context) {
+  const steps = {
+    price: ['Do 24 hodin se vám ozveme.', 'Pošleme nezávaznou nabídku pro vybraný model.', 'Když budete chtít, domluvíme prohlídku showroomu.'],
+    showroom: ['Do 24 hodin se vám ozveme.', 'Domluvíme termín, který vám vyhovuje.', 'V showroomu si vyzkoušíte plavecký proud i hydromasáž.'],
+    question: ['Do 24 hodin vám odpovíme.', 'Když to bude potřeba, zavoláme a projdeme to spolu.'],
+  }[context.intent]
   return `
     <div class="modal-success">
       <div class="modal-success-icon">${icon('check', 26)}</div>
-      <h3 class="modal-title" tabindex="-1" data-success-title>Děkujeme za poptávku</h3>
+      <h3 class="modal-title" tabindex="-1" data-success-title>Děkujeme, máme to</h3>
       <p class="modal-subtitle">Co bude dál:</p>
       <ol class="modal-steps">
-        <li>Do 24 hodin se vám ozveme.</li>
-        <li>Připravíme nezávaznou kalkulaci.</li>
-        <li>Prohlídka showroomu je možná po předchozí domluvě.</li>
+        ${steps.map((t) => `<li>${t}</li>`).join('')}
       </ol>
     </div>
   `
@@ -101,6 +145,7 @@ function bindForm(form, overlay, context) {
     if (!name.value.trim()) return fail('Napište nám prosím své jméno.', name)
     if (!phone && !email) return fail('Vyplňte prosím telefon nebo e-mail, abychom vás mohli kontaktovat.', form.elements.phone)
     if (email && !form.elements.email.checkValidity()) return fail('E-mail nevypadá správně — zkontrolujte ho prosím.', form.elements.email)
+    if (context.intent === 'question' && !form.elements.note.value.trim()) return fail('Napište nám prosím, na co se chcete zeptat.', form.elements.note)
 
     const data = new FormData(form)
     if (data.get('botcheck')) return // honeypot tripped — silently drop, no request sent
@@ -117,6 +162,8 @@ function bindForm(form, overlay, context) {
       'Jméno zákazníka': data.get('name'),
       'Telefon zákazníka': phone || 'neuvedeno',
       'E-mail zákazníka': email || 'neuvedeno',
+      'Typ požadavku': INTENTS[context.intent].title,
+      ...(context.intent === 'showroom' ? { 'Preferovaný termín': data.get('when') || 'neuvedeno' } : {}),
       Lokalita: data.get('location') || 'neuvedeno',
       'Plánované umístění': PLACEMENT_LABELS[data.get('placement')] || data.get('placement') || 'neuvedeno',
       'Poznámka zákazníka': data.get('note') || 'bez poznámky',
@@ -135,13 +182,13 @@ function bindForm(form, overlay, context) {
       const result = await res.json()
       if (!res.ok || !result.success) throw new Error(result.message || 'Odeslání se nezdařilo.')
 
-      overlay.querySelector('.modal-body').innerHTML = successHTML()
+      overlay.querySelector('.modal-body').innerHTML = successHTML(context)
       overlay.querySelector('[data-success-title]')?.focus()
     } catch (err) {
       errorEl.textContent = 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 777 605 789.'
       errorEl.hidden = false
       submitBtn.disabled = false
-      submitBtn.textContent = 'Odeslat poptávku'
+      submitBtn.textContent = INTENTS[context.intent].submit
     }
   })
 }
@@ -154,6 +201,7 @@ export function bindInquiryModal(product) {
     const context = {
       name: product.name,
       variantName: trigger.dataset.variantName || null,
+      intent: INTENTS[trigger.dataset.inquiryIntent] ? trigger.dataset.inquiryIntent : 'price',
     }
 
     const overlay = openModal(formHTML(context), { labelledBy: 'inquiry-modal-title' })

@@ -18,9 +18,9 @@ export const atlantis60 = buildModel({
 
   quickSpecs: [
     { value: '591,5', unit: 'cm', label: 'délka' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
     { value: '11 004', unit: 'l', label: 'objem vody' },
-    { value: '4×', unit: '', label: '3" turbo swim jety' },
+    { value: '4×', unit: '', label: '3" turbo plavecké trysky' },
   ],
 
   specRows: poolSpecRows,
@@ -30,7 +30,7 @@ export const atlantis60 = buildModel({
       name: 'Pro Premium',
       price: 659900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a nejtlustší skořepinou na trhu.',
-      highlights: ['4× 3" turbo swim jety', '10-stupňové plavání', 'Nejtlustší skořepina na trhu'],
+      highlights: ['4× 3" turbo plavecké trysky', '10-stupňové plavání', 'Nejtlustší skořepina na trhu'],
       specs: {
         dimensions: '591,5 × 235 × 154 cm',
         capacity: '11 004 l',
@@ -51,7 +51,7 @@ export const atlantis60 = buildModel({
       name: 'Pro Luxury',
       price: 629900,
       description: 'Stejný výkon trysek, jednorychlostní plavecký proud, rozšířený panel AP40.',
-      highlights: ['4× 3" turbo swim jety', 'Ovládací panel TP10 + AP40', 'Nižší nároky na přívod (32 A)'],
+      highlights: ['4× 3" turbo plavecké trysky', 'Ovládací panel TP10 + AP40', 'Nižší nároky na přívod (32 A)'],
       specs: {
         dimensions: '591,5 × 235 × 154 cm',
         capacity: '11 004 l',

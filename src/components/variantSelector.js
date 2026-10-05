@@ -29,7 +29,7 @@ export function renderVariantSelector(product) {
         </div>
         <div class="variants" data-reveal>${cards}</div>
         <div class="variants-footer" data-reveal>
-          <button class="btn btn-primary" data-open-inquiry>Nezávazně poptat</button>
+          <button class="btn btn-primary" data-open-inquiry>Poptat cenu</button>
           <p class="variants-footer-note">Ozveme se vám do 24 hodin.</p>
         </div>
       </div>

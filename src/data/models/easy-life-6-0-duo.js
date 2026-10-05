@@ -8,7 +8,7 @@ export const easyLife60Duo = buildModel({
   series: 'Easy Life',
   category: 'Riptide Easy Life · Dual Zone',
   name: 'Easy Life 6.0 Duo',
-  tagline: 'Dvouzónové swim spa s extra hloubkou 154 cm — plavecký trénink i vyhřátá relaxace ve dvou oddělených zónách.',
+  tagline: 'Dvouzónové swim spa s extra hloubkou (vana vysoká 154 cm) — plavecký trénink i vyhřátá relaxace ve dvou oddělených zónách.',
   price: 649900,
 
   images: {
@@ -20,7 +20,7 @@ export const easyLife60Duo = buildModel({
     { value: '591,5', unit: 'cm', label: 'délka' },
     { value: '8 550', unit: 'l', label: 'objem vody' },
     { value: '2', unit: '', label: 'nezávislé teplotní zóny' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
   ],
 
   specRows: duoSpecRows,
@@ -30,7 +30,7 @@ export const easyLife60Duo = buildModel({
       name: 'Pro Premium',
       price: 679900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a samostatným ovládáním obou zón.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '591,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',
@@ -56,7 +56,7 @@ export const easyLife60Duo = buildModel({
       name: 'Pro Luxury',
       price: 649900,
       description: 'Stejná dvouzónová výbava, jednorychlostní plavecký proud, nižší nároky na přívod.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo swim jety', 'Nižší nároky na přívod'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo plavecké trysky', 'Nižší nároky na přívod'],
       specs: {
         dimensions: '591,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',

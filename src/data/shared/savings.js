@@ -4,7 +4,7 @@
 export const savings = {
   eyebrow: 'ÚSPORA ENERGIE',
   headline: 'Až o 26 % nižší náklady na ohřev než standard CEC.',
-  text: 'Pětivrstvá izolace Platinum Lock + Full Foaming drží teplo tam, kam patří — ve vodě. V nezávislém testu CEC (kalifornský energetický standard pro SPA produkty) spotřeboval Riptide swim spa 11,2 kWh denně oproti 14,98 kWh u standardu CEC.',
+  text: 'CEC je kalifornský energetický standard pro vířivky a swim spa. V nezávislém testu spotřeboval Riptide 11,2 kWh denně oproti 14,98 kWh u standardu CEC. Rozdíl dělá pětivrstvá izolace Platinum Lock.',
   bars: [
     {
       label: 'Standard CEC',
@@ -23,7 +23,7 @@ export const savings = {
   ],
   stats: [
     { value: '−26 %', label: 'nižší spotřeba než standard CEC' },
-    { value: '5 vrstev', label: 'izolace Platinum Lock + Full Foaming' },
+    { value: '5 vrstev', label: 'izolace Platinum Lock' },
     { value: '6 režimů', label: 'ovládání tepelného čerpadla SpaTech' },
   ],
   note: 'Zdroj: CEC test (72 hodin, voda 39 ± 1 °C, okolní teplota 17 °C) — technický katalog Riptide 2026.',

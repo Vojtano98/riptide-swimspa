@@ -10,7 +10,6 @@ export function renderSavingsSection(home) {
       <div class="savings-bar-row">
         <div class="savings-bar-labels">
           <span class="savings-bar-label">${b.label}</span>
-          <span class="savings-bar-sublabel">${b.sublabel}</span>
         </div>
         <div class="savings-bar-track">
           <div
@@ -20,7 +19,7 @@ export function renderSavingsSection(home) {
             title="${b.label}: ${b.display}"
           ></div>
         </div>
-        <span class="savings-bar-value" data-countup data-countup-manual>${b.display}</span>
+        <span class="savings-bar-value"><span data-countup data-countup-manual>${b.display}</span> / den</span>
       </div>
     `
     )

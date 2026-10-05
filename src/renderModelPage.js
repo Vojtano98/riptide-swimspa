@@ -47,7 +47,6 @@ export function renderModelPage(model) {
     renderReviews(),
     renderFaq({ limit: 6 }),
     renderModelRelated(model),
-    renderSavingsSection(model),
     renderShowroomSection(model),
     renderFinalCtaHome(model),
     '</main>',

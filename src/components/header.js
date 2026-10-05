@@ -61,13 +61,13 @@ export function renderHeader({ transparent = false } = {}) {
             <li><a href="/#showroom" data-nav-link>Kontakty a showroom</a></li>
             <li class="site-nav-mobile-actions">
               <a href="tel:+420777605789" class="site-nav-mobile-phone" data-nav-link>+420 777 605 789</a>
-              <button class="btn btn-primary site-nav-mobile-cta" data-open-inquiry data-nav-link>Spočítat cenu</button>
+              <button class="btn btn-primary site-nav-mobile-cta" data-open-inquiry data-nav-link>Poptat cenu</button>
             </li>
           </ul>
         </nav>
         <div class="header-actions">
           <a href="tel:+420777605789" class="header-contact">+420 777 605 789</a>
-          <button class="btn btn-primary header-cta" data-open-inquiry>Spočítat cenu</button>
+          <button class="btn btn-primary header-cta" data-open-inquiry>Poptat cenu</button>
           <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
         </div>
       </div>

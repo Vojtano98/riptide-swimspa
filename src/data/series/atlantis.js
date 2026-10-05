@@ -8,8 +8,8 @@ export const atlantis = {
   intro: {
     eyebrow: 'RIPTIDE · ATLANTIS',
     headline: 'Atlantis — extra hloubka pro seriózní plavce.',
-    text: 'Extra hloubka 154 cm a nejtlustší skořepina na trhu. Řada Atlantis nabízí realističtější a náročnější plavecký zážitek než standardní hloubka — ideální pro vyšší postavy a intenzivní trénink.',
-    note: 'K dispozici ve třech velikostech (4.4 / 6.0 / 7.0) a dvou úrovních výbavy — Pro Premium a Pro Luxury.',
+    text: 'Čistě plavecký bazén s hlubší vodou: vana vysoká 154 cm, hloubka vody přes 140 cm a nejtlustší skořepina na trhu. Řada Atlantis nabízí realističtější a náročnější plavecký zážitek než standardní hloubka — ideální pro vyšší postavy a intenzivní trénink.',
+    note: 'Tři velikosti (4.4, 6.0 a 7.0), dvě výbavy: Pro Luxury a Pro Premium.',
   },
 
   models: [
@@ -48,8 +48,8 @@ export const atlantis = {
 
   finalCta: {
     headline: 'Nejste si jistí, zda chcete standardní, nebo extra hloubku?',
-    text: 'Standardní hloubka 129 cm (řada Atlas) je levnější na provoz, extra hloubka 154 cm (Atlantis) dá realističtější pocit plavání. Poradíme podle vašich cílů.',
-    primaryCta: { label: 'Nezávazná poptávka', inquiry: true },
+    text: 'Standardní hloubka (řada Atlas, vana vysoká 129 cm) znamená méně vody k ohřevu. Extra hloubka (Atlantis, vana 154 cm) dá realističtější pocit plavání. Poradíme podle vašich cílů.',
+    primaryCta: { label: 'Poptat cenu', inquiry: true },
     secondaryCta: { label: 'Prohlédnout Atlas', href: '/atlas/' },
     note: 'Odpovídáme do 24 hodin. Nezávazná konzultace zdarma.',
   },

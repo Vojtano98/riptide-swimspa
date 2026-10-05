@@ -30,7 +30,7 @@ export const aquaLife60Duo = buildModel({
       name: 'Pro Premium',
       price: 649900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a samostatným ovládáním obou zón.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',
@@ -55,7 +55,7 @@ export const aquaLife60Duo = buildModel({
       name: 'Pro Luxury',
       price: 619900,
       description: 'Stejná dvouzónová výbava, jednorychlostní plavecký proud, nižší nároky na přívod.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo swim jety', 'Nižší nároky na přívod'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo plavecké trysky', 'Nižší nároky na přívod'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',
@@ -80,8 +80,8 @@ export const aquaLife60Duo = buildModel({
       id: 'hydro',
       name: 'Hydro',
       price: 579900,
-      description: 'Odlehčené dvouzónové provedení se 2 swim jety a jednotným ovládáním.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '2× 3" turbo swim jety', 'Nejnižší nároky na přívod'],
+      description: 'Odlehčené dvouzónové provedení se 2 plavecké trysky a jednotným ovládáním.',
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '2× 3" turbo plavecké trysky', 'Nejnižší nároky na přívod'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',

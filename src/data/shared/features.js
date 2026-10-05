@@ -20,19 +20,19 @@ export const featureImages = {
 export const featureBenefits = {
   headline: 'Technologie, na kterých záleží.',
   hero: {
-    label: '5stupňová izolace Platinum Lock + Full Foaming',
-    text: 'Uzamykatelný kryt z vysokohustotní pěny, celoplošná pěnová izolace, třívrstvá tepelná bariéra bednění a pryžová izolační vata s hliníkovou fólií drží teplo ve vodě — až o 26 % nižší náklady na ohřev než standard CEC.',
+    label: 'Pětivrstvá izolace Platinum Lock',
+    text: 'Uzamykatelný kryt z vysokohustotní pěny, celoplošná pěnová izolace, třívrstvá tepelná bariéra bednění a pryžová izolační vata s hliníkovou fólií drží teplo ve vodě po celý rok.',
     image: 'insulation',
   },
   secondary: [
     {
-      label: 'Patentované 3" swim jety',
-      text: 'Voštinová konstrukce trysek a power-flow čerpadla s vysokým průtokem dávají silný, ale hladký proud bez turbulencí, cílený přesně na ramena a hrudník.',
+      label: 'Patentované plavecké trysky',
+      text: 'Voštinová konstrukce trysek a čerpadla s vysokým průtokem dávají silný, ale hladký proud bez turbulencí, který míří na ramena a hrudník.',
       image: 'swimJets',
     },
     {
-      label: 'Quickwater 10-Speed systém',
-      text: 'Jediné swim spa na trhu s plynule řízeným frekvenčním měničem plaveckého čerpadla — místo pouhého zapnuto/vypnuto nabízí 10 zřetelně odlišných výkonových úrovní, od klidného rodinného plavání až po tempo olympijského plavce.',
+      label: '10 stupňů plaveckého proudu',
+      text: 'Výbava Pro Premium řídí plavecká čerpadla frekvenčním měničem: místo pouhého zapnuto/vypnuto máte 10 úrovní — od klidného rodinného plavání po závodní tempo.',
       image: 'quickwater',
     },
   ],

@@ -8,8 +8,8 @@ export const atlas = {
   intro: {
     eyebrow: 'RIPTIDE · ATLAS',
     headline: 'Atlas — plavecký bazén pro každý den.',
-    text: 'Standardní hloubka 129 cm, šířka 235 cm a patentované 3" turbo swim jety. Řada Atlas je vstupní branou do světa Riptide swim spa — plný plavecký zážitek bez kompromisů na kvalitě.',
-    note: 'Obě velikosti jsou dostupné ve třech úrovních výbavy — Pro Premium, Pro Luxury a Hydro.',
+    text: 'Čistě plavecký bazén: žádné masážní sezení, celá vana patří plavání. Standardní hloubka (vana vysoká 129 cm), šířka 235 cm a patentované plavecké trysky. Nejdostupnější cesta k Riptide.',
+    note: 'Obě velikosti se dodávají ve třech výbavách: Hydro, Pro Luxury a Pro Premium.',
   },
 
   models: [
@@ -40,7 +40,7 @@ export const atlas = {
   finalCta: {
     headline: 'Nejste si jistí velikostí?',
     text: 'Poradíme s výběrem mezi Atlas 4.4 a 6.0 podle velikosti zahrady i vašich plaveckých cílů — nebo doporučíme hlubší řadu Atlantis.',
-    primaryCta: { label: 'Nezávazná poptávka', inquiry: true },
+    primaryCta: { label: 'Poptat cenu', inquiry: true },
     secondaryCta: { label: 'Prohlédnout Atlantis', href: '/atlantis/' },
     note: 'Odpovídáme do 24 hodin. Nezávazná konzultace zdarma.',
   },

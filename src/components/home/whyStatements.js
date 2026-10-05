@@ -7,7 +7,7 @@ export function renderWhyStatements(home) {
       (s) => `
       <div class="tech-feature layout-${s.layout}" data-reveal>
         <div class="tech-feature-media">
-          ${photo(s.image, s.claim, { sizes: '(max-width: 900px) 100vw, 50vw' })}
+          ${photo(s.image, s.claim, { sizes: '(max-width: 700px) 100vw, 50vw' })}
         </div>
         <div>
           <span class="eyebrow">${s.eyebrow}</span>

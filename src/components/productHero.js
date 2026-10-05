@@ -21,7 +21,7 @@ function renderLifestyleHero(product) {
             <div class="hero-price">${formatPrice(product.price, product.currency)}</div>
           </div>
           <div class="hero-actions">
-            <button class="btn btn-primary" data-open-inquiry>Spočítat finální cenu</button>
+            <button class="btn btn-primary" data-open-inquiry>Poptat cenu</button>
             <a href="#specifikace" class="btn btn-outline">Technické parametry</a>
           </div>
         </div>
@@ -53,7 +53,7 @@ function renderCutoutHero(product) {
             <div class="hero-price">${formatPrice(product.price, product.currency)}</div>
           </div>
           <div class="hero-actions">
-            <button class="btn btn-primary" data-open-inquiry>Spočítat finální cenu</button>
+            <button class="btn btn-primary" data-open-inquiry>Poptat cenu</button>
             <a href="#specifikace" class="btn btn-outline">Technické parametry</a>
           </div>
         </div>

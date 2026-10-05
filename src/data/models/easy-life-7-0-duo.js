@@ -20,7 +20,7 @@ export const easyLife70Duo = buildModel({
     { value: '706,5', unit: 'cm', label: 'délka' },
     { value: '11 300', unit: 'l', label: 'objem vody' },
     { value: '2', unit: '', label: 'nezávislé teplotní zóny' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
   ],
 
   specRows: duoSpecRows,
@@ -30,7 +30,7 @@ export const easyLife70Duo = buildModel({
       name: 'Pro Premium',
       price: 729900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a samostatným ovládáním obou zón.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '706,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',
@@ -56,7 +56,7 @@ export const easyLife70Duo = buildModel({
       name: 'Pro Luxury',
       price: 699900,
       description: 'Stejná dvouzónová výbava, jednorychlostní plavecký proud, rozšířený panel plavecké zóny.',
-      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo swim jety', 'Ovládací panel swim zóny TP10 + AP40'],
+      highlights: ['Spa zóna 29 °C + Swim zóna 37 °C', '4× 3" turbo plavecké trysky', 'Ovládací panel swim zóny TP10 + AP40'],
       specs: {
         dimensions: '706,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',

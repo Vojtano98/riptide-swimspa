@@ -9,9 +9,9 @@ export const easyLife = {
 
   intro: {
     eyebrow: 'RIPTIDE · EASY LIFE',
-    headline: 'Easy Life — nejširší nabídka, extra hloubka.',
-    text: 'Extra hloubka 154 cm ve všech osmi velikostech — od kompaktní 4.4 po nejdelší swim spa v nabídce Riptide, Easy Life 8.0. Dostupné jako jednozónové i dvouzónové (Duo) provedení pro plavání a relaxaci současně.',
-    note: 'Všechny modely nabízí dvě úrovně výbavy — Pro Premium a Pro Luxury. Všechny velikosti lze na přání provést i jako semi-inground (částečně zapuštěné do terénu) — rychlejší a levnější instalace než klasická zapuštěná bazénová vana.',
+    headline: 'Easy Life — plavání i hydromasáž s extra hloubkou.',
+    text: 'Plavecká dráha, masážní sezení a hlubší voda: vana vysoká 154 cm ve všech osmi velikostech — od kompaktní 4.4 po nejdelší swim spa v nabídce Riptide, Easy Life 8.0. Dostupné jako jednozónové i dvouzónové (Duo) provedení pro plavání a relaxaci současně.',
+    note: 'Všechny modely se dodávají ve dvou výbavách: Pro Luxury a Pro Premium. Na přání je lze částečně zapustit do terénu.',
   },
 
   models: [
@@ -98,7 +98,7 @@ export const easyLife = {
   finalCta: {
     headline: 'Osm velikostí, jedna správná volba.',
     text: 'Poradíme s výběrem délky, provedení i výbavy podle velikosti zahrady, rozpočtu a toho, jak budete swim spa využívat.',
-    primaryCta: { label: 'Nezávazná poptávka', inquiry: true },
+    primaryCta: { label: 'Poptat cenu', inquiry: true },
     secondaryCta: { label: 'Prohlédnout Aqua Life', href: '/aqua-life/' },
     note: 'Odpovídáme do 24 hodin. Nezávazná konzultace zdarma.',
   },

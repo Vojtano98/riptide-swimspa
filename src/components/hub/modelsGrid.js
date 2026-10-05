@@ -1,12 +1,13 @@
 import { formatPrice, formatNumber } from '../../utils/format.js'
 import { modelBriefs } from '../../data/shared/modelBriefs.js'
+import { tiers, tierOrder } from '../../data/shared/tiers.js'
 
 export const briefFor = (m) => modelBriefs[m.href.split('/').filter(Boolean).pop()]
 
 function renderSpecs(brief) {
   if (!brief) return ''
   const jets = brief.massageJets
-    ? `<span><b>${brief.massageJets}</b> masážních trysek</span>`
+    ? `<span><b>${brief.massageJets.split(' + ')[0]}</b> masážních trysek</span>`
     : `<span><b>${brief.swimJets}</b></span>`
   return `
     <div class="model-card-specs" aria-hidden="true">
@@ -54,6 +55,24 @@ function renderTools(models, seriesFilter) {
   `
 }
 
+// The listed price belongs to one equipment level per model (the tag next to it), so the
+// levels are explained right where the prices are compared.
+function renderTierLegend(models) {
+  const names = tierOrder.filter((n) => n !== 'Hydro' || models.some((m) => m.priceTier === 'Hydro'))
+  if (!models.some((m) => m.priceTier)) return ''
+  return `
+    <details class="tier-legend" data-reveal>
+      <summary>Co znamená ${names.join(', ').replace(/, ([^,]*)$/, ' a $1')}?</summary>
+      <div class="tier-legend-body">
+        <dl>
+          ${names.map((n) => `<div><dt>${n}</dt><dd><strong>${tiers[n].summary}.</strong> ${tiers[n].who}</dd></div>`).join('')}
+        </dl>
+        <p>Štítek u ceny říká, pro kterou výbavu cena platí. Ostatní výbavy vám naceníme na dotaz — vana, izolace i ovládání jsou u všech stejné.</p>
+      </div>
+    </details>
+  `
+}
+
 export function renderModelsGrid(hub) {
   const cards = hub.models
     .map((m, i) => {
@@ -96,6 +115,7 @@ export function renderModelsGrid(hub) {
         </div>`
         }
         ${renderTools(hub.models, hub.seriesFilter)}
+        ${renderTierLegend(hub.models)}
         ${hub.seriesFilter ? `<p class="models-count" aria-live="polite" data-models-count></p>` : ''}
         <div class="models-grid">${cards}</div>
         ${hub.intro.note ? `<p class="models-note" data-reveal>${hub.intro.note}</p>` : ''}

@@ -8,7 +8,7 @@ export const easyLife44 = buildModel({
   series: 'Easy Life',
   category: 'Riptide Easy Life · Extra Depth',
   name: 'Easy Life 4.4',
-  tagline: 'Nejkompaktnější swim spa řady Easy Life s extra hloubkou 154 cm pro náročnější plavecký trénink.',
+  tagline: 'Nejkompaktnější swim spa řady Easy Life s extra hloubkou (vana vysoká 154 cm) pro náročnější plavecký trénink.',
   price: 499900,
 
   images: {
@@ -20,7 +20,7 @@ export const easyLife44 = buildModel({
     { value: '443', unit: 'cm', label: 'délka' },
     { value: '6 783', unit: 'l', label: 'objem vody' },
     { value: 'až 45', unit: '', label: 'masážních trysek' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
   ],
 
   specRows: singleZoneSpecRows,
@@ -30,7 +30,7 @@ export const easyLife44 = buildModel({
       name: 'Pro Premium',
       price: 519900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem.',
-      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '443 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',
@@ -53,7 +53,7 @@ export const easyLife44 = buildModel({
       name: 'Pro Luxury',
       price: 499900,
       description: 'Více masážních trysek a masážní stěna, jednorychlostní plavecký proud.',
-      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo swim jety', 'Nižší nároky na přívod (32 A)'],
+      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo plavecké trysky', 'Nižší nároky na přívod (32 A)'],
       specs: {
         dimensions: '443 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',

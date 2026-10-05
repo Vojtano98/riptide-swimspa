@@ -9,7 +9,7 @@ export function renderAccessoryShowcase(section) {
       (item) => `
       <div class="accessory-card" data-reveal>
         <div class="accessory-card-media">
-          ${photo(item.image, item.title, { sizes: '(max-width: 760px) 50vw, 25vw' })}
+          ${photo(item.image, item.title, { sizes: '(max-width: 480px) 100vw, (max-width: 980px) 50vw, 25vw' })}
         </div>
         <h3 class="accessory-card-title">${item.title}</h3>
         <p class="accessory-card-text">${item.text}</p>

@@ -46,9 +46,9 @@ export function buildModel(model) {
     showroom,
     finalCta: model.finalCta ?? {
       headline: `Kolik bude stát váš ${model.name}?`,
-      text: 'Připravíme vám nezávaznou nabídku včetně dopravy, instalace a doporučeného příslušenství.',
-      primaryCta: { label: 'Spočítat finální cenu', inquiry: true },
-      secondaryCta: { label: 'Domluvit konzultaci', href: '/#showroom' },
+      text: 'Pošleme vám nezávaznou nabídku na míru — podle výbavy, kterou si vyberete.',
+      primaryCta: { label: 'Poptat cenu', inquiry: true },
+      secondaryCta: { label: 'Zavolat +420 777 605 789', href: 'tel:+420777605789' },
       note: 'Odpovídáme do 24 hodin. Nezávazná kalkulace.',
     },
   }

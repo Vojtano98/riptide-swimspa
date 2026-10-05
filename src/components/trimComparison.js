@@ -1,6 +1,7 @@
 import { formatPrice } from '../utils/format.js'
 import { icon } from '../utils/icons.js'
 import { sortVariants, initialVariant } from '../utils/variants.js'
+import { tiers } from '../data/shared/tiers.js'
 
 // Interactive trim picker, kept compact: a segmented control (name + price) switches tiers;
 // one panel shows what that tier is (highlights) and what changes versus the base tier.
@@ -31,10 +32,10 @@ export function renderTrimComparison(model) {
       const diffRows = specRows.filter((row) => base.specs[row.key] !== v.specs[row.key])
       const delta =
         v.id === base.id
-          ? `<p class="trim-delta-note">Základní výbava ${model.name} — ostatní úrovně na ní staví.</p>`
+          ? `<p class="trim-delta-note">Základní výbava ${model.name} — ostatní výbavy na ní staví.</p>`
           : `
             <div class="trim-delta">
-              <span class="trim-delta-eyebrow">Navíc oproti ${base.name}</span>
+              <span class="trim-delta-eyebrow">Co je jinak než u ${base.name}</span>
               <ul class="trim-delta-list">
                 ${diffRows
                   .map(
@@ -56,6 +57,7 @@ export function renderTrimComparison(model) {
             <span class="trim-panel-name">${v.name}</span>
             <span class="trim-panel-price">${formatPrice(v.price, model.currency)}</span>
           </div>
+          ${tiers[v.name] ? `<p class="trim-panel-who">${tiers[v.name].who}</p>` : ''}
           <p class="trim-panel-desc">${v.description}</p>
           <ul class="trim-chips">
             ${v.highlights.map((h) => `<li>${icon('check', 13)}${h}</li>`).join('')}
@@ -102,7 +104,8 @@ export function renderTrimComparison(model) {
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">Provedení</span>
-          <h2 class="h-section">Vyberte si výbavu ${model.name}.</h2>
+          <h2 class="h-section">Vyberte si výbavu.</h2>
+          <p class="body-l">Vana, izolace i ovládání jsou u všech výbav stejné. Liší se síla a regulace plaveckého proudu.</p>
         </div>
         <div class="cfg" data-reveal>
           <div class="trim-tabs" role="tablist" aria-label="Provedení výbavy">${tabs}</div>

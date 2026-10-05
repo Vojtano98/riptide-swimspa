@@ -8,7 +8,7 @@ export const atlas44 = buildModel({
   series: 'Atlas',
   category: 'Riptide Atlas · Standard Depth',
   name: 'Atlas 4.4',
-  tagline: 'Kompaktnější plavecký bazén standardní hloubky 129 cm pro menší zahrady.',
+  tagline: 'Kompaktnější plavecký bazén standardní hloubky (vana vysoká 129 cm) pro menší zahrady.',
   price: 489900,
 
   images: {
@@ -20,7 +20,7 @@ export const atlas44 = buildModel({
     { value: '443', unit: 'cm', label: 'délka' },
     { value: '235', unit: 'cm', label: 'šířka' },
     { value: '5 690', unit: 'l', label: 'objem vody' },
-    { value: 'až 4×', unit: '', label: '3" turbo swim jety' },
+    { value: 'až 4×', unit: '', label: '3" turbo plavecké trysky' },
   ],
 
   specRows: poolSpecRows,
@@ -30,7 +30,7 @@ export const atlas44 = buildModel({
       name: 'Pro Premium',
       price: 549900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem.',
-      highlights: ['4× 3" turbo swim jety', '10-stupňové plavání', 'Plavecké potrubí 3"'],
+      highlights: ['4× 3" turbo plavecké trysky', '10-stupňové plavání', 'Plavecké potrubí 3"'],
       specs: {
         dimensions: '443 × 235 × 129 cm',
         capacity: '5 690 l',
@@ -50,7 +50,7 @@ export const atlas44 = buildModel({
       name: 'Pro Luxury',
       price: 529900,
       description: 'Stejný výkon trysek, jednorychlostní plavecký proud, nižší nároky na přívod.',
-      highlights: ['4× 3" turbo swim jety', 'Nižší nároky na přívod (32 A)', 'Kompaktnější provedení'],
+      highlights: ['4× 3" turbo plavecké trysky', 'Nižší nároky na přívod (32 A)', 'Kompaktnější provedení'],
       specs: {
         dimensions: '443 × 235 × 129 cm',
         capacity: '5 690 l',
@@ -70,8 +70,8 @@ export const atlas44 = buildModel({
       id: 'hydro',
       name: 'Hydro',
       price: 489900,
-      description: 'Odlehčené provedení se 2 swim jety a nejnižší pořizovací náklady.',
-      highlights: ['2× 3" turbo swim jety', 'Nejnižší nároky na přívod (25 A)', 'Stejná izolace Platinum Lock'],
+      description: 'Odlehčené provedení se 2 plavecké trysky a nejnižší pořizovací náklady.',
+      highlights: ['2× 3" turbo plavecké trysky', 'Nejnižší nároky na přívod (25 A)', 'Stejná izolace Platinum Lock'],
       specs: {
         dimensions: '443 × 235 × 129 cm',
         capacity: '5 690 l',

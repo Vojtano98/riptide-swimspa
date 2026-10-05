@@ -22,7 +22,7 @@ export function renderFaq({ limit } = {}) {
           <span class="eyebrow">ČASTÉ OTÁZKY</span>
           <h2 class="h-section">Než se rozhodnete.</h2>
           <p class="body-l">Odpovědi, které se hodí vědět před poptávkou. Chybí vám něco? Napište nebo zavolejte.</p>
-          <button class="btn btn-outline" data-open-inquiry>Zeptat se poradce</button>
+          <button class="btn btn-outline" data-open-inquiry data-inquiry-intent="question">Zeptat se poradce</button>
         </div>
         <div class="faq-list" data-reveal>${items}</div>
       </div>

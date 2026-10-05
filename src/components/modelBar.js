@@ -4,11 +4,11 @@ import { sortVariants, initialVariant } from '../utils/variants.js'
 
 const LINKS = [
   ['parametry', 'Parametry'],
-  ['provedeni', 'Provedení'],
+  ['provedeni', 'Výbava'],
   ['rozmery', 'Rozměry'],
   ['izolace', 'Izolace'],
   ['funkce', 'Technologie'],
-  ['uspora', 'Úspora'],
+  ['faq', 'Otázky'],
   ['showroom', 'Showroom'],
 ]
 

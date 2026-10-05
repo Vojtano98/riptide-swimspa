@@ -8,7 +8,7 @@ export const easyLife55 = buildModel({
   series: 'Easy Life',
   category: 'Riptide Easy Life · Extra Depth',
   name: 'Easy Life 5.5',
-  tagline: 'Střední velikost s extra hloubkou 154 cm — vyvážený poměr plaveckého tréninku a hydromasáže.',
+  tagline: 'Střední velikost s extra hloubkou (vana vysoká 154 cm) — vyvážený poměr plaveckého tréninku a hydromasáže.',
   price: 539900,
 
   images: {
@@ -20,7 +20,7 @@ export const easyLife55 = buildModel({
     { value: '549,5', unit: 'cm', label: 'délka' },
     { value: '9 223', unit: 'l', label: 'objem vody' },
     { value: 'až 45', unit: '', label: 'masážních trysek' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
   ],
 
   specRows: singleZoneSpecRows,
@@ -30,7 +30,7 @@ export const easyLife55 = buildModel({
       name: 'Pro Premium',
       price: 559900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem.',
-      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '549,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',
@@ -53,7 +53,7 @@ export const easyLife55 = buildModel({
       name: 'Pro Luxury',
       price: 539900,
       description: 'Více masážních trysek a masážní stěna, jednorychlostní plavecký proud.',
-      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo swim jety', 'Ovládací panel TP10 + AP40'],
+      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo plavecké trysky', 'Ovládací panel TP10 + AP40'],
       specs: {
         dimensions: '549,5 × 235 × 154 cm',
         seating: '3 sedy + 1 lehátko',

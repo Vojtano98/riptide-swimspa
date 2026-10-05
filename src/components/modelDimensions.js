@@ -71,7 +71,7 @@ export function renderModelDimensions(model) {
           <h2 class="h-section">Vejde se vám na zahradu?</h2>
           <p class="body-l">Půdorys a boční pohled ${model.name} v měřítku. Metry jsou jen začátek — přístup na pozemek, podklad i vzdálenost od domu s vámi rádi projdeme při osobní konzultaci.</p>
           <div class="dim-figs">${fig(L, ' cm', 'délka')}${fig(Wd, ' cm', 'šířka')}${fig(H, ' cm', 'výška')}</div>
-          <button class="btn btn-outline" data-open-inquiry>Domluvit konzultaci</button>
+          <button class="btn btn-outline" data-open-inquiry data-inquiry-intent="question">Zeptat se na umístění</button>
         </div>
         <div class="dim-plan" data-reveal>${svg}</div>
       </div>

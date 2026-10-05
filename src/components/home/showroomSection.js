@@ -42,7 +42,7 @@ export function renderShowroomSection(home) {
               <a class="showroom-contact-value" href="mailto:${c.email}">${c.email}</a>
             </div>
           </div>
-          <button class="btn btn-primary" data-open-inquiry>${s.cta.label}</button>
+          <button class="btn btn-primary" data-open-inquiry data-inquiry-intent="showroom">${s.cta.label}</button>
         </div>
       </div>
     </section>

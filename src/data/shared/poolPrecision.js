@@ -7,8 +7,8 @@
 export const swimJetPrecision = {
   image: '/assets/photos/pool-cutaway.jpg',
   imageAlt: 'Plavecký kanál Riptide shora — polovina jako produktová fotografie, polovina jako technický nákres',
-  eyebrow: 'PATENTOVANÉ SWIM JETY',
+  eyebrow: 'PATENTOVANÉ PLAVECKÉ TRYSKY',
   claim: 'Nulová turbulence. Odpor tam, kde má být.',
-  text: 'Voštinová konstrukce trysek se liší od běžných přímo-vstřikovaných trysek na trhu — rozprostírá plavecký proud rovnoměrně a bez turbulencí. Power-flow čerpadla s vysokým průtokem míří přesně na ramena a hrudník, podle technického listu výrobce.',
-  stats: ['Patentované 3" turbo swim jety', 'Cílený proud na ramena a hrudník', 'Bez turbulencí díky voštinové konstrukci'],
+  text: 'Běžné trysky vodu jen vystřelí a proud se láme. Voštinová konstrukce trysek Riptide ho rozprostře do šířky, takže plavete v rovnoměrném proudu bez turbulencí, který míří na ramena a hrudník.',
+  stats: ['Patentované 3" plavecké trysky', 'Cílený proud na ramena a hrudník', 'Bez turbulencí díky voštinové konstrukci'],
 }

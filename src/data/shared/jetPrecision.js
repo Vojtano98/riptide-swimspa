@@ -9,6 +9,6 @@ export const jetPrecision = {
   imageAlt: 'Riptide swim spa shora — polovina jako produktová fotografie, polovina jako technický nákres s rozmístěním trysek',
   eyebrow: 'MAPA MASÁŽNÍCH TRYSEK',
   claim: 'Každá tryska má své přesné místo.',
-  text: 'Rozmístění trysek není náhodné — vychází z vědecky navrženého tvarování sezení a přesně cílené masáže podle technického listu výrobce. Výsledkem jsou osvědčené benefity hydroterapie: uvolnění svalů, lepší krevní oběh i úleva od napětí.',
+  text: 'Rozmístění trysek není náhodné. Sezení je tvarované tak, aby každá tryska mířila na konkrétní partii — záda, bedra, lýtka i chodidla.',
   stats: ['Precizně opracované nerezové trysky', 'Každá tryska nastavitelná individuálně', 'Vědecky navržený tvar sezení'],
 }

@@ -3,11 +3,11 @@
 export const showroom = {
   eyebrow: 'NAVŠTIVTE NÁS',
   headline: 'Než si vyberete, vyzkoušejte si Riptide na vlastní kůži.',
-  text: 'Jako výhradní partner značky Riptide pro Českou republiku vás v našem showroomu osobně provedeme celou nabídkou swim spa, předvedeme plavecký proud i hydromasážní zóny naživo a společně vybereme řadu a výbavu, která bude nejlépe sedět vaší zahradě i rozpočtu. Prohlídka probíhá pouze po předchozí domluvě — každému klientovi se věnujeme individuálně.',
+  text: 'V pražském showroomu vám předvedeme plavecký proud i hydromasáž naživo a společně vybereme řadu a výbavu podle vaší zahrady a rozpočtu. Prohlídka je po předchozí domluvě — věnujeme se vždy jen vám.',
   points: [
     'Osobní prohlídka s odborným poradcem',
     'Vyzkoušíte si plavecký proud i hydromasáž přímo v provozu',
-    'Poradíme s umístěním, technikou i financováním',
+    'Poradíme s umístěním a technickou přípravou',
   ],
   image: {
     src: '/assets/photos/showroom-interior.jpg',
@@ -22,5 +22,5 @@ export const showroom = {
     email: 'info@swimspa.cz',
     mapHref: 'https://www.google.com/maps/search/?api=1&query=Nad+Vr%C5%A1ovskou+horou+88%2F4%2C+101+00+Praha+10',
   },
-  cta: { label: 'Domluvit prohlídku showroomu' },
+  cta: { label: 'Domluvit prohlídku' },
 }

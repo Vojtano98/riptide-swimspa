@@ -26,7 +26,7 @@ export function renderSeriesHero(series) {
     const len = briefs.map((b) => b.length)
     const h = briefs.map((b) => b.height)
     facts.push(`délka ${formatNumber(Math.round(Math.min(...len)))}–${formatNumber(Math.round(Math.max(...len)))} cm`)
-    facts.push(Math.min(...h) === Math.max(...h) ? `výška ${Math.min(...h)} cm` : `výška ${Math.min(...h)}–${Math.max(...h)} cm`)
+    facts.push(Math.min(...h) === Math.max(...h) ? `výška vany ${Math.min(...h)} cm` : `výška vany ${Math.min(...h)}–${Math.max(...h)} cm`)
     facts.push(briefs.some((b) => b.massageJets) ? 'plavání + hydromasáž' : 'čistě plavecký bazén')
   }
   if (prices.length) facts.push(`od ${formatPrice(Math.min(...prices))}`)

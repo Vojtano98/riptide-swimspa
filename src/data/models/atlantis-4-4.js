@@ -8,7 +8,7 @@ export const atlantis44 = buildModel({
   series: 'Atlantis',
   category: 'Riptide Atlantis · Extra Depth',
   name: 'Atlantis 4.4',
-  tagline: 'Nejkompaktnější extra hluboký plavecký bazén řady Atlantis — 154 cm hloubky na malý pozemek.',
+  tagline: 'Nejkompaktnější extra hluboký plavecký bazén řady Atlantis — vana vysoká 154 cm i na malý pozemek.',
   price: 549900,
 
   images: {
@@ -18,9 +18,9 @@ export const atlantis44 = buildModel({
 
   quickSpecs: [
     { value: '443', unit: 'cm', label: 'délka' },
-    { value: '154', unit: 'cm', label: 'hloubka' },
+    { value: '154', unit: 'cm', label: 'výška vany' },
     { value: '7 722', unit: 'l', label: 'objem vody' },
-    { value: '4×', unit: '', label: '3" turbo swim jety' },
+    { value: '4×', unit: '', label: '3" turbo plavecké trysky' },
   ],
 
   specRows: poolSpecRows,
@@ -30,7 +30,7 @@ export const atlantis44 = buildModel({
       name: 'Pro Premium',
       price: 579900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem a nejtlustší skořepinou na trhu.',
-      highlights: ['4× 3" turbo swim jety', '10-stupňové plavání', 'Nejtlustší skořepina na trhu'],
+      highlights: ['4× 3" turbo plavecké trysky', '10-stupňové plavání', 'Nejtlustší skořepina na trhu'],
       specs: {
         dimensions: '443 × 235 × 154 cm',
         capacity: '7 722 l',
@@ -51,7 +51,7 @@ export const atlantis44 = buildModel({
       name: 'Pro Luxury',
       price: 549900,
       description: 'Stejný výkon trysek, jednorychlostní plavecký proud, nižší nároky na přívod.',
-      highlights: ['4× 3" turbo swim jety', 'Nižší nároky na přívod (32 A)', 'Kompaktnější provedení'],
+      highlights: ['4× 3" turbo plavecké trysky', 'Nižší nároky na přívod (32 A)', 'Kompaktnější provedení'],
       specs: {
         dimensions: '443 × 235 × 154 cm',
         capacity: '7 722 l',

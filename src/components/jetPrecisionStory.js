@@ -11,7 +11,7 @@ export function renderJetPrecisionStory(section) {
     <section class="section section--white">
       <div class="container">
         <div class="precision-media" data-reveal="scale">
-          ${photo(section.image, section.imageAlt, { sizes: '(max-width: 900px) 100vw, 50vw' })}
+          ${photo(section.image, section.imageAlt, { sizes: '92vw' })}
         </div>
         <div class="precision-copy" data-reveal>
           <span class="eyebrow">${section.eyebrow}</span>

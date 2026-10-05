@@ -30,7 +30,7 @@ export const aquaLife40 = buildModel({
       name: 'Pro Luxury',
       price: 449900,
       description: 'Plná hydromasážní výbava s 5 sedy a 1 lehátkem, silnější plavecký proud.',
-      highlights: ['44 masážních trysek', '5 sedů + 1 lehátko', '4× 3" turbo swim jety'],
+      highlights: ['44 masážních trysek', '5 sedů + 1 lehátko', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '385 × 220 × 119 cm',
         seating: '5 sedů + 1 lehátko',
@@ -53,8 +53,8 @@ export const aquaLife40 = buildModel({
       id: 'hydro',
       name: 'Hydro',
       price: 419900,
-      description: 'Odlehčené provedení se 2 swim jety a nejnižší pořizovací náklady v řadě.',
-      highlights: ['44 masážních trysek', '2× 3" turbo swim jety', 'Nejnižší nároky na přívod (25 A)'],
+      description: 'Odlehčené provedení se 2 plavecké trysky a nejnižší pořizovací náklady v řadě.',
+      highlights: ['44 masážních trysek', '2× 3" turbo plavecké trysky', 'Nejnižší nároky na přívod (25 A)'],
       specs: {
         dimensions: '385 × 220 × 119 cm',
         seating: '5 sedů + 1 lehátko',

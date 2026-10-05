@@ -30,7 +30,7 @@ export const aquaLife60 = buildModel({
       name: 'Pro Premium',
       price: 559900,
       description: 'Plná výbava s 10-stupňovým plaveckým systémem.',
-      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo swim jety'],
+      highlights: ['35 masážních trysek', '10-stupňové plavání', '4× 3" turbo plavecké trysky'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',
@@ -53,7 +53,7 @@ export const aquaLife60 = buildModel({
       name: 'Pro Luxury',
       price: 539900,
       description: 'Více masážních trysek a masážní stěna, jednorychlostní plavecký proud.',
-      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo swim jety', 'Ovládací panel TP10 + AP40'],
+      highlights: ['45 masážních trysek + masážní stěna', '4× 3" turbo plavecké trysky', 'Ovládací panel TP10 + AP40'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',
@@ -76,8 +76,8 @@ export const aquaLife60 = buildModel({
       id: 'hydro',
       name: 'Hydro',
       price: 499900,
-      description: 'Masážní stěna a 45 trysek se 2 swim jety pro nejnižší pořizovací náklady.',
-      highlights: ['45 masážních trysek + masážní stěna', '2× 3" turbo swim jety', 'Nejnižší nároky na přívod (25 A)'],
+      description: 'Masážní stěna a 45 trysek se 2 plavecké trysky pro nejnižší pořizovací náklady.',
+      highlights: ['45 masážních trysek + masážní stěna', '2× 3" turbo plavecké trysky', 'Nejnižší nároky na přívod (25 A)'],
       specs: {
         dimensions: '591,5 × 235 × 129 cm',
         seating: '3 sedy + 1 lehátko',
