@@ -1,5 +1,5 @@
 // One big sentence on its own screen — the "breathing" beat between denser sections.
-// `text` may contain <em> to colour the key phrase and `{pause}` for a longer beat.
+// `text` may contain <em> to colour the key phrase `{pause}` for a longer beat and `{br}` for a line break.
 //
 // The section is a tall scroll track with a sticky stage (same mechanics as the jet
 // moment): while it is pinned, scroll position decides how many words are revealed, so
@@ -14,6 +14,8 @@ export function renderQuietStatement(q) {
       .split(/(\s+)/)
       .map((tok) => {
         if (/^\s*$/.test(tok)) return tok
+        // `{br}` starts a new line, so a sentence is never split across two.
+        if (tok === '{br}') return '<br>'
         // `{pause}` in the copy holds the next word back by a few extra scroll beats.
         if (tok === '{pause}') {
           i += 4

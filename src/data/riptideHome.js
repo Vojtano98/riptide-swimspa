@@ -99,7 +99,7 @@ export const home = {
     afterAdvantages: {
       tone: 'dark',
       eyebrow: 'HLOUBKA',
-      text: 'Standardní, nebo <em>extra hloubka</em>. Hlubší voda — <em>přes 140 cm</em> — pro plavání naplno.',
+      text: 'Standardní hloubka, nebo <em>extra</em>. {br} {pause} Voda hluboká <em>přes 140 cm</em>.',
     },
   },
 

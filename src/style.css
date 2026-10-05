@@ -4944,3 +4944,5 @@ h1, h2, h3 { text-wrap: balance; }
   .models-grid .model-card-specs { display: none; }
 }
 .models-note, .showroom-layout .body-l { max-width: 68ch; }
+/* A highlighted phrase in a quiet statement ("přes 140 cm", "29 °C") never splits across lines. */
+.quiet-text em { white-space: nowrap; }
