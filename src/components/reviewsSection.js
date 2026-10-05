@@ -43,7 +43,6 @@ export function renderReviews() {
           </div>
         </div>
         <div class="rv-grid">${cards}</div>
-        <p class="rv-source" data-reveal><a href="${reviews.source}" target="_blank" rel="noopener">Všechna hodnocení na SwimSpa.cz ↗</a></p>
       </div>
     </section>
   `
