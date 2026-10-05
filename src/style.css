@@ -4943,3 +4943,4 @@ h1, h2, h3 { text-wrap: balance; }
 @media (max-width: 900px) {
   .models-grid .model-card-specs { display: none; }
 }
+.models-note, .showroom-layout .body-l { max-width: 68ch; }
