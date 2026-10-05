@@ -91,13 +91,12 @@ function formHTML(context) {
         </div>
         <div class="form-field">
           <label for="f-phone">Telefon</label>
-          <input id="f-phone" name="phone" type="tel" autocomplete="tel" />
+          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" />
         </div>
         <div class="form-field">
           <label for="f-email">E-mail</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" />
+          <input id="f-email" name="email" type="email" required autocomplete="email" />
         </div>
-        <p class="form-hint" style="grid-column: 1 / -1">Stačí vyplnit telefon <strong>nebo</strong> e-mail.</p>
         ${upfront}
       </div>
       <details class="form-more">
@@ -143,8 +142,11 @@ function bindForm(form, overlay, context) {
       field?.focus()
     }
     if (!name.value.trim()) return fail('Napište nám prosím své jméno.', name)
-    if (!phone && !email) return fail('Vyplňte prosím telefon nebo e-mail, abychom vás mohli kontaktovat.', form.elements.phone)
-    if (email && !form.elements.email.checkValidity()) return fail('E-mail nevypadá správně — zkontrolujte ho prosím.', form.elements.email)
+    // Phone and e-mail are both required, in every variant of the form.
+    if (!phone) return fail('Vyplňte prosím telefon.', form.elements.phone)
+    if (phone.replace(/\D/g, '').length < 9) return fail('Telefon nevypadá správně — zkontrolujte ho prosím.', form.elements.phone)
+    if (!email) return fail('Vyplňte prosím e-mail.', form.elements.email)
+    if (!form.elements.email.checkValidity()) return fail('E-mail nevypadá správně — zkontrolujte ho prosím.', form.elements.email)
     if (context.intent === 'question' && !form.elements.note.value.trim()) return fail('Napište nám prosím, na co se chcete zeptat.', form.elements.note)
 
     const data = new FormData(form)
@@ -158,10 +160,10 @@ function bindForm(form, overlay, context) {
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: buildSubject(context),
       from_name: 'Riptide Swim Spa — nová poptávka',
-      ...(email ? { replyto: email } : {}),
+      replyto: email,
       'Jméno zákazníka': data.get('name'),
-      'Telefon zákazníka': phone || 'neuvedeno',
-      'E-mail zákazníka': email || 'neuvedeno',
+      'Telefon zákazníka': phone,
+      'E-mail zákazníka': email,
       'Typ požadavku': INTENTS[context.intent].title,
       ...(context.intent === 'showroom' ? { 'Preferovaný termín': data.get('when') || 'neuvedeno' } : {}),
       Lokalita: data.get('location') || 'neuvedeno',
