@@ -99,7 +99,9 @@ export const home = {
     afterAdvantages: {
       tone: 'dark',
       eyebrow: 'HLOUBKA',
-      text: 'Standardní hloubka, nebo <em>extra</em>. {br} {pause} Voda hluboká <em>přes 140 cm</em>.',
+      text: 'Jak hlubokou vodu chcete?',
+      // Slides in under the question a little further down the scroll.
+      answer: '<strong>Standardní hloubka</strong> — snazší nástup a méně vody k ohřevu. {br} <strong>Extra hloubka</strong> — voda <em>přes\u00a0140\u00a0cm</em> a víc prostoru pro záběr.',
     },
   },
 

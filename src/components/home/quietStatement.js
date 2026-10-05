@@ -1,4 +1,6 @@
 // One big sentence on its own screen — the "breathing" beat between denser sections.
+// An optional `answer` turns the statement into question → answer: the answer slides in
+// under the question further down the scroll.
 // `text` may contain <em> to colour the key phrase `{pause}` for a longer beat and `{br}` for a line break.
 //
 // The section is a tall scroll track with a sticky stage (same mechanics as the jet
@@ -41,11 +43,12 @@ export function renderQuietStatement(q) {
   })
 
   return `
-    <section class="quiet quiet--${q.tone || 'white'}${q.text.includes('{pause}') ? ' quiet--paced' : ''}" data-quiet data-quiet-total="${i}">
+    <section class="quiet quiet--${q.tone || 'white'}${q.text.includes('{pause}') || q.answer ? ' quiet--paced' : ''}" data-quiet data-quiet-total="${i}">
       <div class="quiet-stage">
         <div class="container">
           ${q.eyebrow ? `<span class="eyebrow quiet-eyebrow">${q.eyebrow}</span>` : ''}
           <h2 class="quiet-text">${words}</h2>
+          ${q.answer ? `<p class="quiet-answer" data-quiet-answer>${q.answer.split(/\s*\{br\}\s*/).map((line) => `<span>${line}</span>`).join('')}</p>` : ''}
         </div>
       </div>
     </section>
@@ -67,6 +70,7 @@ export function bindQuietStatements() {
       section,
       eyebrow: section.querySelector('.quiet-eyebrow'),
       words: [...section.querySelectorAll('.w')],
+      answer: section.querySelector('[data-quiet-answer]'),
       total: Number(section.dataset.quietTotal) + 1.6,
       target: 0,
       shown: 0,
@@ -75,8 +79,15 @@ export function bindQuietStatements() {
   })
 
   const paint = (s) => {
-    // Words finish revealing at 70 % of the range; the rest is time to read it.
-    const x = Math.min(1, s.shown / 0.7) * s.total
+    // Words finish revealing at 70 % of the range; the rest is time to read it. With an
+    // answer, the question is done by 40 % and the answer rides in between 52 % and 74 %.
+    const x = Math.min(1, s.shown / (s.answer ? 0.4 : 0.7)) * s.total
+    if (s.answer) {
+      const t = Math.min(1, Math.max(0, (s.shown - 0.52) / 0.22))
+      const e = 1 - Math.pow(1 - t, 3)
+      s.answer.style.opacity = e
+      s.answer.style.transform = `translateY(${(1 - e) * 56}px)`
+    }
     s.words.forEach((w) => {
       const t = Math.min(1, Math.max(0, (x - Number(w.style.getPropertyValue('--i'))) / 1.6))
       w.style.opacity = t
