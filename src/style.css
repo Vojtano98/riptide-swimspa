@@ -4968,3 +4968,8 @@ h1, h2, h3 { text-wrap: balance; }
 @media (max-width: 760px) {
   .quiet-answer-line + .quiet-answer-line { margin-top: 0.8em; }
 }
+/* Question → answer statements need the longest track: question, then each answer line on its own scroll. */
+.quiet.is-scrub.quiet--qa { height: 250vh; }
+@media (max-width: 760px) {
+  .quiet.is-scrub.quiet--qa { height: 215vh; }
+}

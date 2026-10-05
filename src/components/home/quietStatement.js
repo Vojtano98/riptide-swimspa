@@ -14,7 +14,7 @@ function answerHTML(answer) {
   return answer
     .split(/\s*\{br\}\s*/)
     .map((line, li) => {
-      if (li) n += 3
+      if (li) n += 12 // a clear hold before the next line: each line gets its own scroll
       const html = line
         .split(/(<[^>]+>)/)
         .map((part) =>
@@ -62,7 +62,7 @@ export function renderQuietStatement(q) {
   })
 
   return `
-    <section class="quiet quiet--${q.tone || 'white'}${q.text.includes('{pause}') || q.answer ? ' quiet--paced' : ''}" data-quiet data-quiet-total="${i}">
+    <section class="quiet quiet--${q.tone || 'white'}${q.answer ? ' quiet--qa' : q.text.includes('{pause}') ? ' quiet--paced' : ''}" data-quiet data-quiet-total="${i}">
       <div class="quiet-stage">
         <div class="container">
           ${q.eyebrow ? `<span class="eyebrow quiet-eyebrow">${q.eyebrow}</span>` : ''}
@@ -100,12 +100,12 @@ export function bindQuietStatements() {
 
   const paint = (s) => {
     // Words finish revealing at 70 % of the range; the rest is time to read it. With an
-    // answer, the question is done by 40 % and the answer follows word by word between 46 % and 82 %.
+    // answer, the question is done by 40 % and the answer follows word by word between 42 % and 88 %, with a hold between its lines.
     const x = Math.min(1, s.shown / (s.answer ? 0.4 : 0.7)) * s.total
     if (s.answer) {
       const span = 4 // words in flight at once
       const last = Number(s.answerWords[s.answerWords.length - 1].style.getPropertyValue('--i'))
-      const ax = Math.min(1, Math.max(0, (s.shown - 0.46) / 0.36)) * (last + span)
+      const ax = Math.min(1, Math.max(0, (s.shown - 0.42) / 0.46)) * (last + span)
       s.answerWords.forEach((w) => {
         const t = Math.min(1, Math.max(0, (ax - Number(w.style.getPropertyValue('--i'))) / span))
         w.style.opacity = t
