@@ -60,12 +60,20 @@ function renderTools(models, seriesFilter) {
 function renderTierLegend(models) {
   const names = tierOrder.filter((n) => n !== 'Hydro' || models.some((m) => m.priceTier === 'Hydro'))
   if (!models.some((m) => m.priceTier)) return ''
+  const list = names.join(', ').replace(/, ([^,]*)$/, ' a $1')
   return `
     <details class="tier-legend" data-reveal>
-      <summary>Co znamená ${names.join(', ').replace(/, ([^,]*)$/, ' a $1')}?</summary>
+      <summary>
+        <span class="tier-legend-icon" aria-hidden="true">i</span>
+        <span class="tier-legend-title">
+          <strong>Co znamená ${list}?</strong>
+          <span>Cena u modelu vždy platí pro jednu z výbav. Podívejte se, čím se liší.</span>
+        </span>
+        <span class="tier-legend-toggle" aria-hidden="true"><span class="when-closed">Zobrazit</span><span class="when-open">Skrýt</span></span>
+      </summary>
       <div class="tier-legend-body">
-        <dl>
-          ${names.map((n) => `<div><dt>${n}</dt><dd><strong>${tiers[n].summary}.</strong> ${tiers[n].who}</dd></div>`).join('')}
+        <dl style="--n:${names.length}">
+          ${names.map((n, i) => `<div><dt><span>0${i + 1}</span>${n}</dt><dd><strong>${tiers[n].summary}</strong>${tiers[n].who}</dd></div>`).join('')}
         </dl>
         <p>Štítek u ceny říká, pro kterou výbavu cena platí. Ostatní výbavy vám naceníme na dotaz — vana, izolace i ovládání jsou u všech stejné.</p>
       </div>
