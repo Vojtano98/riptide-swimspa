@@ -1,3 +1,4 @@
+import { PRIVACY_URL } from '../config/analytics.js'
 export function renderFooter() {
   const year = new Date().getFullYear()
   return `
@@ -33,7 +34,8 @@ export function renderFooter() {
           <span>&copy; ${year} Riptide swim spa · prodává SwimSpa.cz — NO TRADING s.r.o. · IČO 05295823</span>
           <div class="footer-legal">
             <a href="#">Obchodní podmínky</a>
-            <a href="#">Ochrana osobních údajů</a>
+            <a href="${PRIVACY_URL}" target="_blank" rel="noopener">Ochrana osobních údajů</a>
+            <a href="#" data-consent-open hidden>Nastavení cookies</a>
           </div>
         </div>
       </div>

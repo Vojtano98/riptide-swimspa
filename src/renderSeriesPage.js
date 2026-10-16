@@ -1,3 +1,4 @@
+import { initConsent } from './components/consentBanner.js'
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderBreadcrumb } from './components/breadcrumb.js'
 import { renderModelsGrid, bindModelsGrid } from './components/hub/modelsGrid.js'
@@ -44,6 +45,7 @@ export function renderSeriesPage(rawSeries) {
   applyBasePath(app)
 
   bindHeader()
+  initConsent()
   bindSeriesHero()
   bindModelsGrid()
   bindModelCompare()

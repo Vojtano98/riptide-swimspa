@@ -1,3 +1,4 @@
+import { initConsent } from './components/consentBanner.js'
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderHeroHome, bindHeroHome } from './components/home/heroHome.js'
 import { renderJetMomentScroll, bindJetMomentScroll } from './components/home/jetMomentScroll.js'
@@ -52,6 +53,7 @@ export function renderHomePage(home) {
   applyBasePath(app)
 
   bindHeader()
+  initConsent()
   bindHeroHome()
   bindJetMomentScroll()
   bindSavingsSection()

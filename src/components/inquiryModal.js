@@ -2,6 +2,7 @@ import { icon } from '../utils/icons.js'
 import { openModal } from '../utils/modal.js'
 import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from '../config/forms.js'
 import { showroom } from '../data/shared/showroom.js'
+import { trackFormSent } from '../utils/analytics.js'
 
 const PLACEMENT_LABELS = {
   zahrada: 'Zahrada',
@@ -184,6 +185,7 @@ function bindForm(form, overlay, context) {
       const result = await res.json()
       if (!res.ok || !result.success) throw new Error(result.message || 'Odeslání se nezdařilo.')
 
+      trackFormSent({ type: context.intent, name: INTENTS[context.intent].title, model: context.name, variant: context.variantName })
       overlay.querySelector('.modal-body').innerHTML = successHTML(context)
       overlay.querySelector('[data-success-title]')?.focus()
     } catch (err) {

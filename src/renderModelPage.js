@@ -1,3 +1,4 @@
+import { initConsent } from './components/consentBanner.js'
 import { renderHeader, bindHeader } from './components/header.js'
 import { renderProductHero, bindProductHero } from './components/productHero.js'
 import { renderQuickSpecs } from './components/quickSpecs.js'
@@ -57,6 +58,7 @@ export function renderModelPage(model) {
   applyBasePath(app)
 
   bindHeader()
+  initConsent()
   bindProductHero()
   bindTrimComparison()
   bindModelHighlights()

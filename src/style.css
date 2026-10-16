@@ -5028,3 +5028,69 @@ h1, h2, h3 { text-wrap: balance; }
   .trust-layout--plain .trust-stat { container-type: normal; }
   .trust-layout--plain .trust-stat-value { font-size: clamp(26px, 8.4vw, 34px); }
 }
+
+/* Cookie consent: a quiet card in the corner, both choices equally easy. */
+.consent {
+  position: fixed;
+  z-index: 1200;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+.consent-card {
+  pointer-events: auto;
+  width: min(440px, 100%);
+  padding: 22px 22px 18px;
+  border-radius: var(--radius-l);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px -20px rgba(10, 20, 24, 0.35);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease);
+}
+.consent.is-open .consent-card { opacity: 1; transform: none; }
+.consent-title { font-size: 19px; letter-spacing: -0.01em; margin-bottom: 8px; }
+.consent-text { font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+.consent-text a { color: var(--accent-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.consent-prefs { display: grid; gap: 2px; margin-top: 14px; }
+.consent-prefs[hidden] { display: none; }
+.consent-pref {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.consent-pref strong { display: block; font-size: 14px; color: var(--text); }
+.consent-pref input { flex: none; width: 20px; height: 20px; accent-color: var(--accent-ink); }
+.consent-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+.consent-actions .btn { flex: 1 1 0; min-height: 44px; padding: 0 16px; font-size: 14px; white-space: nowrap; }
+.consent-more {
+  flex: 1 1 100%;
+  min-height: 40px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.consent-more:hover { color: var(--text); }
+@media (prefers-reduced-motion: reduce) {
+  .consent-card { transition: none; }
+}
+/* While the banner is up on a phone, keep the model page's sticky price bar out of its way. */
+body:has(.consent.is-open) .mobile-cta { transform: translateY(110%); }
+.footer-legal a[hidden] { display: none; }
